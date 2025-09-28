@@ -52,7 +52,7 @@ function toggleCreateAccount(){
                     { <NavLink to="/bingelog"><img width = "30px" src="/BingeLog.png"/></NavLink>}
                 </li>
                  <li>
-                    { (<NavLink to={`/userPage/${id}`}><img width="30px" src="/UserPage.png" /></NavLink>
+                    { (<NavLink to={"/userPage"}><img width="30px" src="/UserPage.png" /></NavLink>
 )}
                   
                 </li>
