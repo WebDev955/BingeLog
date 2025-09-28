@@ -1,0 +1,28 @@
+.mainWrapper{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 412px;
+    min-height: 100vh;
+    box-shadow: -2px 1px 21px 14px #000000;
+
+}
+.menuBttns{
+    padding: 10px;
+    background-color: #c73e1dff;
+    border-bottom: black;
+    border-top: black;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-color: whitesmoke;
+    border-style: solid;  
+}
+
+.mainContent{
+    color: black;
+}
+
+.showButton:hover{
+    cursor: pointer;
+}
+

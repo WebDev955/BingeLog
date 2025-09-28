@@ -1,0 +1,51 @@
+.epWrapper{   
+    border-top-style: solid;
+    border-color: white;
+    border-width: 2px;
+    margin-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: 300;
+    text-align: left;
+    text-align: center;
+
+}
+
+.epWrapper header {
+    display: flex;
+    Flex-direction: column;
+
+    background-color: var(--sinopia);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-bottom: 5px;
+}
+
+.watched {
+   color: black;
+}
+
+
+
+
+
+.epList {
+    background-color: var(--cerulean);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.epWrapper label, input {
+    padding: 5px;
+}
+
+.singleEp{
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+

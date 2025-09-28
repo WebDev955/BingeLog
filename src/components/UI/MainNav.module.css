@@ -1,0 +1,54 @@
+ .mainWrapper{
+   border-top-style: solid;
+   border-top-width: 1px;
+   border-top-color: black;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   padding: 10px;
+   color: White;
+   background-color: grey;
+   position: fixed; 
+   bottom:0;
+   left:0;
+   width: 100vw;
+   box-shadow: 2px 4px 10px 4px black;
+   margin-top: auto;
+   
+   
+   background-image: linear-gradient(
+    0deg,
+    hsl(0deg 0% 0%) 0%,
+    hsl(344deg 0% 5%) 1%,
+    hsl(344deg 0% 8%) 3%,
+    hsl(344deg 0% 11%) 9%,
+    hsl(344deg 0% 13%) 26%,
+    hsl(344deg 0% 16%) 70%,
+    hsl(344deg 0% 18%) 83%,
+    hsl(344deg 0% 21%) 90%,
+    hsl(344deg 0% 24%) 94%,
+    hsl(344deg 0% 27%) 97%,
+    hsl(344deg 0% 30%) 99%,
+    hsl(344deg 0% 33%) 100%,
+    hsl(0deg 0% 36%) 100%
+  );
+
+
+ }
+ 
+ 
+ .nav, ul, li{
+    display: flex;
+    justify-content: flex-start;
+    Justify-content: center;
+    list-style: none;
+    padding-right: 20px;
+    
+}
+
+.navList p {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+

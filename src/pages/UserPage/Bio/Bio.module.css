@@ -1,0 +1,43 @@
+.mainWrapper{
+    background-color: var(--cerulean);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.editBttn{
+    width: 100px;
+    align-self: flex-end;
+}
+
+.totalBinge {
+    display: flex;
+    align-items: center;
+    align-items: stretch;
+    gap: 60px;
+    border-color: white;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.bioBox{
+    background-color: transparent;
+    width: 410px;
+    color: whitesmoke;
+    font-size: larger;
+    padding: 3px;
+    margin-bottom: 1px;
+    font-size: medium;
+    height: 90px;
+    
+}
+
+.avatar{
+    border-radius: 75%;
+}

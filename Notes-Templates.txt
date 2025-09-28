@@ -1,0 +1,580 @@
+1. Component/Page Set up
+
+//IMPORTS - Hooks
+//IMPORTS - Components 
+//IMPORTS - Styles
+import styles from FILE LOCATION
+
+function ComponentName() {
+  return (
+    <>
+    </>
+  )
+}
+export default Component
+
+
+2. CSS 
+.mainWrapper{
+    border-style: solid;
+    border-width: 2px;
+    border-color: color;
+}
+
+/* CSS Comment*/
+
+
+3. SHOWLIST Component
+
+<main className={styles.mainWrapper}>
+        <div>
+          <h1>An API fetch request will have Shows and show info Mapped</h1>
+          <h1>Show title</h1>
+          <h2>Show Summary</h2>
+          <p>Season Count 2</p>
+          <p>Episode Count: 20</p>
+          <Bttn>Add to MyShows</Bttn>
+        </div>
+        <div>
+          <h2>Streaming Locations</h2>
+            <ul>
+              <li>
+                <p>Netflix</p>
+              </li>
+              <li>
+                <p>HBO Max</p>
+              </li>
+            </ul>
+        </div>
+      </main>
+
+
+
+
+MyShows - Code
+
+ //State to store Show data
+ const [show, setShow] = useState([])
+
+//API Fetch call for Show Data
+useEffect(() => {
+    async function fetchShow() {
+      const ids = ['tt0903747', "tt10048342" ]; // change this to whatever show you want
+      
+      const promises = ids.map(async (id) => {
+        const url = `https://streaming-availability.p.rapidapi.com/shows/${id}?series_granularity=episode&output_language=en`;
+
+        const options = {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-key': 'a89fb87d38msh09f056f5c014528p1a7f90jsn35606eacd94f',
+            'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+          },
+        };
+
+      const res = await fetch(url, options);
+      return await res.json();
+      })
+
+      try {
+        const shows = await Promise.all(promises)
+        setShow(shows);        
+        //console.log(shows)
+      
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchShow();
+  }, []);
+
+        {/*  {show.map((show) => (
+            <div key={show.imdbId} >
+              <h2 onClick={() => handleOnClick(show.imdbId)}>{show.title}</h2>
+              {showDetails === show.imdbId && <ShowDetails id={showDetails} showData={show}/>}
+            </div>
+        ))}*/}           
+
+
+
+
+function SearchDropdown({searchResults, query}) {
+  return (
+    <div className={styles.mainWrapper}>
+        {searchResults &&
+            <div>
+                {searchResults.filter((result) => 
+                        result.title &&
+                        result.title.toLowerCase().includes(query.toLowerCase())
+                ).map((result) => (
+                    <a target="_self"><p>{result.title}</p></a>
+                ))}
+            </div>
+        }
+    </div>
+  ) 
+}
+export default SearchDropdown
+
+
+________SHOWSLIST OLD CODE________
+
+//IMPORTS - Hooks
+import { useEffect, useState, useContext } from "react"
+
+//IMPORTS - Components 
+import Bttn from "../../components/UI/Bttn"
+import {UserProfileContext} from "../../components/Contexts/UserProfileContext"
+//IMPORTS - Styles
+import styles from "./ShowsList.module.css"
+
+
+
+function ShowsList() {
+ //State to store Show data
+ const [show, setShow] = useState([])
+ //const [favoritesId, setFavoritesId] = useState([])
+
+
+ const userCtx = useContext(UserProfileContext)
+ 
+  //API Fetch call for Show Data
+useEffect(() => {
+    async function fetchShow() {
+      const ids = ['tt0903747']; // change this to whatever show you want
+      
+      const promises = ids.map(async (id) => {
+        const url = `https://streaming-availability.p.rapidapi.com/shows/${id}?series_granularity=episode&output_language=en`;
+
+        const options = {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-key': 'a89fb87d38msh09f056f5c014528p1a7f90jsn35606eacd94f',
+            'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+          },
+        };
+
+      const res = await fetch(url, options);
+      return await res.json();
+      })
+
+      try {
+        const shows = await Promise.all(promises)
+        setShow(shows);
+        //setFavoritesId(shows.imdbId)
+        
+        //console.log(shows)
+      
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    
+    fetchShow();
+  }, []);
+
+
+  return (
+    <main className={styles.mainWrapper}>
+      {show.map((show) => (
+          <div key={show.imdbId} className={styles.showDiv}>
+            <h2>{show.title}</h2>
+            <h4>{show.overview}</h4>
+            <p>{show.seasonCount} Seasons</p>
+            <p>{show.episodeCount} Episodes</p>
+            {show.genres.map((genre) => (<p key={genre.id}>{genre.id}</p>))}
+            <Bttn onClick = {() => userCtx.saveShow(show)}>Save Show</Bttn>
+          </div>
+    ))}
+   </main>
+  )
+}
+export default ShowsList
+
+
+
+___  COLORS _____
+/* CSS HEX */
+--russian-violet: #301a4bff;
+--cerulean: #407899ff;
+--xanthous: #f3b61fff;
+--sinopia: #c73e1dff;
+--raisin-black: #272727ff;
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-right: linear-gradient(90deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-bottom: linear-gradient(180deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-left: linear-gradient(270deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-top-right: linear-gradient(45deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-bottom-right: linear-gradient(135deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-top-left: linear-gradient(225deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-bottom-left: linear-gradient(315deg, #301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+$gradient-radial: radial-gradient(#301a4bff, #407899ff, #f3b61fff, #c73e1dff, #272727ff);
+
+
+
+
+  return (
+    <div>
+        <Bttn onClick = {() => userCtx.editShowNotes(epTitle)}>Edit Episode</Bttn> 
+          <textarea
+            value={userCtx.showNotes[epTitle] || ""}
+            onChange={(e)=>userCtx.updateShowNotes(e.target.value, epTitle)}
+          /> 
+          <Bttn onClick={() => userCtx.saveShowNotes(epTitle)}>Save Show Notes</Bttn>         
+        <p>Character Notes</p>
+          <textarea
+            value={userCtx.characterNotes[epTitle] || ""}
+            onChange={(e)=>userCtx.updateCharacterNotes(e.target.value, epTitle)}
+          /> 
+          <Bttn onClick={() => userCtx.saveCharacterNotes(epTitle)}>Save Character Notes</Bttn>    
+       
+    </div>
+  )
+}  
+export default EpNotes
+
+
+
+
+//IMPORTS - Hooks
+import Input from "./Input"
+import Bttn from "./Bttn"
+import { useContext, useEffect } from "react"
+//IMPORTS - Components 
+import { UserProfileContext } from "../Contexts/UserProfileContext"
+import EpisodeDetails from "../../pages/UserPage/MyShows/EpisodeDetails"
+//IMPORTS - Styles
+ //import styles from FILE LOCATION
+
+ 
+
+
+function ShowNotesEdit({epTitle}) {
+  const userCtx = useContext(UserProfileContext)
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("EpNotes " + epTitle))
+    if (saved) {
+      userCtx.updateShowNotes(saved, epTitle)
+    }
+  }, [epTitle])
+
+    useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("CharNotes " + epTitle))
+    if (saved) {
+      userCtx.updateCharacterNotes(saved, epTitle)
+    }
+  }, [epTitle])
+
+  return (
+    <main>
+    <div>
+          <textarea
+            value={userCtx.showNotes[epTitle] || ""}
+            onChange={(e)=>userCtx.updateShowNotes(e.target.value, epTitle)}
+          /> 
+          <Bttn onClick={() => userCtx.saveShowNotes(epTitle)}>Save Show Notes</Bttn>          
+    </div>
+<hr/>
+    <div>
+        <p>Character Notes</p>
+          <textarea
+            value={userCtx.characterNotes[epTitle] || ""}
+            onChange={(e)=>userCtx.updateCharacterNotes(e.target.value, epTitle)}
+          /> 
+          <Bttn onClick={() => userCtx.saveCharacterNotes(epTitle)}>Save Character Notes</Bttn>           
+    </div>
+  </main>
+  )
+}  
+export default ShowNotesEdit
+
+
+//FEED CARD - HARD CODE
+  return (
+    <main className={styles.mainWrapper}>
+          <article>
+            <header className={styles.header}>
+              <img src={userProfile.bioAvatar} width="40" height="40"/>
+              <p>{userAcct.userAccount.userName}</p>
+            </header>
+              <div>
+                <p>Currently Binging: {userProfile.currentlyBinging}</p>
+                <p>Recently Watched: </p>
+                <p>"Days Gone By" (Walking Dead) </p>
+                <p>Recently Finished: Game of Thrones</p>
+                <p>Recent Review: Game of Thrones - 3/5 Stars</p>
+              </div>
+          </article>
+        <div className={styles.actionBar}>
+          <p>Action Bar</p>
+        </div>
+    </main>
+  )
+}
+export default FeedCard
+
+
+//BingeLogPage
+    <main className = {styles.mainWrapper}>
+        <h1>BingeLog Feed</h1>
+        <FeedCard/>
+    </main>
+
+
+    //CONTEXT - FRIENDS ShowsList
+
+    const [friendsList, setFriendsList] = useState([
+    {
+    userName: "Trekkie95",
+    currBinge: ["Voyager"],
+    recentlyWatchedEp: [
+      { epName: "The Omega Directive", showName: "Voyager" }
+    ],
+    recentlyFinishedShow: "Next Generation"
+  },
+  {
+    userName: "Lostie95",
+    currBinge: ["LOST", "Walking Dead"],
+    recentlyWatchedEp: [
+      { epName: "The Moth", showName: "LOST" }
+    ],
+    recentlyFinishedShow: "Attack on Titan"
+  }
+]);
+
+
+
+useEffect(() => {
+    fetch("http://localhost:5173/friendsList")
+        .then(res => res.json)
+        .then(data => setFriendsList(data));
+},[])
+
+useEffect(() => {
+    fetch("http://localhost:5173/data/friendsList", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(res =>res.json())
+    .then(data => {
+        setFriendsList(data.friendsList);
+    })
+    .catch(error => {
+        console.error('Error fetching friends list:', error);
+    });
+},[])
+
+//CREATE ACCOUNT FUNCTION 
+function createNewUser(newUserData){
+
+    setUserAccount(newUserData)
+    localStorage.setItem("user", JSON.stringify(newUserData))
+    setIsLoggedIn(true)
+    stopCreatingAccount()
+}
+
+function createNewUser(newUserData){
+    useEffect((newUserData) => {
+        fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: {
+                'Content-Type':"application/json"
+            },
+            body: JSON.stringify ({
+                userName: newUserData.userName,
+                password: newUserData.password,
+                email: newUserData.email
+
+                //this is redundent, can just pass NewUserData
+            })
+        })
+    },[newUserData])
+    
+    setUserAccount(newUserData)
+    localStorage.setItem("user", JSON.stringify(newUserData))
+    setIsLoggedIn(true)
+    stopCreatingAccount()
+}
+
+//ADDING NEW USER TO SERVER
+async function createNewUser(newUserData){
+     await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+            'Content-Type':"application/json"
+        },
+        body: JSON.stringify (newUserData)
+    })
+    setUserAccount(newUserData)
+    localStorage.setItem("user", JSON.stringify(newUserData))
+    setIsLoggedIn(true)
+    stopCreatingAccount()
+}
+
+
+//Verify userData
+function verifyLogin(formData){    
+    const userName = formData.get("userName");
+    const password = formData.get("password");
+    const storedUser = JSON.parse(localStorage.getItem("userID"))
+
+    if (
+        storedUser &&
+        storedUser.userName === userName &&
+        storedUser.password === password
+    ) {
+        
+    
+
+        setIsLoggedIn(true);
+        stopLoggingIn()
+        alert('Login Successful!')
+    } else {
+        "Wrong Login Info!"
+    }
+
+}
+
+
+
+
+8/31 - 8:27
+// ROUTER
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element: <RootLayout/>,
+      children: [
+        {index: true, element: <HomePage/>},
+        {path: "userPage", element: <UserPage/>},
+        {path: "friendsList", element: <FriendsList/>},
+        {path: "bingelog", element: <BingeLogPage/>},
+        {path: "shows", element: <ShowsPage/>},
+        {path: "about", element: <About/>}
+
+      ]
+  },
+])
+
+
+10pm 8/31/25
+//FRIENDS LIST FOR DATABASE
+
+  "friendsList": [
+    {
+      "userName": "Trekkie95",
+      "currBinge": [
+        "Voyager"
+      ],
+      "recentlyWatchedEp": [
+        {
+          "epName": "The Omega Directive",
+          "showName": "Voyager"
+        }
+      ],
+      "recentlyFinishedShow": "Next Generation"
+    },
+    {
+      "userName": "Lostie95",
+      "currBinge": [
+        "LOST",
+        "Walking Dead"
+      ],
+      "recentlyWatchedEp": [
+        {
+          "epName": "The Moth",
+          "showName": "LOST"
+        }
+      ],
+      "recentlyFinishedShow": "Attack on Titan"
+    }
+  ]
+}
+
+//ADD SHOW FUNCTION - 6:008 - 9/1
+
+/**********************
+    FAVORITE SHOWS
+***********************/
+const [myShows, setMyShows] = useState([])
+
+function saveShow(show){
+    setMyShows(prev => {
+        const updated = [...prev, show]
+        localStorage.setItem("MyShows", JSON.stringify(updated))
+        return updated
+    })
+}
+useEffect(()=> {
+    const storedShows = JSON.parse(localStorage.getItem("MyShows"))
+    if (storedShows) {
+        setMyShows(storedShows)
+    }
+}, [])
+
+
+function async saveShow(show){
+    const userId = userAcct.userAccount.id
+    console.log(userId)
+    const response = await fetch(`http://localhost:3000/users/${userId}`
+
+    )
+
+ useEffect(()=> {
+    const storedShows = JSON.parse(localStorage.getItem("MyShows"))
+    if (storedShows) {
+        setMyShows(storedShows)
+    }
+}, [])
+
+
+  const userId = userAcct.userAccount.id
+    fetch(`http://localhost:3000/users/${userId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                myShows: {[]
+                    imdbId: show.imdbId, 
+                    title: show.title, 
+                    seasons: show.seasons?.map((season) => ({
+                        seasonNumber: season.title,
+                        episodes: season.episodes.map((episode)=> ({
+                                episodeTitle: episode.title
+                            }))
+                     }))
+                }
+            })
+        })
+    setMyShows(prev => {
+        const updated = [...prev, show]
+        localStorage.setItem("MyShows", JSON.stringify(updated))
+        return updated
+    })
+}
+
+useEffect(()=> {
+    function fetchShowData(){
+        const userId = userAcct.userAccount.id
+        fetch(`http://localhost:3000/users/${userId}/myShows`)
+            .then (res => res.json())
+            .then (data => {setMyShows(data)
+                    console.log(data)
+      })
+        
+    }
+    fetchShowData()
+    //const storedShows = JSON.parse(localStorage.getItem("MyShows"))
+    //if (storedShows) {
+        //setMyShows(storedShows)
+    //}
+}, [])
+
+    function displayShows{data}(
+        setMyShows(data)
+    )

@@ -1,0 +1,52 @@
+.showWrapper{
+    display: flex;
+    Flex-direction: column;
+    Align-items: flex-start;
+    margin: 5px;
+    overflow: hidden;
+    overflow: auto;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.showWrapper header {
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 5px;
+}
+
+.showInfo {
+    display: flex;
+    flex-direction: column; 
+    Justify-content: center;
+    border-style: solid;
+    border-color: aliceblue;
+    padding: 10px;
+    margin-top: 5px;
+    margin: 5px;
+}
+
+.showDetails {
+    display: flex;
+    Flex-direction: column;
+    align-Content:center;
+    border-style: solid;
+    border-color: white;
+    padding-left: 5px;
+
+}
+
+.genres {
+    display: flex;
+    align-items: stretch;
+    gap: 5px;
+}
+
+.seasonInfo {
+    display: flex;
+    
+  
+}
+
+
+/* CSS Comment*/

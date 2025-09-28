@@ -1,0 +1,22 @@
+.mainWrapper{
+    display: flex;
+    Flex-direction: column;
+    Align-items: flex-start;
+    Align-items: flex-end;
+
+
+    left:0;
+    bottom:0;
+    right:0;
+    padding-left: 5px;
+    font-size: small;
+    align-items: center;
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: gray;
+    
+}
+
+/* CSS Comment*/

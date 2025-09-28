@@ -1,0 +1,25 @@
+.mainWrapper{
+    border-top-style: solid;
+    border-color: white;
+    padding: 5px;  
+    
+    display: flex;
+    align-Content:center;
+    flex-direction: column;
+    text-align: left;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header img {
+    border-radius: 20px;
+}
+
+.actionBar {
+    border-top-style: solid;
+    border-color: white;
+}

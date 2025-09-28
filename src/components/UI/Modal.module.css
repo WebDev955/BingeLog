@@ -1,0 +1,21 @@
+/* Modal.module.css */
+dialog {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  max-width: 500px;
+  width: 80%;
+  text-align: center;
+
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}
+
+/* This is optional if you want a dimmed background */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
