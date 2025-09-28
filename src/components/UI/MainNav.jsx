@@ -43,27 +43,27 @@ function toggleCreateAccount(){
                   
                 </li>
                 <li>
-                    { <Bttn onClick ={toggleLogIn}><img width = "30px" src="/LogIn.png"/></Bttn>}
+                    {!isLoggedIn && <Bttn onClick ={toggleLogIn}><img width = "30px" src="/LogIn.png"/></Bttn>}
                 </li>
                  <li>
-                    { <Bttn onClick = {toggleCreateAccount}>Create Account</Bttn>}
+                    {!isLoggedIn && <Bttn onClick = {toggleCreateAccount}>Create Account</Bttn>}
                 </li>
                 <li>
-                    { <NavLink to="/bingelog"><img width = "30px" src="/BingeLog.png"/></NavLink>}
+                    {isLoggedIn && <NavLink to="/bingelog"><img width = "30px" src="/BingeLog.png"/></NavLink>}
                 </li>
                  <li>
-                    { (<NavLink to={"/userPage"}><img width="30px" src="/UserPage.png" /></NavLink>
+                    {isLoggedIn && id && (<NavLink to={`/userPage/${id}`}><img width="30px" src="/UserPage.png" /></NavLink>
 )}
                   
                 </li>
                  <li>
-                    {<NavLink to="/shows"><img width= "30px" src= "/TvIcon.png"/></NavLink>}
+                    {isLoggedIn &&<NavLink to="/shows"><img width= "30px" src= "/TvIcon.png"/></NavLink>}
                 </li>
                  <li>
-                    {<NavLink to="/userSearch"><img width= "30px" src= "/UserSearchIcon.png"/></NavLink>}
+                    {isLoggedIn &&<NavLink to="/userSearch"><img width= "30px" src= "/UserSearchIcon.png"/></NavLink>}
                 </li>
                  <li>
-                    { <Bttn onClick = {toggleLogOut}><img width = "30px" src="/LogOut.png"/></Bttn>}
+                    {isLoggedIn && <Bttn onClick = {toggleLogOut}><img width = "30px" src="/LogOut.png"/></Bttn>}
                 </li>
             </ul>  
             <SignUp/>
