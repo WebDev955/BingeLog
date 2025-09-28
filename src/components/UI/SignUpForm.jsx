@@ -7,9 +7,14 @@ import styles from "./SignUpForm.module.css"
 import { UserAccountContext } from "../Contexts/UserAccountContext"
 import { useContext } from "react"
 
+import { authActions } from "../../store/slices/authSlice"
+import { useDispatch, useSelector } from "react-redux"
+
 function SignUpForm({ type, onSubmit}) {
 
     const userAccountCtx = useContext(UserAccountContext)
+    const submitForm = useSelector((state)=> state.auth.user)
+    const dispatch = useDispatch()
 
   return (
     <form onSubmit={onSubmit} className = {styles.formWrapper}> 
@@ -32,7 +37,7 @@ function SignUpForm({ type, onSubmit}) {
                 id= "email"
                 name = "email"
             />
-            <Bttn type= {type} onClick= {userAccountCtx.stopCreatingAccount}>Sign Up</Bttn>
+            <Bttn type= {type} onClick={onSubmit}>Sign Up</Bttn>
         </div>
     </form>
 

@@ -16,8 +16,36 @@ const submitUserInfo = useSelector((state) => state.auth.user)
 const openModal = useSelector((state) => state.auth.isCreatingAccount)
 const closeModal = useSelector((state) => state.auth.isCreatingAccount)
 
-function handleSubmitAccountInfo(){
-    dispatch(authActions.user)
+async function handleSubmitAccountInfo(newUserData){
+    
+    try {
+        const response = await fetch(`http://localhost:300/users`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email: newUserData.email,
+                userName: newUserData.userName,
+                password: newUserData.password,
+                bio: "",
+                bioAvatar: null,
+                friendsList: [],
+                myShows: [],
+                epNotes: [],
+                charNotes: [],
+                currentlyBinging: [],
+                watchedEps: [],
+                finishedShows: []
+            })
+        })
+        if (!response.ok){
+            throw new Error (`Failed to create user`)
+        }
+        await response.json()
+        dispatch(authActions.login(newUserData))
+        dispatch(authActions.stopCreatingAccount(true))
+    } catch (err){
+        console.error(err)
+    }
 }
 
 

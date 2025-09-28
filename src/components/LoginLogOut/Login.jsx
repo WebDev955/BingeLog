@@ -13,7 +13,6 @@ import { authActions } from "../../store/slices/authSlice"
 
 function Login() {
 const dispatch = useDispatch();
-
 const openModal = useSelector((state) => state.auth.isLoggingIn)
 
 
