@@ -3041,6 +3041,21 @@
         }
       ],
       "finishedShows": []
+    },
+    {
+      "id": "81d7",
+      "email": "email",
+      "userName": "testuser4",
+      "password": "pass",
+      "bio": "",
+      "bioAvatar": null,
+      "friendsList": [],
+      "myShows": [],
+      "epNotes": [],
+      "charNotes": [],
+      "currentlyBinging": [],
+      "watchedEps": [],
+      "finishedShows": []
     }
   ]
 }
