@@ -3029,6 +3029,598 @@
               ]
             }
           ]
+        },
+        {
+          "imdbId": "tt1520211",
+          "title": "The Walking Dead",
+          "seasons": [
+            {
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "title": "Days Gone Bye"
+                },
+                {
+                  "title": "Guts"
+                },
+                {
+                  "title": "Tell It to the Frogs"
+                },
+                {
+                  "title": "Vatos"
+                },
+                {
+                  "title": "Wildfire"
+                },
+                {
+                  "title": "TS-19"
+                }
+              ]
+            },
+            {
+              "title": "Season 2",
+              "episodes": [
+                {
+                  "title": "What Lies Ahead"
+                },
+                {
+                  "title": "Bloodletting"
+                },
+                {
+                  "title": "Save the Last One"
+                },
+                {
+                  "title": "Cherokee Rose"
+                },
+                {
+                  "title": "Chupacabra"
+                },
+                {
+                  "title": "Secrets"
+                },
+                {
+                  "title": "Pretty Much Dead Already"
+                },
+                {
+                  "title": "Nebraska"
+                },
+                {
+                  "title": "Triggerfinger"
+                },
+                {
+                  "title": "18 Miles Out"
+                },
+                {
+                  "title": "Judge, Jury, Executioner"
+                },
+                {
+                  "title": "Better Angels"
+                },
+                {
+                  "title": "Beside the Dying Fire"
+                }
+              ]
+            },
+            {
+              "title": "Season 3",
+              "episodes": [
+                {
+                  "title": "Seed"
+                },
+                {
+                  "title": "Sick"
+                },
+                {
+                  "title": "Walk with Me"
+                },
+                {
+                  "title": "Killer Within"
+                },
+                {
+                  "title": "Say the Word"
+                },
+                {
+                  "title": "Hounded"
+                },
+                {
+                  "title": "When the Dead Come Knocking"
+                },
+                {
+                  "title": "Made to Suffer"
+                },
+                {
+                  "title": "The Suicide King"
+                },
+                {
+                  "title": "Home"
+                },
+                {
+                  "title": "I Ain't a Judas"
+                },
+                {
+                  "title": "Clear"
+                },
+                {
+                  "title": "Arrow On the Doorpost"
+                },
+                {
+                  "title": "Prey"
+                },
+                {
+                  "title": "This Sorrowful Life"
+                },
+                {
+                  "title": "Welcome to the Tombs"
+                }
+              ]
+            },
+            {
+              "title": "Season 4",
+              "episodes": [
+                {
+                  "title": "30 Days Without an Accident"
+                },
+                {
+                  "title": "Infected"
+                },
+                {
+                  "title": "Isolation"
+                },
+                {
+                  "title": "Indifference"
+                },
+                {
+                  "title": "Internment"
+                },
+                {
+                  "title": "Live Bait"
+                },
+                {
+                  "title": "Dead Weight"
+                },
+                {
+                  "title": "Too Far Gone"
+                },
+                {
+                  "title": "After"
+                },
+                {
+                  "title": "Inmates"
+                },
+                {
+                  "title": "Claimed"
+                },
+                {
+                  "title": "Still"
+                },
+                {
+                  "title": "Alone"
+                },
+                {
+                  "title": "The Grove"
+                },
+                {
+                  "title": "Us"
+                },
+                {
+                  "title": "A"
+                }
+              ]
+            },
+            {
+              "title": "Season 5",
+              "episodes": [
+                {
+                  "title": "No Sanctuary"
+                },
+                {
+                  "title": "Strangers"
+                },
+                {
+                  "title": "Four Walls and a Roof"
+                },
+                {
+                  "title": "Slabtown"
+                },
+                {
+                  "title": "Self Help"
+                },
+                {
+                  "title": "Consumed"
+                },
+                {
+                  "title": "Crossed"
+                },
+                {
+                  "title": "Coda"
+                },
+                {
+                  "title": "What Happened and What's Going On"
+                },
+                {
+                  "title": "Them"
+                },
+                {
+                  "title": "The Distance"
+                },
+                {
+                  "title": "Remember"
+                },
+                {
+                  "title": "Forget"
+                },
+                {
+                  "title": "Spend"
+                },
+                {
+                  "title": "Try"
+                },
+                {
+                  "title": "Conquer"
+                }
+              ]
+            },
+            {
+              "title": "Season 6",
+              "episodes": [
+                {
+                  "title": "First Time Again"
+                },
+                {
+                  "title": "JSS"
+                },
+                {
+                  "title": "Thank You"
+                },
+                {
+                  "title": "Here's Not Here"
+                },
+                {
+                  "title": "Now"
+                },
+                {
+                  "title": "Always Accountable"
+                },
+                {
+                  "title": "Heads Up"
+                },
+                {
+                  "title": "Start to Finish"
+                },
+                {
+                  "title": "No Way Out"
+                },
+                {
+                  "title": "The Next World"
+                },
+                {
+                  "title": "Knots Untie"
+                },
+                {
+                  "title": "Not Tomorrow Yet"
+                },
+                {
+                  "title": "The Same Boat"
+                },
+                {
+                  "title": "Twice as Far"
+                },
+                {
+                  "title": "East"
+                },
+                {
+                  "title": "Last Day on Earth"
+                }
+              ]
+            },
+            {
+              "title": "Season 7",
+              "episodes": [
+                {
+                  "title": "The Day Will Come When You Won't Be"
+                },
+                {
+                  "title": "The Well"
+                },
+                {
+                  "title": "The Cell"
+                },
+                {
+                  "title": "Service"
+                },
+                {
+                  "title": "Go Getters"
+                },
+                {
+                  "title": "Swear"
+                },
+                {
+                  "title": "Sing Me a Song"
+                },
+                {
+                  "title": "Hearts Still Beating"
+                },
+                {
+                  "title": "Rock in the Road"
+                },
+                {
+                  "title": "New Best Friends"
+                },
+                {
+                  "title": "Hostiles and Calamities"
+                },
+                {
+                  "title": "Say Yes"
+                },
+                {
+                  "title": "Bury Me Here"
+                },
+                {
+                  "title": "The Other Side"
+                },
+                {
+                  "title": "Something They Need"
+                },
+                {
+                  "title": "The First Day of the Rest of Your Life"
+                }
+              ]
+            },
+            {
+              "title": "Season 8",
+              "episodes": [
+                {
+                  "title": "Mercy"
+                },
+                {
+                  "title": "The Damned"
+                },
+                {
+                  "title": "Monsters"
+                },
+                {
+                  "title": "Some Guy"
+                },
+                {
+                  "title": "The Big Scary U"
+                },
+                {
+                  "title": "The King, the Widow, and Rick"
+                },
+                {
+                  "title": "Time for After"
+                },
+                {
+                  "title": "How It's Gotta Be"
+                },
+                {
+                  "title": "Honor"
+                },
+                {
+                  "title": "The Lost and the Plunderers"
+                },
+                {
+                  "title": "Dead Or Alive Or"
+                },
+                {
+                  "title": "The Key"
+                },
+                {
+                  "title": "Do Not Send Us Astray"
+                },
+                {
+                  "title": "Still Gotta Mean Something"
+                },
+                {
+                  "title": "Worth"
+                },
+                {
+                  "title": "Wrath"
+                }
+              ]
+            },
+            {
+              "title": "Season 9",
+              "episodes": [
+                {
+                  "title": "A New Beginning"
+                },
+                {
+                  "title": "The Bridge"
+                },
+                {
+                  "title": "Warning Signs"
+                },
+                {
+                  "title": "The Obliged"
+                },
+                {
+                  "title": "What Comes After"
+                },
+                {
+                  "title": "Who Are You Now?"
+                },
+                {
+                  "title": "Stradivarius"
+                },
+                {
+                  "title": "Evolution"
+                },
+                {
+                  "title": "Adaptation"
+                },
+                {
+                  "title": "Omega"
+                },
+                {
+                  "title": "Bounty"
+                },
+                {
+                  "title": "Guardians"
+                },
+                {
+                  "title": "Chokepoint"
+                },
+                {
+                  "title": "Scars"
+                },
+                {
+                  "title": "The Calm Before"
+                },
+                {
+                  "title": "The Storm"
+                }
+              ]
+            },
+            {
+              "title": "Season 10",
+              "episodes": [
+                {
+                  "title": "Lines We Cross"
+                },
+                {
+                  "title": "We Are the End of the World"
+                },
+                {
+                  "title": "Ghosts"
+                },
+                {
+                  "title": "Silence the Whispers"
+                },
+                {
+                  "title": "What It Always Is"
+                },
+                {
+                  "title": "Bonds"
+                },
+                {
+                  "title": "Open Your Eyes"
+                },
+                {
+                  "title": "The World Before"
+                },
+                {
+                  "title": "Squeeze"
+                },
+                {
+                  "title": "Stalker"
+                },
+                {
+                  "title": "Morning Star"
+                },
+                {
+                  "title": "Walk With Us"
+                },
+                {
+                  "title": "What We Become"
+                },
+                {
+                  "title": "Look at the Flowers"
+                },
+                {
+                  "title": "The Tower"
+                },
+                {
+                  "title": "A Certain Doom"
+                },
+                {
+                  "title": "Home Sweet Home"
+                },
+                {
+                  "title": "Find Me"
+                },
+                {
+                  "title": "One More"
+                },
+                {
+                  "title": "Splinter"
+                },
+                {
+                  "title": "Diverged"
+                },
+                {
+                  "title": "Here's Negan"
+                }
+              ]
+            },
+            {
+              "title": "Season 11",
+              "episodes": [
+                {
+                  "title": "Acheron: Part I"
+                },
+                {
+                  "title": "Acheron: Part II"
+                },
+                {
+                  "title": "Hunted"
+                },
+                {
+                  "title": "Rendition"
+                },
+                {
+                  "title": "Out of the Ashes"
+                },
+                {
+                  "title": "On the Inside"
+                },
+                {
+                  "title": "Promises Broken"
+                },
+                {
+                  "title": "For Blood"
+                },
+                {
+                  "title": "No Other Way"
+                },
+                {
+                  "title": "New Haunts"
+                },
+                {
+                  "title": "Rogue Element"
+                },
+                {
+                  "title": "The Lucky Ones"
+                },
+                {
+                  "title": "Warlords"
+                },
+                {
+                  "title": "The Rotten Core"
+                },
+                {
+                  "title": "Trust"
+                },
+                {
+                  "title": "Acts of God"
+                },
+                {
+                  "title": "Lockdown"
+                },
+                {
+                  "title": "A New Deal"
+                },
+                {
+                  "title": "Variant"
+                },
+                {
+                  "title": "What's Been Lost"
+                },
+                {
+                  "title": "Outpost  22"
+                },
+                {
+                  "title": "Faith"
+                },
+                {
+                  "title": "Family"
+                },
+                {
+                  "title": "Rest in Peace"
+                }
+              ]
+            }
+          ]
         }
       ],
       "epNotes": [],
