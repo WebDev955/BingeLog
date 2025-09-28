@@ -14,12 +14,12 @@ function SignUp() {
 const dispatch = useDispatch();
 const submitUserInfo = useSelector((state) => state.auth.user)
 const openModal = useSelector((state) => state.auth.isCreatingAccount)
-const handleCloseModal = () => dispatch(authActions.stopCreatingAccount(false))
+const handleCloseModal = () => dispatch(authActions.stopCreatingAccount())
 
 async function handleSubmitAccountInfo(newUserData){
     
     try {
-        const response = await fetch(`http://localhost:300/users`, {
+        const response = await fetch(`http://localhost:3000/users`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -42,7 +42,7 @@ async function handleSubmitAccountInfo(newUserData){
         }
         const newUser = await response.json()
         dispatch(authActions.login(newUser))
-        dispatch(authActions.stopCreatingAccount(false))
+        dispatch(authActions.stopCreatingAccount())
     } catch (err){
         console.error(err)
     }
@@ -68,7 +68,7 @@ function handleSubmit(event){
 }
 return (
     <>  
-        <Modal open = {openModal} onClose={handleCloseModal}>
+        <Modal open = {openModal} handleClose={handleCloseModal}>
             <SignUpForm
                 onSubmit = {handleSubmit}
                 type = "submit"
