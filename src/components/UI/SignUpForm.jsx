@@ -37,7 +37,7 @@ function SignUpForm({ type, onSubmit}) {
                 id= "email"
                 name = "email"
             />
-            <Bttn type= {type} onClick={onSubmit}>Sign Up</Bttn>
+            <Bttn type= {type}>Sign Up</Bttn>
         </div>
     </form>
 

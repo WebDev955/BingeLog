@@ -20,8 +20,7 @@ const authSlice = createSlice({
             
         },
         stopCreatingAccount(state) {
-            state.isCreatingAccount = false;
-            state.isLoggedIn = true;
+            state.isCreatingAccount = false
         },
         startLoggingIn(state) {
             state.isLoggingIn = true;

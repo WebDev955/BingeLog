@@ -14,7 +14,7 @@ function SignUp() {
 const dispatch = useDispatch();
 const submitUserInfo = useSelector((state) => state.auth.user)
 const openModal = useSelector((state) => state.auth.isCreatingAccount)
-const closeModal = useSelector((state) => state.auth.isCreatingAccount)
+const handleCloseModal = () => dispatch(authActions.stopCreatingAccount(false))
 
 async function handleSubmitAccountInfo(newUserData){
     
@@ -40,9 +40,9 @@ async function handleSubmitAccountInfo(newUserData){
         if (!response.ok){
             throw new Error (`Failed to create user`)
         }
-        await response.json()
-        dispatch(authActions.login(newUserData))
-        dispatch(authActions.stopCreatingAccount(true))
+        const newUser = await response.json()
+        dispatch(authActions.login(newUser))
+        dispatch(authActions.stopCreatingAccount(false))
     } catch (err){
         console.error(err)
     }
@@ -68,7 +68,7 @@ function handleSubmit(event){
 }
 return (
     <>  
-        <Modal open = {openModal} onClose={closeModal}>
+        <Modal open = {openModal} onClose={handleCloseModal}>
             <SignUpForm
                 onSubmit = {handleSubmit}
                 type = "submit"
