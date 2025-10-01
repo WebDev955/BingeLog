@@ -3,6 +3,10 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, doc, collection, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { authActions } from "../store/slices/authSlice";
+import { useDispatch } from "react-redux";
+const dispatch = useDispatch();
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,3 +32,27 @@ const auth = getAuth(app);
 
 //export app, db, and auth to be used in app in othe modules
 export { app, db, auth };
+
+async function saveShow (showDetails){
+  const addedShow = {
+          imdbId: showDetails.imdbId,
+          title: showDetails.title,
+          seasons: showDetails.seasons?.map((season) => ({
+              title: season.title,
+              episodes: season.episodes?.map((ep) => ({
+                  title: ep.title
+              }))
+          }))
+      }
+  const updatedShows = [...myShows, addedShow]    
+  
+  const docRef = doc(db, 'Users', "Trekkie95")
+      let result = await updateDoc(docRef, {
+        myShows: updatedShows
+      })
+  dispatch(showActions.updateMyShows(updatedShows))
+      
+  }
+
+
+export{saveShow}

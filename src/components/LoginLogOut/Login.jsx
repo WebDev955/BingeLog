@@ -8,6 +8,8 @@ import { UserAccountContext } from "../Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { authActions } from "../../store/slices/authSlice"
 
+import { verifyLogin } from "../../firebase/firebase"
+
 //IMPORTS - Styles
     //import styles from FILE LOCATION
 
@@ -25,11 +27,10 @@ function handleClose() {
 }
 
 async function verifyLogin(userData){
-    // Corrected URL: use backticks (``) for template literals
     const url = `http://localhost:3000/users?userName=${userData.userName}`;
     const response = await fetch(url);
     const users = await response.json();
-    // Check if the user was found in the database (the array is not empty)
+     //Check if the user was found in the database (the array is not empty)
     const user = users[0];
    
     // Check if the user exists and the password matches
