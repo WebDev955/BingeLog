@@ -26,4 +26,5 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { db, auth };
+//export app, db, and auth to be used in app in othe modules
+export { app, db, auth };
