@@ -1392,7 +1392,12 @@
           "showName": "Star Trek: The Next Generation"
         }
       ],
-      "finishedShows": []
+      "finishedShows": [
+        {
+          "show": "Star Trek: The Next Generation",
+          "id": "tt0092455"
+        }
+      ]
     },
     {
       "id": "f13b",
