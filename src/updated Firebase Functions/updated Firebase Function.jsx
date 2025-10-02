@@ -10,6 +10,10 @@ const dispatch = useDispatch();
 
 
 
+
+
+    
+
 //BingeLog - global users
 function BingeLog() {
 
@@ -18,7 +22,7 @@ function BingeLog() {
   const [globalUsers, setGlobalUsers] = useState([])
 
   useEffect(async () => {
-    doc(db, "Users")
+    getDocs(db, "Users") //grabs all Docs (user IDs)
         .then (result => result.json())
         .then (data => setGlobalUsers(data))  
   },[])

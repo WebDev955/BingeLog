@@ -2,7 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, doc, collection, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+//sets up Authentication
+import { getAuth } from "firebase/auth"; //
 import { authActions } from "../store/slices/authSlice";
 import { useDispatch } from "react-redux";
 const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const analytics = getAnalytics(app);
 
 // Export helpers so other files can use them
 const db = getFirestore(app);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 //export app, db, and auth to be used in app in othe modules
 export { app, db, auth };

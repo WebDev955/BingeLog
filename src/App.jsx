@@ -10,6 +10,8 @@ import BingeLogPage from './pages/BingeLogFeed/BingeLogPage'
 import About from './pages/About/About'
 import FriendsList from './pages/FriendsList/FriendsList'
 import UserSearchPage from './pages/UserSearch/UserSearchPage'
+
+
   //NAVIGATION
   import RootLayout from './components/UI/RootLayout'
 
