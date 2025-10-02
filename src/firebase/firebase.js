@@ -32,7 +32,7 @@ const db = getFirestore(app);
 export const auth = getAuth(app);
 
 //export app, db, and auth to be used in app in othe modules
-export { app, db, auth };
+export { app, db};
 
 async function saveShow (showDetails){
   const addedShow = {
