@@ -9,8 +9,7 @@ import { useContext } from "react"
 
 function LogInForm({ type, onSubmit}) {
 
-const userAccountCtx = useContext(UserAccountContext)
-  return (
+return (
     <form onSubmit={onSubmit} className = {styles.formWrapper}> 
         <div className={styles.inputWrapper}>
             <Input
@@ -25,7 +24,7 @@ const userAccountCtx = useContext(UserAccountContext)
                 id= "password"
                 name = "password"
             />
-            <Bttn type= {type} onClick= {userAccountCtx.stopLoggingIn}>Sign In</Bttn>
+            <Bttn type={type}>Sign In</Bttn>
         </div>
     </form>
 

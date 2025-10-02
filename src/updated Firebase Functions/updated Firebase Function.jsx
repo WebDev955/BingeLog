@@ -1,4 +1,4 @@
-import { db, app, auth } from "../firebase/firebase";
+import { db, app, auth, getDocs } from "../firebase/firebase";
 
 import { authActions } from "../store/slices/authSlice";
 import { useDispatch } from "react-redux";
@@ -222,3 +222,89 @@ async function saveShow (showDetails){
 
 
 export{saveShow}
+
+
+
+  useEffect(async () => {
+    getDocs(db, "Users") //grabs all Docs (user IDs)
+        .then (result => result.json())
+        .then (data => setGlobalUsers(data))  
+  },[])
+
+
+useEffect(() => {
+    const token = localStorage.getItem("token"); // userId   
+    if (token) {
+      getDocs(db, "Users")
+        .then(res => res.json())
+        .then(user => {
+          
+          if (!user) return;
+
+          // Hydrate authSlice with essentials
+          dispatch(authActions.login({
+            id: user.id,
+            userName: user.userName,
+            email: user.email
+          }));
+          
+          //Hydrate bioSlice
+          dispatch(profileActions.uploadAvatar(user.bioAvatar))
+          dispatch(profileActions.updateBio(user.bio))
+
+          // Hydrate showsSlice with myShows
+          dispatch(showActions.updateMyShows(user.myShows || []));
+
+          // Hydrate showsSlice with currentlyBinging
+          dispatch(showActions.updateBinging(user.currentlyBinging || []))
+
+          // Hydrate showsSlice with finishedShows
+          dispatch(showActions.updateFinishedShows(user.finishedShows || []))
+
+          // Hydrate showsSlice with finishedShows
+          dispatch(showActions.updateWatchedEps(user.watchedEps || []))
+
+          // Hydrate notesSlice with epNots
+          dispatch(notesActions.updateEpNotes(user.epNotes || []))
+
+          // Hydrate notesSlice with charNotes
+          dispatch(notesActions.updateCharNotes(user.charNotes || []))
+
+          // Hydrate friendsSlice with friendsList
+          dispatch(friendsActions.addFriend(user.friendsList || []))
+
+        })
+        .catch(err => console.error("Auth restore failed:", err));
+    }
+  }, [dispatch]);
+
+
+
+  async function handleSubmitAccountInfo(newUserData){
+    
+    const docRef = doc(db, "Users")
+        let newUser = await updateDoc(docRef, {
+            email: newUserData.email,
+            userName: newUserData.userName,
+            password: newUserData.password,
+            bio: "",
+            bioAvatar: null,
+            friendsList: [],
+            myShows: [],
+            epNotes: [],
+            charNotes: [],
+            currentlyBinging: [],
+            watchedEps: [],
+            finishedShows: []
+        })
+
+        const signIn = async () =>{
+          try{
+            await createUserWithEmailAndPassword(auth, email, password) 
+                } catch (err){
+                    console.error(err)
+                }
+            };
+        dispatch(authActions.login(newUser))
+        dispatch(authActions.stopCreatingAccount())
+  }

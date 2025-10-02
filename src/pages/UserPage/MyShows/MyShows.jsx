@@ -95,8 +95,6 @@ function MyShows({id}) {
     dispatch(showActions.startReviewing())
 }
 
-
-
 return (
       <main {...id}className ={styles.showWrapper}>
         <h2>Show Sorting Options </h2>
