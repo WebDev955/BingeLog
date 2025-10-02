@@ -5,8 +5,8 @@ import Bttn from "../../components/UI/Bttn"
 //IMPORT - Redux
 import { useDispatch, useSelector } from "react-redux";
 import { showActions } from "../../store/slices/showsSlice";
-import { authActions } from "../../store/slices/authSlice";
-import { saveShow } from "../../firebase/firebase";
+
+
 
 //IMPORTS - Styles
 import styles from "./ShowsList.module.css"

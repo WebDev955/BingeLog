@@ -12,7 +12,7 @@ const dispatch = useDispatch();
 
 
 
-    
+
 
 //BingeLog - global users
 function BingeLog() {
@@ -199,3 +199,26 @@ async function saveShow (showDetails){
       }
 }
 
+async function saveShow (showDetails){
+  const addedShow = {
+          imdbId: showDetails.imdbId,
+          title: showDetails.title,
+          seasons: showDetails.seasons?.map((season) => ({
+              title: season.title,
+              episodes: season.episodes?.map((ep) => ({
+                  title: ep.title
+              }))
+          }))
+      }
+  const updatedShows = [...myShows, addedShow]    
+  
+  const docRef = doc(db, 'Users', "Trekkie95")
+      let result = await updateDoc(docRef, {
+        myShows: updatedShows
+      })
+  //dispatch(showActions.updateMyShows(updatedShows))
+      
+  }
+
+
+export{saveShow}

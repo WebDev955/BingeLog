@@ -8,7 +8,6 @@ import { UserAccountContext } from "../Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { authActions } from "../../store/slices/authSlice"
 
-import { verifyLogin } from "../../firebase/firebase"
 
 //IMPORTS - Styles
     //import styles from FILE LOCATION
