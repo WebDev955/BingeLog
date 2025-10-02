@@ -1,5 +1,5 @@
 //IMPORTS - Hooks
-import {useContext} from "react"
+import {use, useContext} from "react"
 //IMPORTS - Components 
 import SignUpForm from "./SignUpForm"
 import Modal from "./Modal"
@@ -7,7 +7,7 @@ import { UserAccountContext } from "../Contexts/UserAccountContext"
 //IMPORTS - Redux
 import { useDispatch, useSelector } from "react-redux"
 import { authActions } from "../../store/slices/authSlice"
-import { db, auth,  getDoc, setDoc } from "../../firebase/firebase"
+import { db, auth,  getDoc, setDoc, doc } from "../../firebase/firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 
 
@@ -21,22 +21,19 @@ const dispatch = useDispatch();
 const openModal = useSelector((state) => state.auth.isCreatingAccount)
 const handleCloseModal = () => dispatch(authActions.stopCreatingAccount())
 
-
-
-  const signIn = async (newUserData) =>{
-          try{
-            await createUserWithEmailAndPassword(auth, newUserData.email, newUserData.password) 
-                } catch (err){
-                    console.error(err)
-                }
-            };
-
   async function handleSubmitAccountInfoFireBase(newUserData){
+    try {
+
+    const userCredentials = await createUserWithEmailAndPassword(
+        auth, 
+        newUserData.email, 
+        newUserData.password
+    )
+
+    const uid = userCredentials.user.uid
     
-    createUserWithEmailAndPassword(auth, newUserData.email, newUserData.password)
-    
-    const docRef = getDoc(db, "Users/{uid}")
-        let newUser = await setDoc(docRef, {
+    const docRef = doc(db, "Users", uid)
+         await setDoc(docRef, {
             email: newUserData.email,
             userName: newUserData.userName,
             bio: "",
@@ -49,15 +46,18 @@ const handleCloseModal = () => dispatch(authActions.stopCreatingAccount())
             watchedEps: [],
             finishedShows: []
         })
-        
-        signIn(newUserData)
     
-        dispatch(authActions.login(newUser))
+        dispatch(authActions.login({
+            uid, 
+            email: newUserData.email, 
+            userName: newUserData.userName
+        }))
         dispatch(authActions.stopCreatingAccount())
+
+    } catch (err){
+        console.error(err)
+    }
   }
-
-
-
 
 
 

@@ -20,7 +20,7 @@ function MainNav() {
 const dispatch = useDispatch();
 
 const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-const id = useSelector((state) => state.auth.user?.id)
+const id = useSelector((state) => state.auth.user?.uid)
 
 function toggleLogIn() {
     dispatch(authActions.startLoggingIn())

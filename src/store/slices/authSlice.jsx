@@ -9,6 +9,7 @@ const initialState = {
     isLoggingIn: false,
 }
 
+console.log(initialState.user)
 //create a const variable to contain entire slice
     // createSlice is an object 
 const authSlice = createSlice({
@@ -29,7 +30,8 @@ const authSlice = createSlice({
             state.isLoggingIn = false;
         },
         login(state, action){
-            state.user = action.payload // save everything from user database 
+            const {uid, email, userName} = action.payload // save everything from Firebase
+            state.user = {uid, email, userName}
             state.isLoggedIn = true
             state.isLoggingIn = false
      

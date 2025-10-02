@@ -15,7 +15,6 @@ function HomePage() {
         </p>
       <NavLink to="/about"><h2>Click here to learn more</h2></NavLink>
       <br/>
-     <Auth/>
   </main> 
 )
 

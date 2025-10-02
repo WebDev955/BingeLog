@@ -212,7 +212,7 @@ async function saveShow (showDetails){
       }
   const updatedShows = [...myShows, addedShow]    
   
-  const docRef = doc(db, 'Users', "Trekkie95")
+  const docRef = doc(db, 'Users', "")
       let result = await updateDoc(docRef, {
         myShows: updatedShows
       })
@@ -234,8 +234,9 @@ export{saveShow}
 
 useEffect(() => {
     const token = localStorage.getItem("token"); // userId   
+    
     if (token) {
-      getDocs(db, "Users")
+      getDoc(db, "Users")
         .then(res => res.json())
         .then(user => {
           

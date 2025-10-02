@@ -6,6 +6,9 @@ import Bttn from "../../components/UI/Bttn"
 import { useDispatch, useSelector } from "react-redux";
 import { showActions } from "../../store/slices/showsSlice";
 
+import { getDoc, setDoc, doc, db, updateDoc } from "../../firebase/firebase"
+
+
 
 
 //IMPORTS - Styles
@@ -22,10 +25,39 @@ function ShowsList({showDetails}) {
   //State Slice Selectors (States to use in component)
   const userId = useSelector((state) => state.auth.user.id)
   const myShows = useSelector((state) => state.shows.myShows)
-
+  const uid =  useSelector((state) => state.auth.user.uid);
 
 
   saveShow(showDetails)
+
+  async function saveShow2 (showDetails){
+    const addedShow = {
+            imdbId: showDetails.imdbId,
+            title: showDetails.title,
+            seasons: showDetails.seasons?.map((season) => ({
+                title: season.title,
+                episodes: season.episodes?.map((ep) => ({
+                    title: ep.title
+                }))
+            }))
+        }
+    const updatedShows = [...myShows, addedShow] 
+    
+
+    if (!uid) {
+      console.error("No user logged in!");
+      return;
+    }
+
+    const docRef = doc(db, "Users", uid);
+
+    await updateDoc(docRef, {
+      myShows: updatedShows,
+    });
+    
+    dispatch(showActions.updateMyShows(updatedShows))
+        
+  }
 
   async function saveShow (showDetails){
       const addedShow = {
@@ -60,7 +92,7 @@ function ShowsList({showDetails}) {
   }
   
   function saveShowHandler(showDetails){
-    saveShow(showDetails)
+    saveShow2(showDetails)
   }
 
   console.log(showDetails)
