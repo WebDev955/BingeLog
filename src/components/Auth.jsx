@@ -24,7 +24,7 @@ function Auth(){
                     onChange = {(e) => setPassword(e.target.value)}
                     
                     />
-                <button>Sign In</button>
+                <button onClick = {signIn}>Sign In</button>
             </div>
     );
 
