@@ -90,21 +90,23 @@ function updateCharNotes(value, epTitle){
  async function saveNotes(epTitle){
     const updatedNotes = {
       ...epNotes, 
-      [epTitle]: draftNotes[epTitle] ?? epNotes[epTitle]}
+      [epTitle]: draftNotes[epTitle] ?? epNotes[epTitle]
+    }
 
-    const updateCharNotes ={
+    const updatedCharNotes = {
       ...charNotes,
       [epTitle]: draftCharNotes[epTitle] ?? charNotes[epTitle]
     }
     
     try { 
           const docRef = doc(db, "Users", userId)
+
             await updateDoc(docRef, {
-              epNotes: updatedNotes,
-              charNotes: updateCharNotes
+              epNotes: updatedNotes ||"",
+              charNotes: updatedCharNotes || ""
         })
         dispatch(notesActions.updateEpNotes(updatedNotes))
-        dispatch(notesActions.updateCharNotes(updateCharNotes))
+        dispatch(notesActions.updateCharNotes(updatedCharNotes))
     } catch (err) {
       console.error(err)
     } 

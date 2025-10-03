@@ -93,7 +93,6 @@ return (
           <div className ={styles.showTitle} key={show.imdbId}>
             <p onClick={() => handleOnClick(show.imdbId)}>{show.title}</p>
             <div className ={styles.showStatus}>
-              <Bttn onClick = {()=> toggleReview()}>Post Review</Bttn>
               <ShowReview show = {show}/>
               <label> Finished
                 <input 
