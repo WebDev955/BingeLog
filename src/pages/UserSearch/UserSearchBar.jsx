@@ -5,29 +5,35 @@ import { useEffect, useState } from "react";
 import UserSearchDropdown from "./userSearchDropdown";
 //IMPORTS - Styles
 import styles from './ShowSearchBar.module.css'
+import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
 
 function UserSearchBar() {
     const [query, setQuery] = useState("")
     const [searchResults, setSearchResults] = useState(null)
 
     useEffect(() => {
-        async function fetchUser(query){
-             if (!query) return;
-            const url = `http://localhost:3000/users?userName=${query}`
-            
-            const options = {
-                method: "GET",
-                headers: {
-                    'Content-Type':"application/json"
-                }
-            }
-            const res = await fetch(url, options);
-            const data = await res.json()
-            setSearchResults(data)
-            console.log("Query Data", data)
-        }
-            fetchUser(query)
+        async function fetchUser(query){ 
+            if (!query) return;
+        
+            try {
+                const querySnapShot = await getDocs(collection (db, "Users"))
+                const globalUsersList = querySnapShot.docs.map(doc =>({
+                    id: doc.id,      //expose user
+                    ...doc.data(),  //spread field data
+                }))
 
+                const globalUsersFiltered = globalUsersList.filter(user =>
+                   user.userName?.toLowerCase().includes(query.toLowerCase())
+                )
+
+            setSearchResults(globalUsersFiltered)
+            console.log("Query Data", globalUsersFiltered)
+
+            } catch (err) {
+            console.error ("Can't find global users", err)
+        }    
+    }
+    fetchUser(query)
 }, [query])
     
     return (
@@ -39,7 +45,7 @@ function UserSearchBar() {
                 onChange = {(event) => setQuery(event.target.value)}
                 />
             {searchResults && 
-                <UserSearchDropdown searchResults={searchResults} query={query} /> 
+                <UserSearchDropdown searchResults={searchResults} /> 
             }
         </div>
   )

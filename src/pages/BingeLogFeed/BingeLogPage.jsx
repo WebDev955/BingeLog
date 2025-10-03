@@ -12,7 +12,7 @@ import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { friendsActions } from "../../store/slices/friendsSlice"
 
-import {doc, getDoc, db } from "../../firebase/firebase"
+import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
 
 
 function BingeLog() {
@@ -24,9 +24,13 @@ function BingeLog() {
   useEffect(() => {
     async function fetchGlobalUsers(){
       try {
-        const docRef = doc(db, "Users", "users"); //makes a general refereneto the doc, "Users" (user ids)
-        const docSnap = await getDoc(docRef) //await the call of data (user - id 234an09jfsa)
-        setGlobalUsers(docSnap.data()) //set the DATA of docSnap to global users state
+        const docRef = await getDocs(collection (db, "Users")); //makes a general refereneto the doc, "Users" (user ids)
+        const globalUsersList = docRef.docs.map(doc =>({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setGlobalUsers(globalUsersList) //set the DATA of docSnap to global users state
+      
       } catch (err) {
         console.error ("Can't find global users", err)
       }

@@ -401,3 +401,53 @@ useEffect(() => {
     
  
 }
+
+ async function addFriend(friendId){
+    
+    const updatedFriendsList = [...friendsList, friendId];
+
+    try {
+        const response = await fetch(`http://localhost:3000/users/${userId}`, {
+          method: "PATCH",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({friendsList: updatedFriendsList})
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to add friend.")
+      }
+
+      const updatedUser = await response.json()
+      dispatch(friendsActions.addFriend(updatedUser.FriendsList))
+      alert("Friend Added!")
+  
+    } catch (err) {
+    console.log (err)
+    alert(err.message);
+  }
+}
+
+
+    useEffect(() => {
+        async function fetchUser(query){ 
+            if (!query) return;
+        
+            const docRef = doc(db, "Users", query)
+
+
+            const url = `http://localhost:3000/users?userName=${query}`
+            
+            const options = {
+                method: "GET",
+                headers: {
+                    'Content-Type':"application/json"
+                }
+            }
+            const res = await fetch(url, options);
+            const data = await res.json()
+            setSearchResults(data)
+            console.log("Query Data", data)
+        }
+            fetchUser(query)
+
+}, [query])

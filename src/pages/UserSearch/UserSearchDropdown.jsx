@@ -8,7 +8,7 @@ import UsersList from "./UserList"
 import styles from "./SearchDropdown.module.css"
 
 
-function UserSearchDropdown({searchResults, query}) {
+function UserSearchDropdown({searchResults}) {
 
   const [selectedUser, setSelectedUser] = useState(null)
 

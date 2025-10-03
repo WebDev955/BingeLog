@@ -9,6 +9,8 @@ import { UserAccountContext } from "../../components/Contexts/UserAccountContext
 import { useDispatch, useSelector } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";
 import { authActions }  from "../../store/slices/authSlice";
+
+import {doc, getDoc, db, collection, getDocs, updateDoc } from "../../firebase/firebase"
 //IMPORTS - Styles
 import styles from "./ShowsList.module.css";
 
@@ -17,8 +19,9 @@ function UsersList({userDetails}) {
   
   //Redux Selectors 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.user.id);
+  const userId = useSelector((state) => state.auth.user.uid);
   const friendsList = useSelector((state)=> state.friends.friendsList);
+
   
   //Params
   const params = useParams();
@@ -28,21 +31,15 @@ function UsersList({userDetails}) {
     
     const updatedFriendsList = [...friendsList, friendId];
 
-    try {
-        const response = await fetch(`http://localhost:3000/users/${userId}`, {
-          method: "PATCH",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({friendsList: updatedFriendsList})
-      });
+    try{
+    const docRef = doc(db, "Users", userId);
+      await updateDoc(docRef, {
+        friendsList: updatedFriendsList
+      })
 
-      if (!response.ok) {
-        throw new Error("Unable to add friend.")
-      }
-
-      const updatedUser = await response.json()
-      dispatch(friendsActions.addFriend(updatedUser.FriendsList))
+      dispatch(friendsActions.addFriend(friendsList))    
       alert("Friend Added!")
-  
+
     } catch (err) {
     console.log (err)
     alert(err.message);
