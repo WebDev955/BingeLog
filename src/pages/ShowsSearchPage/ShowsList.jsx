@@ -23,14 +23,13 @@ function ShowsList({showDetails}) {
   const dispatch = useDispatch();
 
   //State Slice Selectors (States to use in component)
-  const userId = useSelector((state) => state.auth.user.id)
+
   const myShows = useSelector((state) => state.shows.myShows)
   const uid =  useSelector((state) => state.auth.user.uid);
 
 
-  saveShow(showDetails)
 
-  async function saveShow2 (showDetails){
+  async function saveShow (showDetails){
     const addedShow = {
             imdbId: showDetails.imdbId,
             title: showDetails.title,
@@ -59,40 +58,10 @@ function ShowsList({showDetails}) {
         
   }
 
-  async function saveShow (showDetails){
-      const addedShow = {
-          imdbId: showDetails.imdbId,
-          title: showDetails.title,
-          seasons: showDetails.seasons?.map((season) => ({
-              title: season.title,
-              episodes: season.episodes?.map((ep) => ({
-                  title: ep.title
-              }))
-          }))
-      }
-      const updatedShows = [...myShows, addedShow]
 
-      try {
-          const response = await fetch(`http://localhost:3000/users/${userId}`, {
-              method: "PATCH",
-              headers: {"Content-Type": "application/json"},
-              body: JSON.stringify({myShows: updatedShows})
-      })
-          if (!response.ok) {
-          throw new Error(`Failed to save show: ${response.status}`)
-          }
-
-          await response.json()
-          dispatch(showActions.updateMyShows(updatedShows))
-          //localStorage.setItem("myShows", JSON.stringify(updatedShows));
-          // sync local state
-      } catch (err) {
-          console.error(err)
-      }
-  }
   
   function saveShowHandler(showDetails){
-    saveShow2(showDetails)
+    saveShow(showDetails)
   }
 
   console.log(showDetails)

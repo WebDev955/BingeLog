@@ -13,10 +13,10 @@ return (
     <form onSubmit={onSubmit} className = {styles.formWrapper}> 
         <div className={styles.inputWrapper}>
             <Input
-                label= "User Name"
-                htmlFor = "username"
-                id= "username"
-                name = "username"
+                label= "Email"
+                htmlFor = "email"
+                id= "email"
+                name = "email"
             />
              <Input
                 label= "Password"

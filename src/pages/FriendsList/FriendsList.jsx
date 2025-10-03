@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { friendsActions } from "../../store/slices/friendsSlice"
+import {doc, getDoc, db } from "../../firebase/firebase"
 
 //IMPORTS - Styles
 //import styles from "./UserPage.module.css"
@@ -17,14 +18,21 @@ function FriendsList() {
   const [globalUsers, setGlobalUsers] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/users')
-      .then (res => res.json())
-      .then (data => setGlobalUsers(data))
+    async function fetchGlobalUsers(){
+      try {
+        const docRef = doc(db, "Users", "users"); //makes a general refereneto the doc, "Users" (user ids)
+        const docSnap = await getDoc(docRef) //await the call of data (user - id 234an09jfsa)
+        setGlobalUsers(docSnap.data()) //set the DATA of docSnap to global users state
+      } catch (err) {
+        console.error ("Can't find global users", err)
+      }
+    }
+    fetchGlobalUsers()
   },[])
-
-  console.log("Friend List", friendsList)
+  
+  
   console.log("Global Users", globalUsers)
-
+  console.log("Friend List", friendsList)
 
  return (
     <>

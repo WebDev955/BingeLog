@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 //IMPORTS - Styles
 import styles from "./MyShows.module.css"
 import ShowReview from "./ShowReview";
+import { getDoc, setDoc, doc, db, updateDoc } from "../../../firebase/firebase"
 
 function MyShows({id}) {
   const dispatch = useDispatch()
@@ -20,7 +21,7 @@ function MyShows({id}) {
 
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
   const finishedShows= useSelector((state)=> state.shows.finishedShows)
-  const userId = useSelector((state) => state.auth.user.id)
+  const userId = useSelector((state) => state.auth.user.uid)
   
 
   function handleOnClick(id){
@@ -45,16 +46,11 @@ function MyShows({id}) {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/users/${userId}`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({finishedShows: updatedFinshedShowList})
-      })
-      if (!response.ok){
-        throw new Error(`Failed to save show: ${response.status}`)
-      }
-      
-      await response.json()
+        const docRef = doc(db, 'Users', userId)
+          await updateDoc(docRef, {
+            finishedShows: updatedFinshedShowList
+          })
+
       dispatch(showActions.updateFinishedShows(updatedFinshedShowList))
       
     } catch (err){
@@ -74,16 +70,11 @@ function MyShows({id}) {
       }
       
       try {
-        const response = await fetch (`http://localhost:3000/users/${userId}`,{
-          method: "PATCH",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({currentlyBinging: updatedBingeList})
-        })
-        if (!response.ok) {
-          throw new Error(`Failed to save show: ${response.status}`)
-        }
-
-        await response.json()
+          const docRef = doc(db, 'Users', userId)
+            await updateDoc(docRef, {
+              currentlyBinging: updatedBingeList
+            })
+   
         dispatch(showActions.updateBinging(updatedBingeList))
     
       } catch (err) {

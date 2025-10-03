@@ -8,6 +8,12 @@ import { UserAccountContext } from "../Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { authActions } from "../../store/slices/authSlice"
 
+import { auth } from "../../firebase/firebase"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import {db, getDoc, setDoc, doc} from '../../firebase/firebase'
+
+
+
 
 //IMPORTS - Styles
     //import styles from FILE LOCATION
@@ -26,6 +32,11 @@ function handleClose() {
 }
 
 async function verifyLogin(userData){
+    
+
+
+
+
     const url = `http://localhost:3000/users?userName=${userData.userName}`;
     const response = await fetch(url);
     const users = await response.json();
@@ -51,15 +62,24 @@ async function verifyLogin(userData){
 }
 
 
-function handleLogin(event){
+async function handleLogin(event){
     event.preventDefault()
+
     const formData = new FormData(event.target)
-    const userData = {
-        userName: formData.get("username"),  
-        password: formData.get("password"),  
-    };
+    const email = formData.get("email");
+    const password = formData.get("password");
     
-    verifyLogin(userData) 
+    try {
+        const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+        const user = userCredentials.user //has ui + email
+        
+        dispatch(authActions.login({
+            uid: user.uid,
+            email: user.email,
+    }))
+    } catch (err) {
+        console.error("Login failed:", err)
+    }
 }
 
 return (

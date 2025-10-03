@@ -25,6 +25,7 @@ import { showActions } from "./store/slices/showsSlice";
 import { notesActions } from './store/slices/notesSlice'
 import { friendsActions } from './store/slices/friendsSlice'
 import { profileActions } from './store/slices/profileSlice'
+import { onAuthStateChanged } from "./firebase/firebase"
 
 
 
@@ -35,21 +36,23 @@ import { profileActions } from './store/slices/profileSlice'
 
 //IMPORTS - Styles
 import './App.css'
+import { current } from '@reduxjs/toolkit'
 
 
 function App() {
 
 const dispatch = useDispatch();
 const myShows = useSelector((state) => state.shows.myShows)
-const isUserLoggedIn = useSelector((state) => state.loggedIn)
+const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+//auth.currentUser;  - can be null after a refresh
 
 useEffect(() => {
-  async function fetchUser() {
-    const currentUser = auth.currentUser;
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
     if (!currentUser) return;
 
     try {
-      const docRef = doc(db, "Users", currentUser.uid);
+      const docRef = doc(db, "Users", currentUser?.uid);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -57,7 +60,7 @@ useEffect(() => {
 
         // Hydrate authSlice
         dispatch(authActions.login({
-          id: currentUser.uid,
+          uid: currentUser.uid,
           userName: user.userName,
           email: user.email
         }));
@@ -82,9 +85,9 @@ useEffect(() => {
     } catch (err) {
       console.error("Auth restore failed:", err);
     }
-  }
+  });
 
-  fetchUser();
+  return () => unsubscribe;
 }, [dispatch]);
 
 const router = createHashRouter([
@@ -93,7 +96,7 @@ const router = createHashRouter([
     element: <RootLayout/>,
       children: [ 
         {index: true, element: <HomePage/>},
-        {path: `userPage/:uid`, element: <UserPage/>},
+        {path: `userPage/:id`, element: <UserPage/>},
         {path: "friendsList", element: <FriendsList/>},
         {path: "bingelog", element: <BingeLogPage/>},
         {path: "userSearch", element: <UserSearchPage/>},

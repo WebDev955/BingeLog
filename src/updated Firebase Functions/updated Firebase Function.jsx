@@ -309,3 +309,95 @@ useEffect(() => {
         dispatch(authActions.login(newUser))
         dispatch(authActions.stopCreatingAccount())
   }
+
+
+
+  // OLD FUNCTIONS - async-Fetch //
+    const userId = useSelector((state) => state.auth.user.id)
+    async function saveShow (showDetails){
+        const addedShow = {
+            imdbId: showDetails.imdbId,
+            title: showDetails.title,
+            seasons: showDetails.seasons?.map((season) => ({
+                title: season.title,
+                episodes: season.episodes?.map((ep) => ({
+                    title: ep.title
+                }))
+            }))
+        }
+        const updatedShows = [...myShows, addedShow]
+  
+        try {
+            const response = await fetch(`http://localhost:3000/users/${userId}`, {
+                method: "PATCH",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({myShows: updatedShows})
+        })
+            if (!response.ok) {
+            throw new Error(`Failed to save show: ${response.status}`)
+            }
+  
+            await response.json()
+            dispatch(showActions.updateMyShows(updatedShows))
+            //localStorage.setItem("myShows", JSON.stringify(updatedShows));
+            // sync local state
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    //BingeFeed - find global list 
+  const dispatch = useDispatch()
+  const friendsList = useSelector((state) => state.friends.friendsList)
+  const [globalUsers, setGlobalUsers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/users')
+      .then (res => res.json())
+      .then (data => setGlobalUsers(data))
+  },[])
+
+
+  //log in verification 
+  async function verifyLogin(userData){
+      const docRef = doc(db, "Users", userId)
+          await 
+  
+  
+  
+  
+  
+      const url = `http://localhost:3000/users?userName=${userData.userName}`;
+      const response = await fetch(url);
+      const users = await response.json();
+       //Check if the user was found in the database (the array is not empty)
+      const user = users[0];
+     
+      // Check if the user exists and the password matches
+      if (user && user.password === userData.password) {
+          localStorage.setItem("token", user.id); // setting a fake "token"
+          const loginInfo = {
+              id: user.id,
+              userName: user.userName,
+              email:user.email
+          }
+          handleSubmitLoginInfo(loginInfo);
+          console.log(user)
+          console.log(loginInfo)
+          return
+      } else {
+          console.log("Login failed: Invalid username or password.");
+          return null
+      }
+  }
+
+  function handleLogin(event){
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    const userData = {
+        userName: formData.get("username"),  
+        password: formData.get("password"),  
+    };
+    
+ 
+}

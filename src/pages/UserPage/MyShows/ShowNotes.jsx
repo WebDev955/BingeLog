@@ -11,7 +11,13 @@ import styles from "./ShowNotes.module.css"
 import { useSelector, useDispatch } from "react-redux"
 import { notesActions } from "../../../store/slices/notesSlice"
 import { showActions } from "../../../store/slices/showsSlice"
+import { authActions } from "../../../store/slices/authSlice"
 //import { authActions } from "../../../store/slices/authSlice"
+
+import { db, app, auth, getDoc, doc, updateDoc} from "../../../firebase/firebase"
+
+
+
 
 
 function ShowNotes({epTitle, showTitle}) {
@@ -19,7 +25,7 @@ function ShowNotes({epTitle, showTitle}) {
   const dispatch = useDispatch()
   const epNotes = useSelector((state) => state.notes.epNotes)
   const charNotes = useSelector((state) => state.notes.charNotes)
-  const userId = useSelector((state)=> state.auth.user.id)
+  const userId = useSelector((state)=> state.auth.user.uid)
   const watchedEps = useSelector((state) => state.shows.watchedEps)
 
 /**Editing Episode Notes**/
@@ -59,7 +65,8 @@ function updateCharNotes(value, epTitle){
         ep.epName === epTitle &&
         ep.showName === showTitle
       )
-    let updatedWatchedEpList
+
+    let updatedWatchedEpList = null
 
     if (epExists){
       updatedWatchedEpList = watchedEps.filter(ep => !(ep.epName === epTitle && ep.showName === showTitle))
@@ -69,24 +76,15 @@ function updateCharNotes(value, epTitle){
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/users/${userId}`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({watchedEps: updatedWatchedEpList})
-      })
+      const docRef = doc(db, "Users", userId)
+         await updateDoc(docRef,{
+          watchedEps: updatedWatchedEpList
+        });
 
-      if (!response.ok){
-        throw new Error(`Failed to save show: ${response.status}`)
-      }
-
-      await response.json()
       dispatch(showActions.updateWatchedEps(updatedWatchedEpList))
-
     } catch (err) {
          console.error(err)
     }
-
-
  }
 
  async function saveNotes(epTitle){
@@ -100,30 +98,19 @@ function updateCharNotes(value, epTitle){
     }
     
     try { 
-      const response = await fetch(`http://localhost:3000/users/${userId}`,{
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          epNotes: updatedNotes,
-          charNotes: updateCharNotes
+          const docRef = doc(db, "Users", userId)
+            await updateDoc(docRef, {
+              epNotes: updatedNotes,
+              charNotes: updateCharNotes
         })
-      })
-        if (!response.ok) {
-          throw new Error(`Failed to save show: ${response.status}`)
-        }
-      await response.json()
-      dispatch(notesActions.updateEpNotes(updatedNotes))
-      dispatch(notesActions.updateCharNotes(updateCharNotes))
+        dispatch(notesActions.updateEpNotes(updatedNotes))
+        dispatch(notesActions.updateCharNotes(updateCharNotes))
     } catch (err) {
       console.error(err)
     } 
-    
-    //localStorage.setItem("EpNotes: " + epTitle, JSON.stringify(epNotes[epTitle] || ""))
-   
     setAreNotesOpen()
 }
   
-
   function displayNotes(epTitle){
     setIsViewingNotes(epTitle)
   }
