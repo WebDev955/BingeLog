@@ -32,7 +32,7 @@ import { onAuthStateChanged } from "./firebase/firebase"
 //{path: `friendsList/:userName/:id`, element: <FriendsList/>},
   //THIS IS AN ISSUE
 
-
+ 
 
 //IMPORTS - Styles
 import './App.css'
