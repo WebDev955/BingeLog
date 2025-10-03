@@ -42,7 +42,7 @@ function Bio({id}) {
           <div className={styles.header}>
               <Bttn className={styles.editBttn} onClick={toggleBioEdit}>Edit Bio</Bttn>
               <Bttn className={styles.editBttn}> Add Friend</Bttn>
-              <img className={styles.avatar} src="/Bingelog/DefaultAvatar" width="75" height="75"/> 
+              <img className={styles.avatar} src="/Bingelog/DefaultAvatar.png" width="75" height="75"/> 
 
               <h3>{userName}</h3>
               
