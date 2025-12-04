@@ -9,20 +9,21 @@ import styles from "./SearchDropdown.module.css"
 
 
 function UserSearchDropdown({searchResults}) {
+   console.log("Search Results in Dropdown", searchResults)
 
   const [selectedUser, setSelectedUser] = useState(null)
 
   function displayUserDetails(user) {
         setSelectedUser(user);
     }
-    console.log(searchResults)
+   
 
   return (
     <>
     <div className={styles.mainDropdownWrapper}>
       <div>
         {searchResults.map((user) => (
-              <p key={user.id} onClick={() => displayUserDetails(user)}>{user.userName}</p>
+              <p key={user.uid} onClick={() => displayUserDetails(user)}>{user.userName}</p>
         ))}
       </div>    
     </div>

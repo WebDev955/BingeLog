@@ -7,7 +7,8 @@ const initialState= {
     watchedEps:[],
     finishedShows: [],
     isReviewing: false,
-    reviews: []
+    reviews: [],
+    reviewingShowId: null,
 }
 
 const showsSlice = createSlice({
@@ -29,8 +30,14 @@ const showsSlice = createSlice({
             state.finishedShows = action.payload //adding title, id of finished show
       
         },
-        startReviewing(state){
-            state.isReviewing = true
+        reviewingShow (state, action){
+            state.reviewingShowId = action.payload //grabs id show 
+        },
+        toggleReviewing(state){
+            state.isReviewing = !state.isReviewing
+        },
+        updateReviews(state, action){
+           state.reviews = action.payload //newly added reivew object
         }
 
     }

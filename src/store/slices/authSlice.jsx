@@ -34,7 +34,6 @@ const authSlice = createSlice({
             state.user = {uid, email, userName}
             state.isLoggedIn = true
             state.isLoggingIn = false
-     
         },
         logOut(state) {
             state.user = null;

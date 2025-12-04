@@ -1,0 +1,13 @@
+.reviewsWrapperDiv{
+    border: 2px solid black;
+}
+
+
+.showTitle {
+    background-color: goldenrod;
+}
+
+.showReview{
+    background-color: lightgrey;
+    padding: 5px;
+}

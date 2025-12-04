@@ -44,7 +44,8 @@ const handleCloseModal = () => dispatch(authActions.stopCreatingAccount())
             charNotes: [],
             currentlyBinging: [],
             watchedEps: [],
-            finishedShows: []
+            finishedShows: [],
+            reviews:[]
         })
     
         dispatch(authActions.login({

@@ -18,12 +18,12 @@ function MyShows({id}) {
 
   //Slect State from showActionSlice
   const myShows = useSelector((state) => state.shows.myShows)
-
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
-  const finishedShows= useSelector((state)=> state.shows.finishedShows)
+  const finishedShows = useSelector((state)=> state.shows.finishedShows)
   const userId = useSelector((state) => state.auth.user.uid)
+  const isReviewing = useSelector((state) => state.shows.isReviewing)
+ const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
   
-
   function handleOnClick(id){
       setShowId(id)
 
@@ -31,7 +31,6 @@ function MyShows({id}) {
       setShowId("")
     }
   }
-
 
   async function checkOffFinishedShow(showTitle, id){
     const showExists = finishedShows.some(show => show.id === id)
@@ -82,18 +81,43 @@ function MyShows({id}) {
       }
   }
 
-  function toggleReview(){
-    dispatch(showActions.startReviewing())
+  function toggleReview(showId){
+    dispatch(showActions.reviewingShow(showId));
+    dispatch(showActions.toggleReviewing());
 }
+
+  function handleTitleSort(showsArr){
+    const sorted = [...showsArr].sort((a,b) => 
+      a.title.localeCompare(b.title)
+    );
+    console.log(sorted)
+  dispatch(showActions.updateMyShows(sorted));
+  }
+
+  function handleBingeSort(bingeArr){
+    const sorted = [...bingeArr].sort((a,b) => 
+      a.show.localeCompare(b.show)
+    )
+    console.log(sorted)
+  dispatch(showActions.updateBinging(sorted));
+  }
+
+
 
 return (
       <main {...id}className ={styles.showWrapper}>
-        <h2>Show Sorting Options </h2>
+        <div>
+          <h2>Show Sorting Options</h2>
+          <button onClick ={() => handleTitleSort(myShows)}>Sort by show name</button> 
+
+        </div>
         {myShows.map((show) => (
           <div className ={styles.showTitle} key={show.imdbId}>
             <p onClick={() => handleOnClick(show.imdbId)}>{show.title}</p>
+
             <div className ={styles.showStatus}>
-              <ShowReview show = {show}/>
+              {finishedShows &&
+                <button onClick = {() => toggleReview(show.imdbId)}>Add Reveiw</button>}
               <label> Finished
                 <input 
                   type="checkbox" 
@@ -111,11 +135,18 @@ return (
                 />
               </label>
             </div>
+
+            {isReviewing && reviewingShowId === show.imdbId && (
+              <ShowReview 
+                showId = {show.imdbId}
+                showTitle = {show.title}
+                />
+            )}
+
             {showId === show.imdbId && 
               <ShowDetails show={show} />}
           </div> 
         ))}
-       
       </main>
   )
 }

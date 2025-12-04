@@ -16,10 +16,6 @@ import { authActions } from "../../../store/slices/authSlice"
 
 import { db, app, auth, getDoc, doc, updateDoc} from "../../../firebase/firebase"
 
-
-
-
-
 function ShowNotes({epTitle, showTitle}) {
   //Selecting Redux State
   const dispatch = useDispatch()

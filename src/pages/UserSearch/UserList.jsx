@@ -15,7 +15,7 @@ import {doc, getDoc, db, collection, getDocs, updateDoc } from "../../firebase/f
 import styles from "./ShowsList.module.css";
 
 function UsersList({userDetails}) {
-  console.log(userDetails)
+  console.log("User Details", userDetails)
   
   //Redux Selectors 
   const dispatch = useDispatch();
@@ -46,12 +46,13 @@ function UsersList({userDetails}) {
   }
 }
 
+
   return (
     <main className={styles.showWrapper}>
       {userDetails && (
           <div key={userDetails.id} className={styles.showInfo}>
             <header>
-                <NavLink to={`/userPage/${userDetails.id}`}><h2>{userDetails.userName}</h2></NavLink>
+                <NavLink to={`/userPage/:${userDetails.id}`}><h2>{userDetails.userName}</h2></NavLink>
                 <Bttn onClick = {() => addFriend(userDetails.id)}>Save User</Bttn>
               </header>
 
