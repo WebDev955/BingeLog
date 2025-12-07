@@ -20,6 +20,19 @@
 }
 
 .actionBar {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightslategrey;
     border-top-style: solid;
     border-color: white;
+    padding: 5px;
+}
+
+ .actionBar  img:hover {
+    background-color: white;
+}
+
+textarea {
+    padding: 5px;
+    background-color: lightblue;
 }

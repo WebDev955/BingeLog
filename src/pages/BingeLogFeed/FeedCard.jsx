@@ -6,10 +6,28 @@ import { useEffect, useState } from "react"
 
 
 
+
+
 //IMPORTS - Styles
 import styles from "./FeedCard.module.css"
 
 function FeedCard({friend, key}) {
+
+  const [commentChat, setCommentChat] = useState(false)
+  const [likeCount, setLikeCount] = useState(null)
+
+  function displayCommentChat(){
+    setCommentChat(true)
+    
+    if (commentChat){
+      setCommentChat(false)
+    }
+  }
+
+  function updateLikeCount(){
+    setLikeCount (likeCount + 1)
+  }
+
 
 
   return (
@@ -42,9 +60,15 @@ function FeedCard({friend, key}) {
               </div>
             </article>
             <div className={styles.actionBar}>
-              <p>Action Bar</p>
+              <img width = "30x" onClick={displayCommentChat} src="/BingeLog/LetsChatReact.png"/> 
+              <img width = "30x" onClick={updateLikeCount} src="/BingeLog/HeartReact.png"/> {likeCount}
+              <img width = "30x" src="/BingeLog/ShockedReact.png"/>
             </div>
+           {commentChat && <textarea/> }
           </main>
   )
 }
 export default FeedCard
+
+
+
