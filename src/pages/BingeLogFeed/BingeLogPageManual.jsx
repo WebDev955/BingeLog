@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react"
 //IMPORTS - Components 
 import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
-import { setFriendsList, addFriend } from "../../store/slices/friendsSlice";
+import { friendsActions } from "../../store/slices/friendsSlice";
 
 import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
 
@@ -25,7 +25,7 @@ function BingeLogPageManual({globalUsers}) {
 
   return (
     <main className = {styles.mainWrapper}>
-      <h1>BingeLog Feed - Live Updates</h1>
+      <h1>BingeLog Feed - Manual Updates</h1>
         <div className = {styles.sortingDiv}>
           <p>Sort by username</p> 
           <p>Sort by most recently updated</p>            

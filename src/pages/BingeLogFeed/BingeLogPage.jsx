@@ -1,5 +1,7 @@
 //IMPORTS - Components 
-import FeedCard from "./FeedCard"
+import FeedCard from "./Status/FeedCard"
+import BingeLogPageAuto from "./BingeLogPageAuto"
+import BingeLogPageManual from "./BingeLogPageManual"
 
 //IMPORTS - Styles
 import styles from "./BingeLogPage.module.css"
@@ -7,7 +9,6 @@ import styles from "./BingeLogPage.module.css"
 //IMPORTS - Hooks
 import { useContext, useEffect, useState } from "react"
 
-//IMPORTS - Components 
 import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
 import { useSelector, useDispatch } from "react-redux"
 import { friendsActions } from "../../store/slices/friendsSlice"
@@ -20,6 +21,17 @@ function BingeLog() {
   const dispatch = useDispatch()
   const friendsList = useSelector((state) => state.friends.friendsList)
   const [globalUsers, setGlobalUsers] = useState([])
+
+  const [feedType, setFeedType] = useState ("auto")
+
+  function displayManualFeed(){
+    setFeedType("manual")
+  }
+
+  function displayAutoFeed(){
+    setFeedType("auto")
+  }
+
 
   useEffect(() => {
     async function fetchGlobalUsers(){
@@ -43,11 +55,14 @@ console.log(globalUsers)
   return (
     <main className = {styles.mainWrapper}>
       <h1>BingeLog Feed</h1>
-      {friendsList?.map((friendId) => {  
-        const friend = globalUsers.find(friend => friend.id === friendId);  
-        if (!friend) return null
-        return <FeedCard key={friend.id} friend = {friend}/>
-      })}
+      <div>
+        <button onClick={displayAutoFeed}>View Auto Updates</button>
+        <button onClick={displayManualFeed}>View Manuel Updates</button>
+      </div>
+      {feedType === "auto" 
+        ? <BingeLogPageAuto globalUsers={globalUsers}/>
+        : <BingeLogPageManual globalUsers={globalUsers}/>
+      }
       </main>
   ) 
 }
