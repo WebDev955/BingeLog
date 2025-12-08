@@ -1,0 +1,14 @@
+.mainWrapper {
+    display: flex;
+    Flex-direction: column;
+    margin-bottom: 60px;
+    background-color: rosybrown;
+}
+
+.sortingDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-weight: 600;
+    background-color: gray;
+}
