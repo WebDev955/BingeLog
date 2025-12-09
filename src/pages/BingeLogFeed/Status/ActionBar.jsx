@@ -35,7 +35,7 @@ function ActionBar() {
 
   return (
     <main className = {styles.actionBarWrapper}>
-      <div>
+      <div className = {styles.actionBarIconRow}>
         <img width = "30x" onClick={displayComment} src="/BingeLog/LeaveComment.png"/> 
         <img width = "30x" onClick={updateLikeCount} src="/BingeLog/HeartReact.png"/> 
           {likeCount}

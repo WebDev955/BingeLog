@@ -14,8 +14,6 @@ import {db, collection, getDocs } from "../../firebase/firebase"
 
 function BingeLog() {
 
-
-
   const [globalUsers, setGlobalUsers] = useState([])
 
   const [feedType, setFeedType] = useState ("auto")
@@ -49,7 +47,7 @@ function BingeLog() {
 console.log(globalUsers)
 
   return (
-    <main className = {styles.mainWrapper}>
+    <main className = {styles.mainFeedPageWrapper}>
       <h1>BingeLog Feed</h1>
       <div>
         <button onClick={displayAutoFeed}>View Auto Updates</button>

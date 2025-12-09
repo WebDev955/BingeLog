@@ -1,4 +1,5 @@
 .mainWrapper {
+    width: 100%;
     display: flex;
     Flex-direction: column;
     margin-bottom: 60px;

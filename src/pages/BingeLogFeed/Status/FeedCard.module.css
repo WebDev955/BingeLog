@@ -1,20 +1,26 @@
-.mainWrapper{
+.mainFeedWrapper{
+    width: 100%;
     border-top-style: solid;
     border-color: white;
     padding: 5px;  
-    
+    width: 100%;
     display: flex;
     align-Content:center;
     flex-direction: column;
     text-align: left;
 }
 
-.header{
+.feedHeader{
+    font-size: 20px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    padding: 5px;
+    border-bottom: 3px solid black;
 }
 
-.header img {
-    border-radius: 20px;
+.feedHeader img {
+    width: 50px;
+    border-radius: 50px;
 }

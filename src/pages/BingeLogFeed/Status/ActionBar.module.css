@@ -5,8 +5,15 @@
     padding: 5px;
 }
 
- .actionBar  img:hover {
+.actionBarIconRow {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ .actionBarIconRow img:hover {
     background-color: white;
+    border-radius: 50%;
+    
 }
  
 textarea {

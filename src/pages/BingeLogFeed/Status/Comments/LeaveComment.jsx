@@ -1,6 +1,8 @@
 //IMPORTS - HOOKS
 
 //IMPORTS - STYLES
+//IMPORTS - Styles
+import styles from "./LeaveComment.module.css"
 
 function LeaveComment (){
 
@@ -14,12 +16,11 @@ function LeaveComment (){
 
     return (
         <main>
-            <div>
-                <textarea/>
-                <button onClick = {postCommentHandler}>Post</button>
-            </div>
+            <div className = {styles.commentBoxWrapper}>
+                <textarea/> 
+            </div> 
+            <button onClick = {postCommentHandler}>Post</button>
         </main>
-
     )
 
 }

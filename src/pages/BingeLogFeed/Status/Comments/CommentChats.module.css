@@ -1,0 +1,22 @@
+.commentChatChainWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+
+.commentChatChain textarea {
+    background-color: white;
+    padding: 5px;
+    width: 370px;
+    height: 80px;
+}
+
+.commentChatChain button {
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
