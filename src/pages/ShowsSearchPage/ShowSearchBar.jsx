@@ -29,12 +29,10 @@ function ShowSearchBar() {
                     const data = await res.json();
                     setSearchResults(data);
                     console.log(data);
-              
                 } catch (error) {
                     console.error(error);
                 }
             }
-
             fetchShow(query);
         }, 500); // wait 500ms after typing stops
 

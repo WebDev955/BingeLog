@@ -1,7 +1,7 @@
 //IMPORTS - Hooks
 import { useState } from "react"
 //IMPORTS - Components 
-import Bttn from "../../../components/UI/Bttn";
+
 import ShowDetails from "./ShowDetails"
 //IMPORTS - REDUX
 import { showActions } from "../../../store/slices/showsSlice";
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 //IMPORTS - Styles
 import styles from "./MyShows.module.css"
 import ShowReview from "./ShowReview";
-import { getDoc, setDoc, doc, db, updateDoc } from "../../../firebase/firebase"
+import { doc, db, updateDoc } from "../../../firebase/firebase"
 
 function MyShows({id}) {
   const dispatch = useDispatch()
@@ -22,9 +22,9 @@ function MyShows({id}) {
   const finishedShows = useSelector((state)=> state.shows.finishedShows)
   const userId = useSelector((state) => state.auth.user.uid)
   const isReviewing = useSelector((state) => state.shows.isReviewing)
- const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
+  const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
   
-  function handleOnClick(id){
+  function handleSelectShow(id){
       setShowId(id)
 
     if (showId === id){
@@ -33,6 +33,16 @@ function MyShows({id}) {
   }
 
   async function checkOffFinishedShow(showTitle, id){
+    const updateShowStatus = myShows.map(show => {
+      if (show.id === id){
+        return {
+          ...show,
+          isFinished: !show.isFinished
+        };
+      }
+      return show;
+    })
+    
     const showExists = finishedShows.some(show => show.id === id)
     let updatedFinshedShowList
 
@@ -47,10 +57,12 @@ function MyShows({id}) {
     try {
         const docRef = doc(db, 'Users', userId)
           await updateDoc(docRef, {
-            finishedShows: updatedFinshedShowList
+            finishedShows: updatedFinshedShowList,
+            myShows: updateShowStatus
           })
 
       dispatch(showActions.updateFinishedShows(updatedFinshedShowList))
+      dispatch(showActions.updateMyShows(updateShowStatus))
       
     } catch (err){
       console.log(err)
@@ -59,9 +71,21 @@ function MyShows({id}) {
   }
 
   async function checkOffBinging(showTitle, id){
+      //update isBinging for sorting purposes
+      const updateShowStatus = myShows.map(show => {
+        if (show.id === id) {
+          return {
+            ...show,
+            isBinging: !show.isBinging
+          };
+        }
+      return show;
+    })
+    
+      //update currentlyBinging for live feed status 
       const showExists = currentlyBinging.some(show => show.id === id)
       let updatedBingeList
-
+  
       if (showExists) {
         updatedBingeList = currentlyBinging.filter(show => show.id !== id)
       } else {
@@ -71,15 +95,40 @@ function MyShows({id}) {
       try {
           const docRef = doc(db, 'Users', userId)
             await updateDoc(docRef, {
-              currentlyBinging: updatedBingeList
+              currentlyBinging: updatedBingeList,
+              myShows: updateShowStatus
             })
-   
         dispatch(showActions.updateBinging(updatedBingeList))
+        dispatch(showActions.updateMyShows(updateShowStatus))
     
       } catch (err) {
           console.error(err)
       }
   }
+
+  async function removeShow(id){
+    const updatedShows = myShows.filter(show => show.id !== id)
+    const updatedBingingList = currentlyBinging.filter(show => show.id !==id)
+    const updatedFinshedList = finishedShows.filter(show => show.id !== id )
+
+    try { 
+      const docRef = doc(db, 'Users', userId)
+        await updateDoc(docRef, {
+          myShows: updatedShows,
+          currentlyBinging: updatedBingingList,
+          finishedShows: updatedFinshedList
+        })
+      dispatch(showActions.updateMyShows(updatedShows))
+      dispatch(showActions.updateBinging(updatedBingingList))
+      dispatch(showActions.updateFinishedShows(updatedFinshedList))
+    } catch (err) {
+      console.error(err)
+    }
+    console.log(updatedShows)
+    console.log(updatedBingingList)
+    console.log(updatedFinshedList)
+  }
+
 
   function toggleReview(showId){
     dispatch(showActions.reviewingShow(showId));
@@ -90,17 +139,24 @@ function MyShows({id}) {
     const sorted = [...showsArr].sort((a,b) => 
       a.title.localeCompare(b.title)
     );
-    console.log(sorted)
   dispatch(showActions.updateMyShows(sorted));
   }
 
-  function handleBingeSort(bingeArr){
-    const sorted = [...bingeArr].sort((a,b) => 
-      a.show.localeCompare(b.show)
-    )
-    console.log(sorted)
-  dispatch(showActions.updateBinging(sorted));
+  function handleBingeSort(showsArr){
+    const sorted = [...showsArr].sort((a,b) => 
+      (b.isBinging - a.isBinging)
+    )  
+    dispatch(showActions.updateMyShows(sorted));
   }
+  
+  function handleFinishedSort(showsArr){
+    const sorted = [...showsArr].sort((a,b)=>
+    (b.isFinished - a.isFinished)
+    )
+    dispatch(showActions.updateMyShows(sorted));
+  }
+  
+  
 
 
 
@@ -108,42 +164,43 @@ return (
       <main {...id}className ={styles.showWrapper}>
         <div>
           <h2>Show Sorting Options</h2>
-          <button onClick ={() => handleTitleSort(myShows)}>Sort by show name</button> 
+          <button onClick ={() => handleTitleSort(myShows)}>Sort by show name</button> --- 
+          <button onClick ={() => handleBingeSort(myShows)}>Sort by binge status</button> ---
+          <button onClick ={() => handleFinishedSort(myShows)}>Sort by finished status</button>   
 
         </div>
         {myShows.map((show) => (
-          <div className ={styles.showTitle} key={show.imdbId}>
-            <p onClick={() => handleOnClick(show.imdbId)}>{show.title}</p>
+          <div className ={styles.showTitle} key={show.id}>
+            <p onClick={() => handleSelectShow(show.id)}>{show.title}</p>
 
             <div className ={styles.showStatus}>
-              {finishedShows &&
-                <button onClick = {() => toggleReview(show.imdbId)}>Add Reveiw</button>}
+              <button onClick = {() => toggleReview(show.id)}>Add Review</button> <br/>  
+              <button onClick = {() => removeShow(show.id)}>Remove Show</button> <br/>
               <label> Finished
                 <input 
                   type="checkbox" 
-                  value={show.imdbId}
-                  checked = {finishedShows.some(finishedShow => finishedShow.id === show.imdbId)}
-                  onChange = {() => checkOffFinishedShow(show.title, show.imdbId)}
+                  value={show.id}
+                  checked = {finishedShows.some(finishedShow => finishedShow.id === show.id)}
+                  onChange = {() => checkOffFinishedShow(show.title, show.id)}
                 />
               </label> || 
               <label> Currently Binging
                 <input 
                   type="checkbox"
-                  value = {show.imdbId}
-                  checked ={currentlyBinging.some(binge => binge.id === show.imdbId)}
-                  onChange={() => checkOffBinging(show.title, show.imdbId)}
+                  value = {show.id}
+                  checked = {currentlyBinging.some(binge => binge.id === show.id)}
+                  onChange={() => checkOffBinging(show.title, show.id)}
                 />
               </label>
             </div>
 
-            {isReviewing && reviewingShowId === show.imdbId && (
+            {isReviewing && reviewingShowId === show.id && (
               <ShowReview 
-                showId = {show.imdbId}
+                showId = {show.id}
                 showTitle = {show.title}
                 />
             )}
-
-            {showId === show.imdbId && 
+            {showId === show.id && 
               <ShowDetails show={show} />}
           </div> 
         ))}

@@ -16,10 +16,11 @@ const showsSlice = createSlice({
     initialState,
     reducers: {
         updateMyShows(state, action){
-            state.myShows = action.payload //newly added show object
+            //update entire myShows array (add new show, update show status)
+            state.myShows = action.payload 
         },
         updateBinging(state, action){
-            state.currentlyBinging = action.payload //adding title, id of binging show 
+            state.currentlyBinging = action.payload //adding title to binging list
        
         },
         updateWatchedEps(state, action){

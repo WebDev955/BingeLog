@@ -21,7 +21,7 @@ function ShowDetails({show}) {
     <main className={styles.seasonsWrapper}>
         <p className={styles.seasonsTitle}>Seasons List</p>
         {show  && (
-            <div key={show.imdbId} >
+            <div key={show.id} >
               {show.seasons?.map((season) => (
                 <p key = {season.title} onClick={() => selectSeason(season.title)}>
                   {season.title}

@@ -1,12 +1,11 @@
 //IMPORTS - Hooks
-import { useEffect } from "react";
 //IMPORTS - Components 
 import Bttn from "../../components/UI/Bttn"
 //IMPORT - Redux
 import { useDispatch, useSelector } from "react-redux";
 import { showActions } from "../../store/slices/showsSlice";
 
-import { getDoc, setDoc, doc, db, updateDoc } from "../../firebase/firebase"
+import { doc, db, updateDoc } from "../../firebase/firebase"
 
 
 
@@ -31,17 +30,20 @@ function ShowsList({showDetails}) {
 
   async function saveShow (showDetails){
     const addedShow = {
-            imdbId: showDetails.imdbId,
+            id: showDetails.imdbId,
             title: showDetails.title,
             seasons: showDetails.seasons?.map((season) => ({
                 title: season.title,
                 episodes: season.episodes?.map((ep) => ({
-                    title: ep.title
-                }))
-            }))
+                    title: ep.title,
+                    isWatched: false,
+                })),
+            })),
+            //used for show list sorting
+            isBinging: false,
+            isFinished: false,
         }
     const updatedShows = [...myShows, addedShow] 
-    
 
     if (!uid) {
       console.error("No user logged in!");
@@ -58,8 +60,6 @@ function ShowsList({showDetails}) {
         
   }
 
-
-  
   function saveShowHandler(showDetails){
     saveShow(showDetails)
   }

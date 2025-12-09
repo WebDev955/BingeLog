@@ -5,20 +5,14 @@ import FeedCard from "./Status/FeedCard"
 import styles from "./BingeLogPageAuto.module.css"
 
 //IMPORTS - Hooks
-import { useContext, useEffect, useState } from "react"
+
 
 //IMPORTS - Components 
-import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
-import { useSelector, useDispatch } from "react-redux"
-import { friendsActions } from "../../store/slices/friendsSlice"
 
-import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
-
-
+import { useSelector } from "react-redux"
 
 function BingeLogPageAuto({globalUsers}) {
 
-  const dispatch = useDispatch()
   const friendsList = useSelector((state) => state.friends.friendsList)
   //const [globalUsers, setGlobalUsers] = useState([])
 

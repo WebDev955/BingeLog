@@ -1,5 +1,5 @@
 //IMPORTS - Hooks
-import { useEffect, useState } from "react"
+
 //IMPORTS - Components 
 import ActionBar from "./ActionBar"
 
@@ -17,24 +17,25 @@ function FeedCard({friend, key}) {
                  {/*<img src={userProfile.bioAvatar} width="40" height="40"/>  */}
                 <p>{friend?.userName}</p>
               </header>
-              <div>
+              <div> 
                 <p>Currently Binging: {""}
+                  {/*friend.myShows.bingeStatus.  */}       
                   {friend.currentlyBinging?.length > 0
                     ? friend.currentlyBinging.map((show) =>show.show).join(", ")
-                    : "Friend is not bining anything" }
-                </p>
+                    :  `${friend.userName} is not currently binging anything` }
+                </p> <br/>
                 <p>
                   Recently Watched: {""}
                   {friend.watchedEps?.length > 0
                     ?`${friend.watchedEps[friend.watchedEps.length-1].epName} -
                       ${friend.watchedEps[friend.watchedEps.length-1].showName}`
-                    : "Friend has not recently watched anything"}
-                </p>
+                    : `${friend.userName} has not recently watched anything`}
+                </p><br/>
 
                 <p>Recently Finished: {""}
                   {friend.finishedShows?.length > 0 
                    ? friend.finishedShows[friend.finishedShows.length -1].show 
-                   : ""}
+                   : `${friend.userName} has not recently finshed anything`}
                 </p>
               </div>
             </article>
