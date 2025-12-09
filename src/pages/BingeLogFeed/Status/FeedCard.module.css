@@ -1,26 +1,31 @@
-.mainFeedWrapper{
-    width: 100%;
-    border-top-style: solid;
-    border-color: white;
-    padding: 5px;  
+.mainStatusWrapper{
     width: 100%;
     display: flex;
     align-Content:center;
     flex-direction: column;
     text-align: left;
+
 }
 
 .feedHeader{
+    margin-top: 5px;
+    padding: 8px;
     font-size: 20px;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 5px;
-    border-bottom: 3px solid black;
+  
+ 
 }
 
 .feedHeader img {
     width: 50px;
     border-radius: 50px;
+}
+
+.feedContent {
+    padding-left: 8px;
+    font-size: larger;
 }

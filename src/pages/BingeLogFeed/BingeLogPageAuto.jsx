@@ -21,7 +21,7 @@ console.log(globalUsers)
 console.log(friendsList)
 
   return (
-    <main className = {styles.mainWrapper}>
+    <main className = {styles.mainAutoFeedWrappe}>
       <h1>BingeLog Feed - Auto Updates </h1>
         <div className = {styles.sortingDiv}>
           <p>Sort by username</p> 

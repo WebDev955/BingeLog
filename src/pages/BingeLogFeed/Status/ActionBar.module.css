@@ -1,7 +1,8 @@
 .actionBarWrapper {
     background-color: lightslategrey;
     border-top-style: solid;
-    border-color: white;
+    border-bottom-style: solid;
+    border-color: black;
     padding: 5px;
 }
 

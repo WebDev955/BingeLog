@@ -48,7 +48,6 @@ console.log(globalUsers)
 
   return (
     <main className = {styles.mainFeedPageWrapper}>
-      <h1>BingeLog Feed</h1>
       <div>
         <button onClick={displayAutoFeed}>View Auto Updates</button>
         <button onClick={displayManualFeed}>View Manuel Updates</button>

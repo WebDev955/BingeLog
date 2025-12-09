@@ -19,7 +19,7 @@ function BingeLogPageManual({globalUsers}) {
 
 
   return (
-    <main className = {styles.mainWrapper}>
+    <main className = {styles.mainManualFeedWrapper}>
       <h1>BingeLog Feed - Manual Updates</h1>
         <div className = {styles.sortingDiv}>
           <p>Sort by username</p> 

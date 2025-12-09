@@ -11,14 +11,14 @@ import styles from "./FeedCard.module.css"
 function FeedCard({friend, key}) {
 
   return (
-          <main key={key} className = {styles.mainFeedWrapper}>
+          <main key={key} className = {styles.mainStatusWrapper}>
             <article>
               <header className={styles.feedHeader}>
                 <img  src="/BingeLog/DefaultAvatar.png"/>
                  {/*<img src={userProfile.bioAvatar} width="40" height="40"/>  */}
                 <p>{friend?.userName}</p>
               </header>
-              <div> 
+              <div className = {styles.feedContent}> 
                 <p>Currently Binging: {""}
                   {/*friend.myShows.bingeStatus.  */}       
                   {friend.currentlyBinging?.length > 0
