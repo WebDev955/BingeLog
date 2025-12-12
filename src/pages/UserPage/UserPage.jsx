@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useSelector } from "react-redux";
 import { useParams, Navigate } from "react-router-dom"
-import { authActions } from "../../store/slices/authSlice"
+import {motion, AnimatePresence } from 'framer-motion'
 
 //IMPORTS - Components 
 import Bttn from "../../components/UI/Bttn"
@@ -40,8 +40,6 @@ if (!isLoggedIn) {
     setContent(<CurrentlyWatching userId={id}/>)
 }
 
-
-
   return (
     <>
       <main className={styles.mainWrapper} id = {id}>
@@ -51,9 +49,17 @@ if (!isLoggedIn) {
               <Bttn onClick={displayReviews}>My Reviews</Bttn> | 
               <Bttn onClick={displayWatching}>Currently Watching</Bttn>
             </div>
-            <div className={styles.mainContent}>
-              {content}
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                initial={{ x: 300, opacity: 0}}
+                animate={{ x: 0, opacity: 1}}
+                exit={{ x: -300, opacity: 0 }}
+                transition={{ duration: 0.3, ease:"easeOut"}}
+                className={styles.mainContent}
+              >
+                {content}
+              </motion.div>
+            </AnimatePresence>
       </main>
     </>
   )

@@ -13,4 +13,10 @@
 }
 .mainDropdownWrapper p {
     font-weight: 600;
+    padding-bottom: 7px;
+}
+
+.mainDropdownWrapper p:hover {
+    cursor: pointer;
+    color: aliceblue;
 }

@@ -35,7 +35,6 @@ function ShowSearchBar() {
             }
             fetchShow(query);
         }, 500); // wait 500ms after typing stops
-
         return () => clearTimeout(timeoutId); // cleanup if user types again before 500ms
     }, [query]);
 

@@ -29,6 +29,13 @@ function ShowsList({showDetails}) {
 
 
   async function saveShow (showDetails){
+    const showExist = myShows.some(show => show.id === showDetails.imdbId)
+
+    if (showExist){
+      alert("Show is already added in your list!")
+      return
+    }
+    
     const addedShow = {
             id: showDetails.imdbId,
             title: showDetails.title,
@@ -57,7 +64,7 @@ function ShowsList({showDetails}) {
     });
     
     dispatch(showActions.updateMyShows(updatedShows))
-        
+    alert(`${showDetails.title} has been added to your list!`)   
   }
 
   function saveShowHandler(showDetails){
@@ -65,7 +72,6 @@ function ShowsList({showDetails}) {
   }
 
   console.log(showDetails)
-
 
   return (
     <main className={styles.showWrapper}>
@@ -84,7 +90,12 @@ function ShowsList({showDetails}) {
                 <div className={styles.seasonInfo}>          
                   <p>{showDetails?.seasonCount} Seasons</p> -
                   <p>{showDetails.episodeCount} Episodes</p> 
-                </div> 
+                </div>
+                <div>
+                  <a href={showDetails.streamingOptions.us?.[0].link} target="_blank">
+                    <img src = {showDetails.streamingOptions.us?.[0].service.imageSet.darkThemeImage}/>
+                  </a>
+                </div>
             </div>
             <p>{showDetails.overview}</p>
             <img src={showDetails.imageSet.verticalPoster.w240}/>

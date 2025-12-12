@@ -1,5 +1,6 @@
-//IMPORTS - Hooks
-import { useState } from "react"
+//IMPORTS - 
+import { useState } from "react";
+import {motion, AnimatePresence} from 'framer-motion'
 //IMPORTS - Components 
 
 import ShowDetails from "./ShowDetails"
@@ -156,19 +157,16 @@ function MyShows({id}) {
     dispatch(showActions.updateMyShows(sorted));
   }
   
-  
-
-
-
 return (
+
       <main {...id}className ={styles.showWrapper}>
         <div>
           <h2>Show Sorting Options</h2>
           <button onClick ={() => handleTitleSort(myShows)}>Sort by show name</button> --- 
           <button onClick ={() => handleBingeSort(myShows)}>Sort by binge status</button> ---
           <button onClick ={() => handleFinishedSort(myShows)}>Sort by finished status</button>   
-
         </div>
+        <AnimatePresence>
         {myShows.map((show) => (
           <div className ={styles.showTitle} key={show.id}>
             <p onClick={() => handleSelectShow(show.id)}>{show.title}</p>
@@ -193,17 +191,30 @@ return (
                 />
               </label>
             </div>
-
             {isReviewing && reviewingShowId === show.id && (
               <ShowReview 
                 showId = {show.id}
                 showTitle = {show.title}
                 />
             )}
-            {showId === show.id && 
-              <ShowDetails show={show} />}
+            <AnimatePresence>
+            {showId === show.id && (
+               <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+              <ShowDetails 
+                show={show}
+                animate={{y: 3}}
+              />
+              </motion.div>
+            )}
+            </AnimatePresence>
           </div> 
         ))}
+        </AnimatePresence>
       </main>
   )
 }

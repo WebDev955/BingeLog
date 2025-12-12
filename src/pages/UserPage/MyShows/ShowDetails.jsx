@@ -1,5 +1,6 @@
 //IMPORTS - Hooks
 import {useState } from "react"
+import {motion, AnimatePresence} from 'framer-motion'
 //IMPORTS - Components
 import EpisodeDetails from "./EpisodeDetails"
 //IMPORTS - Styles
@@ -18,21 +19,32 @@ function ShowDetails({show}) {
     }
 }
   return (
-    <main className={styles.seasonsWrapper}>
+    <motion.main className={styles.seasonsWrapper}>
         <p className={styles.seasonsTitle}>Seasons List</p>
-        {show  && (
-            <div key={show.id} >
+        {show && (
+            <div key={show.id}>
               {show.seasons?.map((season) => (
                 <p key = {season.title} onClick={() => selectSeason(season.title)}>
                   {season.title}
                 </p>
             )
             )} 
-              {seasonTitle  &&
-              <EpisodeDetails seasonTitle={seasonTitle} show={show}/>}
+            <AnimatePresence>
+              {seasonTitle &&
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto"}}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  key={show.id} 
+                >
+                  <EpisodeDetails seasonTitle={seasonTitle} show={show}/>
+                </motion.div>
+              }
+              </AnimatePresence>
           </div>
         )}
-    </main>
+    </motion.main>
   )
 }
 
