@@ -19,6 +19,9 @@ function UserPage() {
 //component displays
 const [content, setContent] = useState(<MyShows/>)
 
+const [renderContent, setRenderContent] = useState("displayShows")
+const [animateKey, setAnimateKey] = useState("displayShows")
+
 const params = useParams()
 const id =  params.id
 
@@ -30,34 +33,44 @@ if (!isLoggedIn) {
 
 
 //display Components
-  function displayShows(){
-    setContent(<MyShows userId={id}/>)
-}
-  function displayReviews(){
-    setContent(<MyReviews userId={id}/>)
-}
-  function displayWatching(){
-    setContent(<CurrentlyWatching userId={id}/>)
-}
+  //function displayShows(){
+    //setContent(<MyShows userId={id}/>)
+//}
+  //function displayReviews(){
+    //setContent(<MyReviews userId={id}/>)
+//}
+  //function displayWatching(){
+    //setContent(<CurrentlyWatching userId={id}/>)
+//}
+
+
+
+ function displayContent (value){
+  setRenderContent(value)
+  setAnimateKey(value)
+
+ }
 
   return (
     <>
       <main className={styles.mainWrapper} id = {id}>
             <Bio id = {id}/>
             <div className={styles.menuBttns}>
-              <Bttn onClick={displayShows}>My Shows</Bttn> | 
-              <Bttn onClick={displayReviews}>My Reviews</Bttn> | 
-              <Bttn onClick={displayWatching}>Currently Watching</Bttn>
+              <Bttn onClick={() => displayContent("displayShows")}>My Shows</Bttn> | 
+              <Bttn onClick={() => displayContent("displayReviews")}>My Reviews</Bttn> | 
+              <Bttn onClick={() => displayContent("displayWatching")}>Currently Watching</Bttn>
             </div>
             <AnimatePresence mode="wait">
-              <motion.div 
-                initial={{ x: 300, opacity: 0}}
+              <motion.div key={animateKey}
+                initial={{ x: -300, opacity: 0}}
                 animate={{ x: 0, opacity: 1}}
-                exit={{ x: -300, opacity: 0 }}
-                transition={{ duration: 0.3, ease:"easeOut"}}
+                exit={{ x: 300, opacity: 0 }}
+                transition={{ duration: 0.2, ease:"easeOut"}}
                 className={styles.mainContent}
               >
-                {content}
+                {renderContent === "displayShows" && <MyShows/>}
+                {renderContent === "displayReviews" && <MyReviews/>}
+                {renderContent === "displayWatching" && <CurrentlyWatching/>}
               </motion.div>
             </AnimatePresence>
       </main>

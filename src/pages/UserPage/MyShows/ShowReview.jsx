@@ -17,7 +17,10 @@ function ShowReview({showId, showTitle}){
     const dispatch = useDispatch()
     const myReviews = useSelector((state) => state.shows.reviews)
     const userId = useSelector(state => state.auth.user.uid);
-    
+ 
+
+
+   
     const docRef = doc(db, "Users", userId);
 
     function updateReview(value){

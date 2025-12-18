@@ -1,5 +1,5 @@
 //IMPORTS - Hooks
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -16,25 +16,37 @@ import styles from "./bio.module.css"
 import DefaultAvatar from "../../../../public/DefaultAvatar.png"
 
 function Bio({id}) {
+  
+  const [isEditingBio, setIsEditingBio] = useState(false)
+  
   const dispatch = useDispatch()
+
 
   //DISPATCH FUNCTIONS (UPDATE STATE REDUCER FUNCTIONS)
   function toggleBioEdit(){
     dispatch(profileActions.editBio())
   }
 
+  function editingBio(){
+    setIsEditingBio(true)
+
+    if (isEditingBio) {
+      setIsEditingBio(false)
+    }
+  }
+
+
   //State Slice Selectors 
   const userBio = useSelector((state) => state.profile.bio)
   const avatar = useSelector((state) => state.profile.profileImgUrl)
   const userName = useSelector((state) => state.auth.user.userName)
   const userId = useSelector((state) => state.auth.user.id)
-  const isEditingBio = useSelector((state) => state.profile.isEditingBio)
+  //const isEditingBio = useSelector((state) => state.profile.isEditingBio)
 
   //const bioAvatar = useSelector((state) => state.profile.bioAvatar)
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
   const finishedShows = useSelector((state) => state.shows.finishedShows)
   
-console.log(avatar)
 
 
     
@@ -43,7 +55,11 @@ console.log(avatar)
     <>
         <main className={styles.mainWrapper}>
           <div className={styles.header}>
-              <Bttn className={styles.editBttn} onClick={toggleBioEdit}>Edit Bio</Bttn>
+              <Bttn className={styles.editBttn} onClick={() => editingBio()}>
+                {isEditingBio ? "Save Profile" : "Edit Profile"}
+              </Bttn>
+
+
               <Bttn className={styles.editBttn}> Add Friend</Bttn>
               <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/> 
 
@@ -52,7 +68,7 @@ console.log(avatar)
               <h3>Binging since: 2025</h3> 
                <NavLink to="/friendsList"><h2>Friends List</h2></NavLink>
 
-              {isEditingBio 
+              {isEditingBio
                 ? <BioEdit/> 
                 : <div className={styles.bioBox}>
                     {userBio}

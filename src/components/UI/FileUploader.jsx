@@ -36,10 +36,8 @@ function FileUploader() {
         
         axios.post("https://api.cloudinary.com/v1_1/duvpgswi7/image/upload", formData)
             .then((response) => {
-            console.log(response.data.secure_url)
     
             const uploadedImage = response.data.secure_url
-
             const docRef = doc(db, "Users", uid);
             
             updateDoc(docRef, {

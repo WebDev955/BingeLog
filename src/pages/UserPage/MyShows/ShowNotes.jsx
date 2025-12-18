@@ -14,14 +14,15 @@ import { showActions } from "../../../store/slices/showsSlice"
 import { authActions } from "../../../store/slices/authSlice"
 //import { authActions } from "../../../store/slices/authSlice"
 
-import { db, app, auth, getDoc, doc, updateDoc} from "../../../firebase/firebase"
+import { db, doc, updateDoc} from "../../../firebase/firebase"
 
 function ShowNotes({epTitle, showTitle}) {
-  //Selecting Redux State
+  //Selecting Redux State 
+  
   const dispatch = useDispatch()
+  const userId = useSelector((state)=> state.auth.user.uid)
   const epNotes = useSelector((state) => state.notes.epNotes)
   const charNotes = useSelector((state) => state.notes.charNotes)
-  const userId = useSelector((state)=> state.auth.user.uid)
   const watchedEps = useSelector((state) => state.shows.watchedEps)
 
 /**Editing Episode Notes**/
