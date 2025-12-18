@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     bio: "Set bio here!",
     isEditingBio: false,
-    //bioAvatar: "/DefaultAvatar.jpg"
+    profileImgUrl: ""
 }
 
 const profileSlice = createSlice({
@@ -22,7 +22,7 @@ const profileSlice = createSlice({
             state.bio = action.payload //what the user typed into bio txt box
         },
         uploadAvatar(state, action) {
-            state.bioAvatar = action.payload //user chosen image
+            state.profileImgUrl = action.payload //user chosen image
         },
     },
 });

@@ -4,8 +4,7 @@ import Input from "../UI/Input"
 import Bttn from "../UI/Bttn"
 //IMPORTS - Styles
 import styles from "../UI/SignUpForm.module.css"
-import { UserAccountContext } from "../Contexts/UserAccountContext"
-import { useContext } from "react"
+
 
 function LogInForm({ type, onSubmit}) {
 

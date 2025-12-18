@@ -1,16 +1,16 @@
 //IMPORTS - Hooks
-import {useContext} from "react"
+
 //IMPORTS - Components 
 import LogInForm from "./LogInForm"
 import Modal from "../UI/Modal"
-import { UserAccountContext } from "../Contexts/UserAccountContext"
+
 //IMPORTS - Redux Features 
 import { useSelector, useDispatch } from "react-redux"
 import { authActions } from "../../store/slices/authSlice"
 
 import { auth } from "../../firebase/firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import {db, getDoc, setDoc, doc} from '../../firebase/firebase'
+
 
 
 
@@ -33,10 +33,6 @@ function handleClose() {
 
 async function verifyLogin(userData){
     
-
-
-
-
     const url = `http://localhost:3000/users?userName=${userData.userName}`;
     const response = await fetch(url);
     const users = await response.json();

@@ -7,12 +7,8 @@ import { showActions } from "../../store/slices/showsSlice";
 
 import { doc, db, updateDoc } from "../../firebase/firebase"
 
-
-
-
 //IMPORTS - Styles
 import styles from "./ShowsList.module.css"
-
 
 
 function ShowsList({showDetails}) {

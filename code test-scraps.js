@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 async function handleSaveReview(showId, showTitle){
         //creat new reivew object
         const newReview = {
@@ -190,3 +192,38 @@ return (
   )
 }
 export default MyShows
+
+
+//
+// OLD ASYNC FUNCTION, USED WITH LOCAL DATABASE
+//
+async function handleSubmitAccountInfo(newUserData){
+    try {
+        const response = await fetch(`http://localhost:3000/users`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email: newUserData.email,
+                userName: newUserData.userName,
+                password: newUserData.password,
+                bio: "",
+                bioAvatar: null,
+                friendsList: [],
+                myShows: [],
+                epNotes: [],
+                charNotes: [],
+                currentlyBinging: [],
+                watchedEps: [],
+                finishedShows: []
+            })
+          })
+        if (!response.ok){
+            throw new Error (`Failed to create user`)
+        }
+        const newUser = await response.json()
+        //dispatch(authActions.login(newUser))
+        //dispatch(authActions.stopCreatingAccount())
+    } catch (err){
+        console.error(err)
+    }
+}

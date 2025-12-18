@@ -2,6 +2,7 @@
 import { useEffect } from "react"
 //IMPORTS - Components 
 import Bttn from "../../../components/UI/Bttn"
+import FileUploader from "../../../components/UI/FileUploader"
 import { UserProfileContext } from "../../../components/Contexts/UserProfileContext"
 
 
@@ -23,6 +24,7 @@ function BioEdit() {
 
   function saveBio(){
     // ASYNC  TO UPDATE BIO BACK END
+
       dispatch(profileActions.saveBio())
   }
 
@@ -33,10 +35,7 @@ const bio = useSelector((state) => state.profile.bio)
   return (
     <>
         <label>Upload Avatar</label>
-        <input 
-          type="file"
-          accept="image/*"
-          /> 
+          <FileUploader/>
         <div>
             <textarea
               value={bio}

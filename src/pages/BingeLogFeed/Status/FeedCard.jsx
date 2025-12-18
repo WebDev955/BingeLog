@@ -4,18 +4,21 @@
 import ActionBar from "./ActionBar"
 
 //IMPORTS - REDUX
-
+import { useSelector } from "react-redux"
+import { profileActions} from "../../../store/slices/profileSlice"
 //IMPORTS - Styles
 import styles from "./FeedCard.module.css"
 
 function FeedCard({friend, key}) {
 
+  console.log(friend)
+
   return (
           <main key={key} className = {styles.mainStatusWrapper}>
             <article>
               <header className={styles.feedHeader}>
-                <img  src="/BingeLog/DefaultAvatar.png"/>
-                 {/*<img src={userProfile.bioAvatar} width="40" height="40"/>  */}
+                <img src={friend?.profileImgUrl || "/BingeLog/DefaultAvatar.png"}/>
+             
                 <p>{friend?.userName}</p>
               </header>
               <div className = {styles.feedContent}> 

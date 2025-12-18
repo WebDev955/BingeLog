@@ -11,6 +11,7 @@ import About from './pages/About/About'
 import FriendsList from './pages/FriendsList/FriendsList'
 import UserSearchPage from './pages/UserSearch/UserSearchPage'
 
+
 import { auth } from './firebase/firebase'
 import {db, getDoc, setDoc, doc} from './firebase/firebase'
 
@@ -64,7 +65,7 @@ useEffect(() => {
         }));
 
         // Hydrate profileSlice
-        dispatch(profileActions.uploadAvatar(user.bioAvatar));
+        dispatch(profileActions.uploadAvatar(user.profileImgUrl || "/BingeLog/DefaultAvatar.png"));
         dispatch(profileActions.updateBio(user.bio));
 
         // Hydrate showSlice

@@ -17,7 +17,5 @@ function HomePage() {
       <br/>
   </main> 
 )
-
-
 } 
 export default HomePage

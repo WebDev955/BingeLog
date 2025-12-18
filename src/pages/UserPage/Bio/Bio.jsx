@@ -13,7 +13,7 @@ import { showActions } from "../../../store/slices/showsSlice"
 //IMPORTS - Styles
 import styles from "./bio.module.css"
 //IMPORTS - Sources
-
+import DefaultAvatar from "../../../../public/DefaultAvatar.png"
 
 function Bio({id}) {
   const dispatch = useDispatch()
@@ -25,13 +25,16 @@ function Bio({id}) {
 
   //State Slice Selectors 
   const userBio = useSelector((state) => state.profile.bio)
+  const avatar = useSelector((state) => state.profile.profileImgUrl)
   const userName = useSelector((state) => state.auth.user.userName)
   const userId = useSelector((state) => state.auth.user.id)
   const isEditingBio = useSelector((state) => state.profile.isEditingBio)
+
   //const bioAvatar = useSelector((state) => state.profile.bioAvatar)
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
   const finishedShows = useSelector((state) => state.shows.finishedShows)
-
+  
+console.log(avatar)
 
 
     
@@ -42,7 +45,7 @@ function Bio({id}) {
           <div className={styles.header}>
               <Bttn className={styles.editBttn} onClick={toggleBioEdit}>Edit Bio</Bttn>
               <Bttn className={styles.editBttn}> Add Friend</Bttn>
-              <img className={styles.avatar} src="/Bingelog/DefaultAvatar.png" width="75" height="75"/> 
+              <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/> 
 
               <h3>{userName}</h3>
               

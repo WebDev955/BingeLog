@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 //IMPORTS - Hooks
 import { useState, useContext, useEffect } from "react"
 //IMPORTS - Components 

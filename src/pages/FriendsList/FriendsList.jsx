@@ -1,10 +1,10 @@
 //IMPORTS - Hooks
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 //IMPORTS - Components 
-import{ UserAccountContext} from "../../components/Contexts/UserAccountContext"
+
 import { useSelector, useDispatch } from "react-redux"
-import { friendsActions } from "../../store/slices/friendsSlice"
-import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
+//import { friendsActions } from "../../store/slices/friendsSlice"
+import {db, collection, getDocs } from "../../firebase/firebase"
 
 //IMPORTS - Styles
 //import styles from "./UserPage.module.css"
