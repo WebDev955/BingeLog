@@ -15,7 +15,6 @@ function SearchDropdown({searchResults, query}) {
         setSelectedShow(show);
     }
     console.log(searchResults)
-
   return (
     <>
     <div className={styles.mainDropdownWrapper}>
@@ -23,7 +22,10 @@ function SearchDropdown({searchResults, query}) {
         {searchResults.filter(show => 
           show.title.toLowerCase().includes(query.toLowerCase())
             ).map((show) => (
-              <p key={show.imdbId} onClick={() => displayShowDetails(show)}>{show.title}</p>
+              <div className={styles.showDetails} onClick={() => displayShowDetails(show)}>
+                  <p key={show.imdbId} >{show.title}</p>
+                  <img src = {show.imageSet.horizontalPoster.w360} />
+              </div>
         ))}
       </div>    
     </div>

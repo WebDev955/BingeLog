@@ -36,17 +36,20 @@ function toggleCreateAccount(){
   return (
     <header className={styles.mainWrapper}>
         <nav className={styles.nav}>
-            <ul className={styles.navList}>
+            <ul>
                 <li>
-                    <NavLink to="/"><img width = "35px" src="/BingeLog/HomeIcon.png"/></NavLink><br/>
-                  
+                    <NavLink to="/"><img width = "35px" src="/BingeLog/HomeIcon.png"/></NavLink>
                 </li>
+            {!isLoggedIn &&
                 <li>
-                    {!isLoggedIn && <Bttn onClick ={toggleLogIn}><img width = "35px" src="/BingeLog/LogIn.png"/></Bttn>}
+                    <Bttn onClick ={toggleLogIn}><img width = "35px" src="/BingeLog/LogIn.png"/></Bttn>
                 </li>
-                 <li>
-                    {!isLoggedIn && <Bttn onClick = {toggleCreateAccount}>Create Account</Bttn>}
+            }
+            {!isLoggedIn &&
+                <li>
+                    <Bttn onClick = {toggleCreateAccount}>Create Account</Bttn>
                 </li>
+            }
                 <li>
                     {isLoggedIn && <NavLink to="/bingelog"><img width = "35px" src="/BingeLog/BingeLog.png"/></NavLink>}
                 </li>
