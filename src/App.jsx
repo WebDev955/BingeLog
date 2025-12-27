@@ -36,7 +36,6 @@ import { onAuthStateChanged } from "./firebase/firebase"
 import './App.css'
 import { current } from '@reduxjs/toolkit'
 
-
 function App() {
 
 const dispatch = useDispatch();
@@ -49,6 +48,11 @@ const [hydrated, setHydrated] = useState(false);
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+
+    if (!currentUser) {
+      setHydrated(true)
+      return;
+    }
 
     try {
       const docRef = doc(db, "Users", currentUser?.uid);
@@ -82,20 +86,22 @@ useEffect(() => {
         // Hydrate friendsSlice
         dispatch(friendsActions.addFriend(user.friendsList || []));
       }
-      setHydrated(true)
 
     } catch (err) {
       console.error("Auth restore failed:", err);
-      
+
+    } finally {
+      setHydrated(true)
     }
   });
 
+    return () => unsubscribe;
 }, [dispatch]);
 
   if (!hydrated) {
     return <div>Loading...</div>;
   }
-
+  
 const router = createHashRouter([
   {
     path:'/',
