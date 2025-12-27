@@ -46,9 +46,9 @@ const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 //auth.currentUser;  - can be null after a refresh
 
 const [hydrated, setHydrated] = useState(false);
+
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-    if (!currentUser) return;
 
     try {
       const docRef = doc(db, "Users", currentUser?.uid);
@@ -96,6 +96,7 @@ useEffect(() => {
   if (!hydrated) {
     return <div>Loading...</div>;
   }
+  
 const router = createHashRouter([
   {
     path:'/',
