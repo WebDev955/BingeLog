@@ -38,6 +38,9 @@
 }
 
 @media (max-width: 412px) {
- 
+    .showDetails img {
+        width: 100px;
+        padding: 5px;
+    }
 }
 
