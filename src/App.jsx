@@ -90,13 +90,12 @@ useEffect(() => {
     }
   });
 
-  return () => unsubscribe;
 }, [dispatch]);
 
   if (!hydrated) {
     return <div>Loading...</div>;
   }
-  
+
 const router = createHashRouter([
   {
     path:'/',
