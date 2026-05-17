@@ -7,7 +7,10 @@
     box-shadow: -2px 1px 21px 14px #000000;
 
 }
-.menuBttns{
+.menuBttnsWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 10px;
     background-color: #c73e1dff;
     border-bottom: black;
@@ -15,8 +18,29 @@
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border-color: whitesmoke;
-    border-style: solid;  
+    border-style: solid; 
+    margin-top: 10px;
 }
+
+.menuBttns {
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+.activeBttn {
+    border-bottom: solid black 3px;
+    border-top: none ;
+    border-left: none ;
+    border-right: none ;
+    background-color: transparent;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+
 
 .mainContent{
     color: black;

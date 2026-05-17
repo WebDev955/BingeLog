@@ -160,11 +160,13 @@ function MyShows({id}) {
 return (
 
       <main {...id}className ={styles.showWrapper}>
-        <div>
-          <h2>Show Sorting Options</h2>
-          <button onClick ={() => handleTitleSort(myShows)}>Sort by show name</button> --- 
-          <button onClick ={() => handleBingeSort(myShows)}>Sort by binge status</button> ---
-          <button onClick ={() => handleFinishedSort(myShows)}>Sort by finished status</button>   
+        <div className ={styles.showSortWrapper}>
+          <h3>Sort Shows</h3>
+            <div className ={styles.showSortBttns}>
+              <button onClick ={() => handleTitleSort(myShows)}>Name</button> 
+              <button onClick ={() => handleBingeSort(myShows)}>Binging</button> 
+              <button onClick ={() => handleFinishedSort(myShows)}>Finished</button>   
+            </div>
         </div>
         <AnimatePresence>
         {myShows.map((show) => (

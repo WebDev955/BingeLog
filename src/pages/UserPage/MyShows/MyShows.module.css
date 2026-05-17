@@ -1,4 +1,6 @@
 .showWrapper{
+    display: flex;
+    flex-direction: column; 
     border-color: white;
     padding-top: 5px;
     background-color: rgb(40, 70, 87);
@@ -6,6 +8,33 @@
     padding-bottom: 30px;
     margin-bottom: 40px;
 }
+
+.showSortWrapper {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.showSortBttns {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.showSortBttns button {
+    padding: 15px;
+    background-color:transparent;
+    color: whitesmoke;
+    border: none; 
+    font-weight: 700;
+    font-size: larger;
+}
+
+
+
+
 
 .showTitle {
     font-weight: 700;
@@ -18,8 +47,6 @@
     border-color: white;
     padding-bottom: 10px;
 }
-
-
 
 .showStatus {
     padding: 5px;

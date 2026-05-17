@@ -14,13 +14,16 @@ import { showActions } from "../../../store/slices/showsSlice"
 import styles from "./bio.module.css"
 //IMPORTS - Sources
 import DefaultAvatar from "../../../../public/DefaultAvatar.png"
+import AddFriend from "../../../../public/AddFriend.png"
+import EditProfile from "../../../../public/EditProfile.png"
+import FriendList from "../../../../public/FriendList.png"
+import Share from "../../../../public/Share.png"
 
 function Bio({id}) {
   
   const [isEditingBio, setIsEditingBio] = useState(false)
   
   const dispatch = useDispatch()
-
 
   //DISPATCH FUNCTIONS (UPDATE STATE REDUCER FUNCTIONS)
   function toggleBioEdit(){
@@ -47,40 +50,33 @@ function Bio({id}) {
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
   const finishedShows = useSelector((state) => state.shows.finishedShows)
   
-
-
     
 // ADD FRIEND - pesudo code - onClick={() => userAccountCtx.addFriend(id)}
   return (
     <>
         <main className={styles.mainWrapper}>
           <div className={styles.header}>
-              <Bttn className={styles.editBttn} onClick={() => editingBio()}>
-                {isEditingBio ? "Save Profile" : "Edit Profile"}
-              </Bttn>
-
-
-              <Bttn className={styles.editBttn}> Add Friend</Bttn>
-              <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/> 
-
+            <div className={styles.bioBttnMenu}>
+              <img  onClick={() => editingBio()} src= {EditProfile} width = "35px"/>        
+                {isEditingBio === true && <label>Close Editing</label>}
+              <img src= {AddFriend} width = "35px"/>  
+               <NavLink to="/friendsList"><img src= {FriendList} width = "35px"/></NavLink>    
+              <a href= "http://localhost:5173/userPage/${userId}" to="_blank"><img src= {Share} width = "35px"/></a>
+            </div>
+              <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/>
               <h3>{userName}</h3>
-              
               <h3>Binging since: 2025</h3> 
-               <NavLink to="/friendsList"><h2>Friends List</h2></NavLink>
-
               {isEditingBio
                 ? <BioEdit/> 
                 : <div className={styles.bioBox}>
                     {userBio}
                   </div>
               }
-              
               <div className={styles.totalBinge}>
                   <h4>Shows Finished: {finishedShows.length} </h4>
                   <h4>Currently Binging: {currentlyBinging.length} shows</h4>
               </div>
           </div>
-            <a href= "http://localhost:5173/userPage/${userId}" to="_blank"><h4>Share Profile Link</h4></a>
         </main>
     </>
   )

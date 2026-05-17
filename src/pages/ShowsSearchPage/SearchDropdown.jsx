@@ -32,7 +32,7 @@ function SearchDropdown({searchResults, query}) {
     <div>
         {selectedShow && (
             <ShowsList showDetails ={selectedShow} />
-            )}
+        )}
     </div>
     </>
   )

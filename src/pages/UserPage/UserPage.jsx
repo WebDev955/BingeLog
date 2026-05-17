@@ -17,7 +17,8 @@ import CurrentlyWatching from "./CurrentlyWatching/CurrentlyWatching"
 
 function UserPage() {
 //component displays
-const [content, setContent] = useState(<MyShows/>)
+//const [content, setContent] = useState(<MyShows/>)
+
 
 const [renderContent, setRenderContent] = useState("displayShows")
 const [animateKey, setAnimateKey] = useState("displayShows")
@@ -55,10 +56,32 @@ if (!isLoggedIn) {
     <>
       <main className={styles.mainWrapper} id = {id}>
             <Bio id = {id}/>
-            <div className={styles.menuBttns}>
-              <Bttn onClick={() => displayContent("displayShows")}>My Shows</Bttn> | 
-              <Bttn onClick={() => displayContent("displayReviews")}>My Reviews</Bttn> | 
-              <Bttn onClick={() => displayContent("displayWatching")}>Currently Watching</Bttn>
+            <div className={styles.menuBttnsWrapper}>
+              <Bttn 
+                className={renderContent === "displayShows" ? styles.activeBttn : styles.menuBttns} 
+                onClick={() => displayContent("displayShows")}>
+                  Shows
+              </Bttn>  
+              <Bttn 
+                className={renderContent === "displayReviews" ? styles.activeBttn : styles.menuBttns} 
+                onClick={() => displayContent("displayReviews")}>
+                  Reviews
+              </Bttn> 
+              <Bttn 
+                className={renderContent === "displayWatching" ? styles.activeBttn : styles.menuBttns} 
+                onClick={() => displayContent("displayWatching")}>
+                  Binging
+              </Bttn> 
+              <Bttn 
+                className={styles.menuBttns} 
+                onClick={() => displayContent("")}>
+                  Posts
+              </Bttn>  
+              <Bttn 
+                className={styles.menuBttns} 
+                onClick={() => displayContent("")}>
+                  Likes
+              </Bttn> 
             </div>
             <AnimatePresence mode="wait">
               <motion.div key={animateKey}

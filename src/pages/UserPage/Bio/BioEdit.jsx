@@ -23,23 +23,19 @@ function BioEdit() {
   const [bioDraft, setBioDraft] = useState()
   const [isEditingBio, setIsEditingBio] = useState(false)
 
-
   //STATE SLICES
   const dispatch = useDispatch()
   const bio = useSelector((state) => state.profile.bio)  
   const userId = useSelector(state => state.auth.user.uid);
-
 
   function editBioHandler() {
     setIsEditingBio(true)
     console.log(isEditingBio)
   }
     
-  
   function updateBio (value){
     setBioDraft(value)
   }
-
 
   async function saveBio(){
     const newBio = bioDraft
@@ -56,22 +52,29 @@ function BioEdit() {
 }
 
   return (
-    <>
+    <div className={styles.profileEditWrapper}>
+      <div className={styles.avatarUpload}>
         <label>Upload Avatar</label>
           <FileUploader/>
-        <div>
-          {bio}
-          {isEditingBio && (
-            <textarea className={styles.bioTextBox}
-              value={bioDraft ?? bio }
-              onChange = {(e) => updateBio(e.target.value)}
-            />
-          )}
-            
-            <Bttn onClick={() => editBioHandler()}>Edit Bio</Bttn>
-            <Bttn onClick={() => saveBio()}>Save Bio</Bttn>
+      </div>
+        <div className={styles.bioEditWrapper}>
+          <div className={styles.bioEdit}>
+            {bio}
+            {isEditingBio && (
+              <textarea className={styles.bioTextBox}
+                value={bioDraft ?? bio }
+                onChange = {(e) => updateBio(e.target.value)}
+              />
+            )}
+          </div> 
+          <div className={styles.bioEditBttns}>
+            {isEditingBio === true 
+              ? <Bttn onClick={() => saveBio()}> Save Bio </Bttn>
+              : <Bttn onClick={() => editBioHandler()}> Edit Bio </Bttn>
+            }
+          </div>
         </div>
-    </>
+    </div>
   )
 }
 export default BioEdit
