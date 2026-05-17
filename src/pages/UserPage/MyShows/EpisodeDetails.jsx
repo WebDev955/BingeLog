@@ -16,7 +16,7 @@ function EpisodeDetailsCopy({ seasonTitle, show }) {
   return (
     <main className={styles.epWrapper}>
       <div>
-        <p className = {styles.epList}>Episodes List</p>
+        <p className = {styles.epList}>Episodes List - {seasonTitle}</p>
       </div>
       {selectedSeason && (
         <div key={selectedSeason.title}>

@@ -158,8 +158,7 @@ function MyShows({id}) {
   }
   
 return (
-
-      <main {...id}className ={styles.showWrapper}>
+      <main {...id}className ={styles.showDisplayWrapper}>
         <div className ={styles.showSortWrapper}>
           <h3>Sort Shows</h3>
             <div className ={styles.showSortBttns}>
@@ -170,35 +169,12 @@ return (
         </div>
         <AnimatePresence>
         {myShows.map((show) => (
-          <div className ={styles.showTitle} key={show.id}>
-            <p onClick={() => handleSelectShow(show.id)}>{show.title}</p>
-
-            <div className ={styles.showStatus}>
-              <button onClick = {() => toggleReview(show.id)}>Add Review</button> <br/>  
-              <button onClick = {() => removeShow(show.id)}>Remove Show</button> <br/>
-              <label> Finished
-                <input 
-                  type="checkbox" 
-                  value={show.id}
-                  checked = {finishedShows.some(finishedShow => finishedShow.id === show.id)}
-                  onChange = {() => checkOffFinishedShow(show.title, show.id)}
-                />
-              </label> || 
-              <label> Currently Binging
-                <input 
-                  type="checkbox"
-                  value = {show.id}
-                  checked = {currentlyBinging.some(binge => binge.id === show.id)}
-                  onChange={() => checkOffBinging(show.title, show.id)}
-                />
-              </label>
+          <div className ={ showId === show.id  ? styles.showTitleActive : styles.showTitle } key={show.id}>
+            <div className ={styles.showHeading}>
+              <p onClick={() => handleSelectShow(show.id)}>{show.title}</p>
+              <button onClick = {() => removeShow(show.id)}>Remove Show</button> 
+              <button onClick = {() => toggleReview(show.id)}>Add Review</button> <br/>
             </div>
-            {isReviewing && reviewingShowId === show.id && (
-              <ShowReview 
-                showId = {show.id}
-                showTitle = {show.title}
-                />
-            )}
             <AnimatePresence>
             {showId === show.id && (
                <motion.div
@@ -214,6 +190,30 @@ return (
               </motion.div>
             )}
             </AnimatePresence>
+            <div className ={styles.showStatus}>
+              <label> Finished
+                <input 
+                  type="checkbox" 
+                  value={show.id}
+                  checked = {finishedShows.some(finishedShow => finishedShow.id === show.id)}
+                  onChange = {() => checkOffFinishedShow(show.title, show.id)}
+                />
+              </label> 
+              <label> Currently Binging
+                <input 
+                  type="checkbox"
+                  value = {show.id}
+                  checked = {currentlyBinging.some(binge => binge.id === show.id)}
+                  onChange={() => checkOffBinging(show.title, show.id)}
+                />
+              </label>
+            </div>
+            {isReviewing && reviewingShowId === show.id && (
+              <ShowReview 
+                showId = {show.id}
+                showTitle = {show.title}
+                />
+            )}
           </div> 
         ))}
         </AnimatePresence>

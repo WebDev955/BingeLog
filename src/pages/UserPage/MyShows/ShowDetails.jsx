@@ -22,30 +22,32 @@ function ShowDetails({show}) {
     <motion.main className={styles.seasonsWrapper}>
         <p className={styles.seasonsTitle}>Seasons List</p>
         {show && (
-            <div key={show.id}>
+          <div key={show.id}>
               {show.seasons?.map((season) => (
-                <p key = {season.title} onClick={() => selectSeason(season.title)}>
-                  {season.title}
-                </p>
+                <div>
+                <div className={styles.seasonsNumber}>
+                  <p key = {season.title} onClick={() => selectSeason(season.title)}>{season.title} </p>
+                  <button>Finished</button>
+                </div>
+                  <AnimatePresence>
+                {seasonTitle === season.title &&
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto"}}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    key={show.id} 
+                  >
+                    <EpisodeDetails seasonTitle={seasonTitle} show={show}/>
+                  </motion.div>
+                }
+                </AnimatePresence>
+              </div>
             )
-            )} 
-            <AnimatePresence>
-              {seasonTitle &&
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto"}}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  key={show.id} 
-                >
-                  <EpisodeDetails seasonTitle={seasonTitle} show={show}/>
-                </motion.div>
-              }
-              </AnimatePresence>
-          </div>
+          )} 
+        </div>
         )}
     </motion.main>
   )
 }
-
 export default ShowDetails
