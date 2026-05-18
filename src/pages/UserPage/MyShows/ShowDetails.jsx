@@ -27,7 +27,6 @@ function ShowDetails({show}) {
                 <div>
                 <div className={styles.seasonsNumber}>
                   <p key = {season.title} onClick={() => selectSeason(season.title)}>{season.title} </p>
-                  <button>Finished</button>
                 </div>
                   <AnimatePresence>
                 {seasonTitle === season.title &&

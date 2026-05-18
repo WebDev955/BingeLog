@@ -60,10 +60,10 @@
 .showHeading{
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    gap: 25px;
+    justify-content: space-evenly;
+
     margin-top: 10px;
-    padding-left: 10px;
+ 
 }
 .showHeading p{
     border-bottom: white solid 1px;
@@ -72,7 +72,7 @@
 .showStatus {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     padding: 5px;
     gap: 25px;
     color: white;

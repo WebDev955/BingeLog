@@ -3,26 +3,23 @@
     flex-direction: column;
     text-align: left;
     background-color: var(--cerulean);
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 5px;
-    
-}
-.header{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
 }
 
 .bioBttnMenu {
     display: flex;
     flex-direction: row; 
-    border: solid 2px red;
+    justify-content: end;
     gap: 12px;
     padding: 10px;
-    background-color: lightslategray;
+    border-bottom: solid 1px black;
 }
 
+.bioAvatarWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    
+}
 .editBttn{
     width: 100px;
     align-self: flex-end;
@@ -36,6 +33,7 @@
     border-color: white;
     border-top-style: solid;
     border-bottom-style: solid;
+    padding: 5px;
 }
 
 .bioBox{
@@ -47,9 +45,9 @@
     margin-bottom: 1px;
     font-size: medium;
     height: 90px;
-    
 }
 
 .avatar{
+    margin-top: 10px;
     border-radius: 75%;
 }

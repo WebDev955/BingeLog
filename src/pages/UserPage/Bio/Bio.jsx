@@ -53,32 +53,30 @@ function Bio({id}) {
     
 // ADD FRIEND - pesudo code - onClick={() => userAccountCtx.addFriend(id)}
   return (
-    <>
         <main className={styles.mainWrapper}>
-          <div className={styles.header}>
-            <div className={styles.bioBttnMenu}>
-              <img  onClick={() => editingBio()} src= {EditProfile} width = "35px"/>        
-                {isEditingBio === true && <label>Close Editing</label>}
-              <img src= {AddFriend} width = "35px"/>  
-               <NavLink to="/friendsList"><img src= {FriendList} width = "35px"/></NavLink>    
-              <a href= "http://localhost:5173/userPage/${userId}" to="_blank"><img src= {Share} width = "35px"/></a>
-            </div>
-              <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/>
-              <h3>{userName}</h3>
-              <h3>Binging since: 2025</h3> 
-              {isEditingBio
-                ? <BioEdit/> 
-                : <div className={styles.bioBox}>
-                    {userBio}
-                  </div>
-              }
-              <div className={styles.totalBinge}>
-                  <h4>Shows Finished: {finishedShows.length} </h4>
-                  <h4>Currently Binging: {currentlyBinging.length} shows</h4>
-              </div>
+          <div className={styles.bioBttnMenu}>
+            <img  onClick={() => editingBio()} src= {EditProfile} width = "35px"/>        
+              {isEditingBio === true && <label>Close Editing </label>}
+            <img src= {AddFriend} width = "35px"/>  
+            <NavLink to="/friendsList"><img src= {FriendList} width = "35px"/></NavLink>    
+            <a href= "http://localhost:5173/userPage/${userId}" to="_blank"><img src= {Share} width = "35px"/></a>
           </div>
+          <div className={styles.bioAvatarWrapper}>
+            <img className={styles.avatar} src={avatar || "/BingeLog/DefaultAvatar.png"} width="75" height="75"/>
+            <h3>{userName}</h3>
+            <h3>Binging since: 2025</h3>
+          </div> 
+            {isEditingBio
+              ? <BioEdit/> 
+              : <div className={styles.bioBox}>
+                  {userBio}
+                </div>
+            }
+            <div className={styles.totalBinge}>
+              <h4>Shows Finished: {finishedShows.length} </h4>
+              <h4>Currently Binging: {currentlyBinging.length} shows</h4>
+            </div>
         </main>
-    </>
   )
 }
 export default Bio
