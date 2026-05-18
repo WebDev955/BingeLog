@@ -12,7 +12,7 @@ import { authActions }  from "../../store/slices/authSlice";
 
 import {doc, getDoc, db, collection, getDocs, updateDoc } from "../../firebase/firebase"
 //IMPORTS - Styles
-import styles from "./ShowsList.module.css";
+import styles from "./UserList.module.css";
 
 function UsersList({userDetails}) {
   console.log("User Details", userDetails)
@@ -47,15 +47,17 @@ function UsersList({userDetails}) {
 }
 
 
-  return (
-    <main className={styles.showWrapper}>
-      {userDetails && (
-          <div key={userDetails.id} className={styles.showInfo}>
-            <header>
-                <NavLink to={`/userPage/:${userDetails.id}`}><h2>{userDetails.userName}</h2></NavLink>
-                <Bttn onClick = {() => addFriend(userDetails.id)}>Save User</Bttn>
-              </header>
+console.log(userDetails)
 
+
+  return (
+    <main className={styles.userDetailsWrapper}>
+      {userDetails && (
+          <div key={userDetails.id}>
+              <NavLink to={`/userPage/:${userDetails.id}`}><h2>{userDetails.userName}</h2></NavLink>
+              <img src={userDetails.profileImgUrl} width="100px"/>
+              <br/>
+              <Bttn onClick = {() => addFriend(userDetails.id)} >Save User</Bttn> 
           </div>
     )}
    </main>

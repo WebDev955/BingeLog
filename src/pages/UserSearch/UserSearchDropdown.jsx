@@ -23,14 +23,14 @@ function UserSearchDropdown({searchResults}) {
     <div className={styles.mainDropdownWrapper}>
       <div>
         {searchResults.map((user) => (
-              <p key={user.uid} onClick={() => displayUserDetails(user)}>{user.userName}</p>
+          <p key={user.uid} onClick={() => displayUserDetails(user)}>{user.userName}</p>
         ))}
       </div>    
     </div>
     <div>
         {selectedUser && (
             <UsersList userDetails ={selectedUser} />
-            )}
+          )}
     </div>
     </>
   )
