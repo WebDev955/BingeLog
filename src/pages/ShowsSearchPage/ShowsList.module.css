@@ -1,14 +1,9 @@
-.showWrapper{
+.showWrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: lightgrey;
-    overflow: hidden;
-    overflow: auto;
-    margin-bottom: 50px;
     text-align: left;
     margin-top: 10px;
-    padding: 10px;
 }
 
 .showWrapper header {
@@ -35,14 +30,13 @@
     flex-direction: column;
     justify-content: center;
     background-color: grey;
-    border-color: white;
     padding-left: 5px;
     margin-bottom: 25px;
     text-align: center;
+    border: solid black 2px;
+    border-radius: 25px;
+    box-shadow: -1px 1px 13px 14px #00000033;
 }
-
-
-
 
 .genres {
     display: flex;
@@ -53,11 +47,15 @@
     margin-top: 10px;
     border: solid 1px black;
     margin-right: 5px;
+    background-color: orange;
+    padding: 10px;
+    
 }
 
 .seasonInfo {
     display: flex;
-    color: aliceblue;
+    color: black;
+
 }
 
 .showOverview {
@@ -66,34 +64,34 @@
     margin-right: 5px;
     margin-bottom: 10px;
 }
-.streamingOptionsWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 2px;
-}
 
+.streamingOptionsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 5px;
+    padding: 2px;
+     overflow: hidden;
+}
 .streamingService {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
-    border: 1px solid black;
     padding: 5px;
     margin: 5px;
     text-align: center;
     font-weight: 700;
 }
-
 .streamingService p {
     text-transform: capitalize;
 }
-
 .streamingService img {
-    width: 50px;
     background-color: black;
-    padding: 5px;
+    padding: 15px;
     border-radius: 10%;
+    width: 100%;        /* fill the card width */
+    max-width: 120px;   /* but don't get too big */
+    height: auto;
+    object-fit: contain;
 }
 
 

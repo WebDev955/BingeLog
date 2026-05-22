@@ -82,22 +82,18 @@ function ShowsList({showDetails}) {
     <main className={styles.showWrapper}>
       {showDetails && (
           <div key={showDetails.imdbId} className={styles.showInfo}>
-            <header>
-                <img src={showDetails.imageSet.horizontalPoster.w360}/>
-                
-              </header>
-              <div className={styles.showDetails}>
-                  <div>
+            <div className={styles.showDetails}>
+                <div>
                   <Bttn onClick = {() => saveShowHandler(showDetails)}>Save Show</Bttn>
-                  </div>                
-                  <div className={styles.genres}>
-                    <p>{showDetails.genres[0].name}</p>|
-                    <p>{showDetails?.genres[1]?.name}</p>|
-                    <p>{showDetails?.genres[2]?.name}</p>
-                  <div className={styles.seasonInfo}>-&nbsp;          
-                    <p>{showDetails?.seasonCount} Seasons</p>
-                    -&nbsp;
-                    <p>{showDetails.episodeCount} Episodes</p> 
+                </div>                
+                <div className={styles.genres}>
+                  <p>{showDetails.genres[0].name}</p>|
+                  <p>{showDetails?.genres[1]?.name}</p>|
+                  <p>{showDetails?.genres[2]?.name}</p>
+                <div className={styles.seasonInfo}>-&nbsp;          
+                  <p>{showDetails?.seasonCount} Seasons</p>
+                  -&nbsp;
+                  <p>{showDetails.episodeCount} Episodes</p> 
                 </div>
                 </div>
                 <p className={styles.showOverview}>{showDetails.overview}</p>

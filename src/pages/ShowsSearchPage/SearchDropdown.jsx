@@ -9,32 +9,35 @@ import styles from "./SearchDropdown.module.css"
 
 function SearchDropdown({searchResults, query}) {
 
-  const [selectedShow, setSelectedShow] = useState(null)
+  const [selectedShow, setSelectedShow] = useState("")
 
   function displayShowDetails(show) {
         setSelectedShow(show);
+        if (selectedShow){
+          setSelectedShow("")
+        }
+   
     }
     console.log(searchResults)
   return (
-    <>
     <div className={styles.mainDropdownWrapper}>
       <div>
         {searchResults.filter(show => 
           show.title.toLowerCase().includes(query.toLowerCase())
             ).map((show) => (
-              <div className={styles.showDetails} onClick={() => displayShowDetails(show)}>
-                  <p key={show.imdbId} >{show.title}</p>
-                  <img src = {show.imageSet.horizontalPoster.w360} />
+              <div className={styles.showResult} onClick={() => displayShowDetails(show)}>
+                  <div className={styles.showTitle} >
+                    <p key={show.imdbId}>{show.title} </p>
+                    <img src = {show.imageSet.horizontalPoster.w360}/> 
+                  </div> 
+                  {selectedShow.imdbId === show.imdbId && (
+                    <ShowsList showDetails ={selectedShow} />
+                  )}
               </div>
-        ))}
+          ))}
       </div>    
     </div>
-    <div>
-        {selectedShow && (
-            <ShowsList showDetails ={selectedShow} />
-        )}
-    </div>
-    </>
+
   )
 }
 export default SearchDropdown

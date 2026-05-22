@@ -45,9 +45,7 @@ function UsersList({userDetails}) {
     alert(err.message);
   }
 }
-
-
-console.log(userDetails)
+//console.log(userDetails)
 
 
   return (

@@ -8,32 +8,39 @@
     border-radius: 5px;
     margin-top: 5px;
     box-shadow: 5px 5px 30px -1px #000000;
-   
 }
 
-.showDetails {
+.showResult {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 10px;
     border-bottom: black solid 1px;
 }
-.showDetails p {
+
+.showTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: larger;
+}
+
+.showTitle p {
     font-weight: 600;
     padding-bottom: 7px;
 }
 
-.showDetails p:hover {
+.showTitle p:hover {
     cursor: pointer;
     color: aliceblue;
 }
 
-.showDetails img {
-    width: 200px;
+.showTitle img {
+    width: 150px;
     padding: 5px;
 }
 
-.showDetails img:hover {
+.showTitle img:hover {
     cursor: pointer;
 }
 
