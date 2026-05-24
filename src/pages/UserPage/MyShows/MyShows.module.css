@@ -8,21 +8,17 @@
     padding-bottom: 30px;
     margin-bottom: 40px;
 }
-
 .showSortWrapper {
     display: flex;
     flex-direction: column; 
     align-items: center;
 }
-
 .showSortBttns {
     display: flex;
     flex-direction: row; 
     align-items: center;
     gap: 15px;
-    
 }
-
 .showSortBttns button {
     padding: 15px;
     background-color:transparent;
@@ -31,19 +27,28 @@
     font-weight: 700;
     font-size: larger;
 }
-
 .showTitle {
     font-weight: 700;
-    text-align: left;
     padding-left: 5px;
     background-color: var(--raisin-black);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-top-style: solid;
     border-color: white;
+  
+    box-shadow: 0px 3px 4px rgba(255, 255, 255, 0.2);
+}
+.showTitleBinging {
+    font-weight: 700;
+    text-align: left;
+    padding-left: 5px;
+    background-color: palevioletred;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-style: solid;
+    border-color: white;
     padding-bottom: 10px;
 }
-
 .showTitleActive {
     font-weight: 700;
     text-align: left;
@@ -53,23 +58,31 @@
     border-top-right-radius: 10px;
     border-top-style: solid;
     border-color: white;
-    padding-bottom: 10px;
+
 }
-
-
 .showHeading{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-
+    justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
- 
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
-.showHeading p{
+.showHeading > p {
+    text-align: left;
     border-bottom: white solid 1px;
+    margin-left: 10px;
 }
-
 .showStatus {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 10px;
+}
+.showStatusCheckBox {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -79,5 +92,31 @@
     padding: 10px;
     margin-top: 15px;
     border-top: solid white 0.5px;
+    font-size: smaller;
+}
+
+.showOptionsWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;  
+    margin-top:20px;
+}
+.showOptionsWrapper p {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    color: black;
+    font-weight:700;
+    background-color: rgb(245, 235, 127);
+    border-right: solid black 2px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top: solid black ;
+}
+
+.showOptionsWrapper p:last-child {
+ border-right: none;
 }
 

@@ -1,21 +1,24 @@
-//IMPORTS - 
+//IMPORTS - library hooks
 import { useState } from "react";
 import {motion, AnimatePresence} from 'framer-motion'
 //IMPORTS - Components 
-
 import ShowDetails from "./ShowDetails"
+import ShowReview from "./ShowReview";
+import ShowStatus from "./ShowStatus";
 //IMPORTS - REDUX
 import { showActions } from "../../../store/slices/showsSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-//IMPORTS - Styles
-import styles from "./MyShows.module.css"
-import ShowReview from "./ShowReview";
+//IMPORTS - FIREBASE/DATA
 import { doc, db, updateDoc } from "../../../firebase/firebase"
+//IMPORTS - STYLES/IMAGES
+import styles from "./MyShows.module.css"
+import DownArrow from "../../../../public/DownArrow.png"
+import CheckMark from "../../../../public/CheckMark.png"
 
 function MyShows({id}) {
   const dispatch = useDispatch()
   const [showId, setShowId] = useState("")
+  const [displaySeasons, setDisplaySeasons] = useState(showId)
 
   //Slect State from showActionSlice
   const myShows = useSelector((state) => state.shows.myShows)
@@ -24,13 +27,23 @@ function MyShows({id}) {
   const userId = useSelector((state) => state.auth.user.uid)
   const isReviewing = useSelector((state) => state.shows.isReviewing)
   const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
-  
+
   function handleSelectShow(id){
       setShowId(id)
-
+      setDisplaySeasons(id)
     if (showId === id){
       setShowId("")
     }
+  }
+
+  function toggleSeasons(showId){
+      setDisplaySeasons(showId)      
+      dispatch(showActions.reviewingShow());
+      dispatch(showActions.toggleReviewing())
+      if (displaySeasons === showId){
+        setDisplaySeasons("")
+
+      }
   }
 
   async function checkOffFinishedShow(showTitle, id){
@@ -61,14 +74,12 @@ function MyShows({id}) {
             finishedShows: updatedFinshedShowList,
             myShows: updateShowStatus
           })
-
       dispatch(showActions.updateFinishedShows(updatedFinshedShowList))
       dispatch(showActions.updateMyShows(updateShowStatus))
       
     } catch (err){
       console.log(err)
     }
-
   }
 
   async function checkOffBinging(showTitle, id){
@@ -84,7 +95,7 @@ function MyShows({id}) {
     })
     
       //update currentlyBinging for live feed status 
-      const showExists = currentlyBinging.some(show => show.id === id)
+    const showExists = currentlyBinging.some(show => show.id === id)
       let updatedBingeList
   
       if (showExists) {
@@ -130,17 +141,17 @@ function MyShows({id}) {
     console.log(updatedFinshedList)
   }
 
-
   function toggleReview(showId){
     dispatch(showActions.reviewingShow(showId));
     dispatch(showActions.toggleReviewing());
+    setDisplaySeasons("")
 }
 
   function handleTitleSort(showsArr){
     const sorted = [...showsArr].sort((a,b) => 
       a.title.localeCompare(b.title)
     );
-  dispatch(showActions.updateMyShows(sorted));
+    dispatch(showActions.updateMyShows(sorted));
   }
 
   function handleBingeSort(showsArr){
@@ -158,23 +169,31 @@ function MyShows({id}) {
   }
   
 return (
-      <main {...id}className ={styles.showDisplayWrapper}>
+      <main {...id} className ={styles.showDisplayWrapper}>
         <div className ={styles.showSortWrapper}>
           <h3>Sort Shows</h3>
-            <div className ={styles.showSortBttns}>
-              <button onClick ={() => handleTitleSort(myShows)}>Name</button> 
-              <button onClick ={() => handleBingeSort(myShows)}>Binging</button> 
-              <button onClick ={() => handleFinishedSort(myShows)}>Finished</button>   
-            </div>
+          <div className ={styles.showSortBttns}>
+            <button onClick ={() => handleTitleSort(myShows)}>Name</button> 
+            <button onClick ={() => handleBingeSort(myShows)}>Binging</button> 
+            <button onClick ={() => handleFinishedSort(myShows)}>Finished</button>   
+          </div>
         </div>
         <AnimatePresence>
         {myShows.map((show) => (
           <div className ={ showId === show.id  ? styles.showTitleActive : styles.showTitle } key={show.id}>
-            <div className ={styles.showHeading}>
-              <p onClick={() => handleSelectShow(show.id)}>{show.title}</p>
-              <button onClick = {() => removeShow(show.id)}>Remove Show</button> 
-              <button onClick = {() => toggleReview(show.id)}>Add Review</button> <br/>
+            <div onClick={() => handleSelectShow(show.id)} className ={styles.showHeading}>
+              <p>{show.title}</p>
+              <div className = {styles.showStatus}>
+                {finishedShows.find((id) => id.id === show.id)  &&  (
+
+                  <p style={{color:"lightgreen"}}> Complete <img src={CheckMark} width="20px"/></p>
+                )}
+                {currentlyBinging.find((id) => id.id === show.id)  &&  (
+                  <p style={{color:"yellow"}}>Binging</p>
+                )} 
+              </div>
             </div>
+{/*Season/Show & Review Options*/}
             <AnimatePresence>
             {showId === show.id && (
                <motion.div
@@ -183,37 +202,51 @@ return (
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
               >
-              <ShowDetails 
-                show={show}
-                animate={{y: 3}}
-              />
-              </motion.div>
-            )}
-            </AnimatePresence>
-            <div className ={styles.showStatus}>
-              <label> Finished
-                <input 
-                  type="checkbox" 
-                  value={show.id}
-                  checked = {finishedShows.some(finishedShow => finishedShow.id === show.id)}
-                  onChange = {() => checkOffFinishedShow(show.title, show.id)}
-                />
-              </label> 
-              <label> Currently Binging
-                <input 
-                  type="checkbox"
-                  value = {show.id}
-                  checked = {currentlyBinging.some(binge => binge.id === show.id)}
-                  onChange={() => checkOffBinging(show.title, show.id)}
-                />
-              </label>
+              <div className ={styles.showStatusCheckBox}>
+                <label> Finished
+                  <input 
+                    type="checkbox" 
+                    value={show.id}
+                    checked = {finishedShows.some(finishedShow => finishedShow.id === show.id)}
+                    onChange = {() => checkOffFinishedShow(show.title, show.id)}
+                  />
+                </label> 
+                <label> Binging 
+                  <input 
+                    type="checkbox"
+                    value = {show.id}
+                    checked = {currentlyBinging.some(binge => binge.id === show.id)}
+                    onChange={() => checkOffBinging(show.title, show.id)}
+                  />
+                </label>
+              <label> Watch Que 
+                  <input 
+                    type="checkbox"
+                  />
+                </label>
+                <button onClick = {() => removeShow(show.id)}>Remove Show</button> 
             </div>
-            {isReviewing && reviewingShowId === show.id && (
+              <div className = {styles.showOptionsWrapper}>
+                <p onClick={() => toggleSeasons(show.id)}>Seasons & Episodes</p> 
+                <p onClick={() => toggleReview(show.id)}>Review</p>
+              </div> 
+              {isReviewing && reviewingShowId === show.id && (
               <ShowReview 
                 showId = {show.id}
                 showTitle = {show.title}
                 />
             )}
+              {displaySeasons && 
+                <ShowDetails 
+                  show={show}
+                  animate={{y: 3}}
+                />}
+                
+           
+              </motion.div>
+            )}
+            </AnimatePresence>
+            
           </div> 
         ))}
         </AnimatePresence>

@@ -1,13 +1,14 @@
 .reviewDivWrapper{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     background-color: royalblue;
     padding: 5px;
 }
 
 textarea {
-    width: 500px;
+    width: 300px;
     height: 150px;
     padding: 5px;
 }

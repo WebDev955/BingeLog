@@ -1,22 +1,29 @@
  .seasonsWrapper{
-    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .seasonsTitle {
+    width: 100%;
     background-color: var(--xanthous);
     color: black;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     border-top-style: solid;
-    border-color: white;
+    border-color: black;
 }
 
 .seasonsNumber {
     display: flex;
     flex-direction: row;
-    gap: 30px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    
+    margin-top: 10px;
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+  
 }
+
 
