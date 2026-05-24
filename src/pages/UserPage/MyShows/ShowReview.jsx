@@ -61,11 +61,11 @@ function ShowReview({showId, showTitle}){
         return(
             <div className = {styles.reviewDivWrapper}>
                 <div>
-                    <p>{savedReview.text}</p>
+                    <p>{savedReview?.text}</p>
                     <p>{reviewScore}</p>
                 </div>
                 <textarea 
-                    value={draftReview || savedReview.text}
+                    value={draftReview || savedReview?.text}
                     onChange = {(e) => updateReview(e.target.value)}
                 />
                 <label> Review Score
