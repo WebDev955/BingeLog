@@ -8,7 +8,8 @@
 }
 
 textarea {
-    width: 300px;
+    width: 400px;
+    max-width: 400px;
     height: 150px;
     padding: 5px;
 }

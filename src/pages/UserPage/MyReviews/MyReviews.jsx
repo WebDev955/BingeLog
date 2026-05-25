@@ -8,24 +8,22 @@ import styles from "./MyReviews.module.css"
 function MyReviews() {
   
   const dispatch = useDispatch()
+
   const myReviews = useSelector((state) => state.shows.reviews)
   console.log("My Review Pg. Reviews", myReviews)
-  
   return (
-    <>
-      <main className = {styles.reviewsWrapperDiv}>
-        <h1>Reviews</h1>
+    <main className = {styles.reviewsWrapperDiv} >
+      <h1>Reviews</h1>
         {myReviews.map((review) => 
-          <div>
+          <div key={review.showId}>
             <h1 className = {styles.showTitle}>{review.title}</h1>
-            <p>{review.score}/5</p>
+            <p>{review?.score} Stars</p>
             <div className = {styles.showReview}>
               {review.text}
             </div>
           </div>
         )}
       </main>
-    </>
   )
 }
 export default MyReviews

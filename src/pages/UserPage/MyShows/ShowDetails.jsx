@@ -5,15 +5,13 @@ import {motion, AnimatePresence} from 'framer-motion'
 import EpisodeDetails from "./EpisodeDetails"
 //IMPORTS - Styles
 import styles from "./ShowDetails.module.css"
-
+//IMPORTS - FIREBASE
 
 function ShowDetails({show}) {
-
   const [seasonTitle, setSeasonTitle] = useState("")
 
   function selectSeason(season){
     setSeasonTitle(season)
-
     if (seasonTitle === season) {
       setSeasonTitle("")
     }
@@ -24,24 +22,23 @@ function ShowDetails({show}) {
         {show && (
           <div key={show.id}>
               {show.seasons?.map((season) => (
-                <div>
-                <div className={styles.seasonsNumber}>
-                  <p key = {season.title} onClick={() => selectSeason(season.title)}>{season.title} </p>
-                  <p>Finshed</p>
-                </div>
+                <div key={season.seasonsNumber}>
+                  <div className={styles.seasonsNumber}>
+                    <p key={season.title} onClick={() => selectSeason(season.title)}>{season.title}</p>                   
+                  </div>
                   <AnimatePresence>
-                {seasonTitle === season.title &&
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto"}}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    key={show.id} 
-                  >
-                    <EpisodeDetails seasonTitle={seasonTitle} show={show}/>
-                  </motion.div>
-                }
-                </AnimatePresence>
+                    {seasonTitle === season.title &&
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto"}}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        key={show.id} 
+                      >
+                      <EpisodeDetails seasonTitle={seasonTitle} show={show}/>
+                      </motion.div>
+                    }
+                  </AnimatePresence>
               </div>
             )
           )} 

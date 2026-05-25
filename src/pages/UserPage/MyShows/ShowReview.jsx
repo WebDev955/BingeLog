@@ -1,6 +1,6 @@
 //IMPORTS
 import { useState } from "react"
-import { db, app, auth, getDoc, doc, updateDoc} from "../../../firebase/firebase"
+import { db, doc, updateDoc} from "../../../firebase/firebase"
 
 //IMPORTS - Styles
 import styles from "./ShowReview.module.css"
@@ -15,12 +15,8 @@ function ShowReview({showId, showTitle}){
     const [reviewScore, setReviewScore] = useState("")
 
     const dispatch = useDispatch()
-
     const myReviews = useSelector((state) => state.shows.reviews)
-    console.log("Reviews", myReviews)
-    
     const savedReview = myReviews.find((id) => id.showId === showId)
-    console.log("Review Id", savedReview)
 
     const userId = useSelector(state => state.auth.user.uid);
     const docRef = doc(db, "Users", userId);
@@ -60,7 +56,7 @@ function ShowReview({showId, showTitle}){
     }    
         return(
             <div className = {styles.reviewDivWrapper}>
-                <div>
+                <div key={savedReview.id}>
                     <p>{savedReview?.text}</p>
                     <p>{reviewScore}</p>
                 </div>
@@ -68,13 +64,13 @@ function ShowReview({showId, showTitle}){
                     value={draftReview || savedReview?.text}
                     onChange = {(e) => updateReview(e.target.value)}
                 />
-                <label> Review Score
+                <label> Review Score - -
                     <select onChange={(e) => updateReviewScore(e.target.value)}>
-                        <option value = "1"> 1/5 Stars </option>
-                        <option value = "2"> 2/5 Stars </option>
-                        <option value = "3"> 3/5 Stars </option>
-                        <option value = "4"> 4/5 Stars </option> 
-                        <option value = "5"> 5/5 Stars </option>
+                        <option value = "1/5"> 1/5 Stars </option>
+                        <option value = "2/5"> 2/5 Stars </option>
+                        <option value = "3/5"> 3/5 Stars </option>
+                        <option value = "4/5"> 4/5 Stars </option> 
+                        <option value = "5/5"> 5/5 Stars </option>
                     </select>
                 </label>
                 <button onClick={() => handleSaveReview()}>Save Review</button>

@@ -171,7 +171,7 @@ function MyShows({id}) {
 return (
       <main {...id} className ={styles.showDisplayWrapper}>
         <div className ={styles.showSortWrapper}>
-          <h3>Sort Shows</h3>
+          <h4>Sort Shows: </h4>
           <div className ={styles.showSortBttns}>
             <button onClick ={() => handleTitleSort(myShows)}>Name</button> 
             <button onClick ={() => handleBingeSort(myShows)}>Binging</button> 
@@ -230,19 +230,19 @@ return (
                 <p onClick={() => toggleSeasons(show.id)}>Seasons & Episodes</p> 
                 <p onClick={() => toggleReview(show.id)}>Review</p>
               </div> 
+
               {isReviewing && reviewingShowId === show.id && (
-              <ShowReview 
-                showId = {show.id}
-                showTitle = {show.title}
+                <ShowReview 
+                  showId = {show.id}
+                  showTitle = {show.title}
                 />
             )}
               {displaySeasons && 
                 <ShowDetails 
                   show={show}
                   animate={{y: 3}}
-                />}
-                
-           
+                />
+              }
               </motion.div>
             )}
             </AnimatePresence>
