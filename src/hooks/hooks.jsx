@@ -23,11 +23,12 @@ export const useAutoStatusDebounce = () => {
     
 
     function triggerDebounce (){
-        console.log("Debouce Hook triggered")
+        console.log("Debounce Hook triggered")
+        console.log("scheduleRef.current:", scheduleRef.current)
         clearTimeout(timerRef.current)
         timerRef.current= setTimeout(() => {
             scheduleRef.current()
-        }, 60000)
+        }, 500)
     }
     useEffect(() => {
         return () => clearTimeout(timerRef.current)
@@ -52,14 +53,16 @@ export const useAutoStatusDebounce = () => {
                 recentlyFinished: finishedShows[finishedShows.length - 1] ?? null
             }
         } 
+        console.log("Attempting Firestore write", newAutoStatus)
         try {
             console.log(userId)
             console.log("userId from Redux:", userId)
             const autoStatusRef = collection(db, "autoStatuses")
             await addDoc(autoStatusRef, newAutoStatus)
+              console.log("Write successful")
             dispatch(socialFeedActions.addAutoStatus(newAutoStatus))
         } catch (err) {
-        console.error(err)
+        console.error("Write Faild:", err)
         }
     }
 
