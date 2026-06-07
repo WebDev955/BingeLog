@@ -1,56 +1,37 @@
 //IMPORTS - Hooks
-
 //IMPORTS - Components 
 import ActionBar from "./ActionBar"
-
 //IMPORTS - REDUX
-import { useSelector } from "react-redux"
-import { profileActions} from "../../../store/slices/profileSlice"
+
 //IMPORTS - Styles
 import styles from "./FeedCard.module.css"
 
-function FeedCard({friend, key}) {
+function FeedCard({status, key}) {
 
-  console.log(friend)
-
-  return (
-          <main key={key} className = {styles.mainStatusWrapper}>
-            <article>
-              <header className={styles.feedHeader}>
-                <img src={friend?.profileImgUrl || "/BingeLog/DefaultAvatar.png"}/>
-             
-                <p>{friend?.userName}</p>
-              </header>
-              <div className = {styles.feedContent}> 
-                <p>Currently Binging: {""}
-                  {/*friend.myShows.bingeStatus.  */}       
-                  {friend.currentlyBinging?.length > 0
-                    ? friend.currentlyBinging.map((show) =>show.show).join(", ")
-                    :  `${friend.userName} is not currently binging anything` 
-                  }
-                </p> <br/>
-                <p>
-                  Recently Watched: {""}
-                  {friend.watchedEps?.length > 0
-                    ?`${friend.watchedEps[friend.watchedEps.length-1].epName} -
-                      ${friend.watchedEps[friend.watchedEps.length-1].showName}`
-                    : `${friend.userName} has not recently watched anything`
-                  }
-                </p><br/>
-
-                <p>Recently Finished: {""}
-                  {friend.finishedShows?.length > 0 
-                   ? friend.finishedShows[friend.finishedShows.length -1].show 
-                   : `${friend.userName} has not recently finshed anything`
-                  }
-                </p>
-              </div>
-            </article>
-            <ActionBar/>
-          </main>
+   return (
+    <main className={styles.mainStatusWrapper}>
+      <article>
+        <header className={styles.feedHeader}>
+          <img src={status?.userImage || "/BingeLog/DefaultAvatar.png"}/>
+          <p>{status?.userName}</p>
+        </header>
+        <div className={styles.feedContent}> 
+          <p>Currently Binging: 
+            {Array.isArray(status.statusPost.currBinging)
+              ? status.statusPost.currBinging.map(show => 
+                  <p key={show.id}>{show.show}</p>
+                )
+              : <p>{status.statusPost.currBinging}</p>
+            }
+          </p>
+          <p>Recently Watched: {status.statusPost.recentlyWatched}</p>
+          <p>Recently Finished: <span>{status.statusPost.recentlyFinished?.show}</span></p>
+          <br/>
+          <p>{new Date(status.timeStamp).toLocaleString()}</p>
+        </div>
+      </article>
+      <ActionBar/>
+    </main>
   )
 }
 export default FeedCard
-
-
-

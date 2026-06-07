@@ -8,14 +8,9 @@ import styles from "./BingeLogPage.module.css"
 
 //IMPORTS - Hooks
 import { useEffect, useState } from "react"
-
 import {db, collection, getDocs } from "../../firebase/firebase"
 
-
 function BingeLog() {
-
-  const [globalUsers, setGlobalUsers] = useState([])
-
   const [feedType, setFeedType] = useState ("auto")
 
   function displayManualFeed(){
@@ -25,26 +20,7 @@ function BingeLog() {
   function displayAutoFeed(){
     setFeedType("auto")
   }
-
-
-  useEffect(() => {
-    async function fetchGlobalUsers(){
-      try {
-        const docRef = await getDocs(collection (db, "Users")); //makes a general refereneto the doc, "Users" (user ids)
-        const globalUsersList = docRef.docs.map(doc =>({
-          id: doc.id,
-          ...doc.data()
-        }))
-        setGlobalUsers(globalUsersList) //set the DATA of docSnap to global users state
-      
-      } catch (err) {
-        console.error ("Can't find global users", err)
-      }
-    }
-    fetchGlobalUsers()
-  },[])
   
-console.log(globalUsers)
 
   return (
     <main className = {styles.mainFeedPageWrapper}>
@@ -53,8 +29,8 @@ console.log(globalUsers)
         <button onClick={displayManualFeed}>View Manuel Updates</button>
       </div>
       {feedType === "auto" 
-        ? <BingeLogPageAuto globalUsers={globalUsers}/>
-        : <BingeLogPageManual globalUsers={globalUsers}/>
+        ? <BingeLogPageAuto />
+        : <BingeLogPageManual />
       }
       </main>
   ) 

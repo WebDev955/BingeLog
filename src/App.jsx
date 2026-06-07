@@ -1,7 +1,6 @@
 //IMPORTS - Hooks
 import { createHashRouter, RouterProvider} from 'react-router-dom'
 import { useEffect,useState } from 'react'
-
 //IMPORTS - Components 
 import HomePage from './pages/Home/HomePage'
 import UserPage from './pages/UserPage/UserPage'
@@ -10,15 +9,11 @@ import BingeLogPage from './pages/BingeLogFeed/BingeLogPage'
 import About from './pages/About/About'
 import FriendsList from './pages/FriendsList/FriendsList'
 import UserSearchPage from './pages/UserSearch/UserSearchPage'
-
-
+// IMPORTS - FIREBASE
 import { auth } from './firebase/firebase'
-import {db, getDoc, setDoc, doc} from './firebase/firebase'
-
-
-  //NAVIGATION
-  import RootLayout from './components/UI/RootLayout'
-
+import {db, getDoc, setDoc, doc, query, where, getDocs, collection} from './firebase/firebase'
+//NAVIGATION
+import RootLayout from './components/UI/RootLayout'
 //IMPORTS - REDUX
 import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from './store/slices/authSlice'
@@ -26,6 +21,7 @@ import { showActions } from "./store/slices/showsSlice";
 import { notesActions } from './store/slices/notesSlice'
 import { friendsActions } from './store/slices/friendsSlice'
 import { profileActions } from './store/slices/profileSlice'
+import { socialFeedActions } from './store/slices/socialFeedSlice'
 import { onAuthStateChanged } from "./firebase/firebase"
 
 //{path: `friendsList/:userName/:id`, element: <FriendsList/>},
@@ -35,6 +31,7 @@ import { onAuthStateChanged } from "./firebase/firebase"
 //IMPORTS - Styles
 import './App.css'
 import { current } from '@reduxjs/toolkit'
+import { QuerySnapshot } from 'firebase/firestore'
 
 function App() {
 
@@ -48,7 +45,6 @@ const [hydrated, setHydrated] = useState(false);
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-
     if (!currentUser) {
       setHydrated(true)
       return;
@@ -60,31 +56,35 @@ useEffect(() => {
 
       if (docSnap.exists()) {
         const user = docSnap.data();
-
-        // Hydrate authSlice
+      // Hydrate authSlice
         dispatch(authActions.login({
           uid: currentUser.uid,
           userName: user.userName,
           email: user.email
         }));
-
-        // Hydrate profileSlice
+      // Hydrate profileSlice
         dispatch(profileActions.uploadAvatar(user.profileImgUrl || "/BingeLog/DefaultAvatar.png"));
         dispatch(profileActions.updateBio(user.bio));
-
-        // Hydrate showSlice
+      // Hydrate showSlice
         dispatch(showActions.updateMyShows(user.myShows || []));
         dispatch(showActions.updateBinging(user.currentlyBinging || []));
         dispatch(showActions.updateFinishedShows(user.finishedShows || []));
         dispatch(showActions.updateWatchedEps(user.watchedEps || []));
         dispatch(showActions.updateReviews(user.reviews || []));
-
-        // Hydrate notesSlice
+      // Hydrate notesSlice
         dispatch(notesActions.updateEpNotes(user.epNotes || []));
         dispatch(notesActions.updateCharNotes(user.charNotes || []));
-
-        // Hydrate friendsSlice
+      // Hydrate friendsSlice
         dispatch(friendsActions.addFriend(user.friendsList || []));
+         // Hydrate socialFeedSlice with Friends statuses 
+          const friendsList = user.friendsList || []
+          if (friendsList.length > 0){
+            const autoStatusesRef = collection(db, "autoStatuses")
+            const q = query(autoStatusesRef, where("userId", "in", friendsList))
+            const querySnapshot = await getDocs(q)
+            const friendsListAutoStatuses = querySnapshot.docs.map(doc => doc.data())
+            dispatch(socialFeedActions.updateAutoStatuses(friendsListAutoStatuses || []))
+          }
       }
 
     } catch (err) {

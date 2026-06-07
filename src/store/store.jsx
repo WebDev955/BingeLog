@@ -5,6 +5,7 @@ import profileReducer from "./slices/profileSlice";
 import showsReducer from "./slices/showsSlice";
 import notesReducer from "./slices/notesSlice"
 import friendsReducer from "./slices/friendsSlice"
+import socialFeedReducer from "./slices/socialFeedSlice"
 
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
         profile: profileReducer,
         shows: showsReducer,
         notes: notesReducer,
-        friends: friendsReducer
+        friends: friendsReducer,
+        socialfeed: socialFeedReducer
     }
 });

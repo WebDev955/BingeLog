@@ -1,6 +1,7 @@
 //IMPORTS - Hooks
 import Bttn from "../../../components/UI/Bttn"
 import { useEffect, useState } from "react"
+import { useAutoStatusDebounce } from "../../../hooks/hooks"
 //IMPORTS - Components 
 import { UserProfileContext } from "../../../components/Contexts/UserProfileContext"
 import Input from "../../../components/UI/Input"
@@ -24,6 +25,7 @@ function ShowNotes({epTitle, showTitle}) {
   const epNotes = useSelector((state) => state.notes.epNotes)
   const charNotes = useSelector((state) => state.notes.charNotes)
   const watchedEps = useSelector((state) => state.shows.watchedEps)
+  const triggerDebounce = useAutoStatusDebounce()
 
 /**Editing Episode Notes**/
 
@@ -69,7 +71,9 @@ function updateCharNotes(value, epTitle){
       updatedWatchedEpList = watchedEps.filter(ep => !(ep.epName === epTitle && ep.showName === showTitle))
     } else {
       updatedWatchedEpList = [...watchedEps, {epName: epTitle, showName: showTitle}]
-      alert(`Watched ${epTitle}!`)
+      alert(`Watched ${epTitle}!`)   
+      triggerDebounce()
+      console.log("Triggered Debounce - Watched Ep.")   
     }
 
     try {
@@ -79,9 +83,11 @@ function updateCharNotes(value, epTitle){
         });
 
       dispatch(showActions.updateWatchedEps(updatedWatchedEpList))
+
     } catch (err) {
          console.error(err)
     }
+    
  }
 
  async function saveNotes(epTitle){

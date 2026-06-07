@@ -6,19 +6,15 @@ import styles from "./BingeLogPageAuto.module.css"
 
 //IMPORTS - Hooks
 
-
 //IMPORTS - Components 
-
 import { useSelector } from "react-redux"
+import { socialFeedActions } from "../../store/slices/socialFeedSlice"
 
-function BingeLogPageAuto({globalUsers}) {
+function BingeLogPageAuto() {
 
-  const friendsList = useSelector((state) => state.friends.friendsList)
-  //const [globalUsers, setGlobalUsers] = useState([])
+  const friendStatuses = useSelector((state) => state.socialfeed.autoStatuses)
 
-  
-console.log(globalUsers)
-console.log(friendsList)
+  console.log(friendStatuses.length)
 
   return (
     <main className = {styles.mainAutoFeedWrappe}>
@@ -27,11 +23,12 @@ console.log(friendsList)
           <p>Sort by username</p> 
           <p>Sort by most recently updated</p>
         </div>
-      {friendsList?.map((friendId) => {  
-        const friend = globalUsers.find(friend => friend.id === friendId);  
-        if (!friend) return null
-        return <FeedCard key={friend.id} friend = {friend}/>
-      })}
+        {friendStatuses?.length === 0 
+          ? <p>Add friends to see what they are watching!</p>
+          : friendStatuses.map((status) => (
+              <FeedCard key={status.statusId} status={status} />
+          ))
+        }
       </main>
   ) 
 }

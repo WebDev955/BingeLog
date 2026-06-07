@@ -1,6 +1,7 @@
 //IMPORTS - library hooks
 import { useState } from "react";
 import {motion, AnimatePresence} from 'framer-motion'
+import { useAutoStatusDebounce } from "../../../hooks/hooks"
 //IMPORTS - Components 
 import ShowDetails from "./ShowDetails"
 import ShowReview from "./ShowReview";
@@ -15,8 +16,11 @@ import styles from "./MyShows.module.css"
 import DownArrow from "../../../../public/DownArrow.png"
 import CheckMark from "../../../../public/CheckMark.png"
 
+
+
 function MyShows({id}) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch()  
+  const triggerDebounce = useAutoStatusDebounce()
   const [showId, setShowId] = useState("")
   const [displaySeasons, setDisplaySeasons] = useState(showId)
 
@@ -27,6 +31,7 @@ function MyShows({id}) {
   const userId = useSelector((state) => state.auth.user.uid)
   const isReviewing = useSelector((state) => state.shows.isReviewing)
   const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
+
 
   function handleSelectShow(id){
       setShowId(id)
@@ -65,7 +70,9 @@ function MyShows({id}) {
       
     } else {
       updatedFinshedShowList = [...finishedShows, {show:showTitle, id: id}]
-      alert(`Finished ${showTitle}!`)
+      alert(`Finished ${showTitle}!`)      
+      triggerDebounce()
+        console.log("AutoStatusDebounce running - Finish Show.")
     }
 
     try {
@@ -76,7 +83,7 @@ function MyShows({id}) {
           })
       dispatch(showActions.updateFinishedShows(updatedFinshedShowList))
       dispatch(showActions.updateMyShows(updateShowStatus))
-      
+
     } catch (err){
       console.log(err)
     }
@@ -102,6 +109,8 @@ function MyShows({id}) {
         updatedBingeList = currentlyBinging.filter(show => show.id !== id)
       } else {
         updatedBingeList = [...currentlyBinging, {show:showTitle, id: id}]
+        triggerDebounce()
+        console.log("AutoStatusDebounce running - Binging Show.")
       }
       
       try {
@@ -112,7 +121,7 @@ function MyShows({id}) {
             })
         dispatch(showActions.updateBinging(updatedBingeList))
         dispatch(showActions.updateMyShows(updateShowStatus))
-    
+
       } catch (err) {
           console.error(err)
       }
