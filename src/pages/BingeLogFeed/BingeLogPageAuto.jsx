@@ -14,20 +14,22 @@ function BingeLogPageAuto() {
 
   const friendStatuses = useSelector((state) => state.socialfeed.autoStatuses)
 
-  console.log(friendStatuses.length)
-
+  
   return (
     <main className = {styles.mainAutoFeedWrappe}>
-      <h1>BingeLog Feed - Auto Updates </h1>
+      <h1>BingeLog Auto Feed</h1>
         <div className = {styles.sortingDiv}>
-          <p>Sort by username</p> 
-          <p>Sort by most recently updated</p>
+          <h3>Sort:</h3>
+          <p>Username</p> 
+          <p>Recently Updated</p>
         </div>
         {friendStatuses?.length === 0 
           ? <p>Add friends to see what they are watching!</p>
           : friendStatuses.map((status) => (
               <FeedCard key={status.statusId} status={status} />
           ))
+
+
         }
       </main>
   ) 

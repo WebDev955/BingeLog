@@ -1,7 +1,7 @@
-//IMPORTS - Hooks
+//IMPORTS - HOOKS
 import { createHashRouter, RouterProvider} from 'react-router-dom'
-import { useEffect,useState } from 'react'
-//IMPORTS - Components 
+import { useEffect, useState } from 'react'
+//IMPORTS - COMPONENTS
 import HomePage from './pages/Home/HomePage'
 import UserPage from './pages/UserPage/UserPage'
 import ShowsPage from './pages/ShowsSearchPage/ShowsPage'
@@ -10,9 +10,10 @@ import About from './pages/About/About'
 import FriendsList from './pages/FriendsList/FriendsList'
 import UserSearchPage from './pages/UserSearch/UserSearchPage'
 // IMPORTS - FIREBASE
-import { auth } from './firebase/firebase'
-import {db, getDoc, setDoc, doc, query, where, getDocs, collection} from './firebase/firebase'
-//NAVIGATION
+import {db, getDoc, doc, query, where, getDocs, collection, auth, QuerySnapshot} from './firebase/firebase'
+
+import { onAuthStateChanged } from "./firebase/firebase"
+//IMPORTS - NAVIGATION
 import RootLayout from './components/UI/RootLayout'
 //IMPORTS - REDUX
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,23 +23,21 @@ import { notesActions } from './store/slices/notesSlice'
 import { friendsActions } from './store/slices/friendsSlice'
 import { profileActions } from './store/slices/profileSlice'
 import { socialFeedActions } from './store/slices/socialFeedSlice'
-import { onAuthStateChanged } from "./firebase/firebase"
+import { chatsActions } from './store/slices/chatsSlice'
+
+
+//IMPORTS - STYLES
+import './App.css'
+import { current } from '@reduxjs/toolkit'
+import { snapshotEqual } from 'firebase/firestore'
 
 //{path: `friendsList/:userName/:id`, element: <FriendsList/>},
   //THIS IS AN ISSUE
-
-
-//IMPORTS - Styles
-import './App.css'
-import { current } from '@reduxjs/toolkit'
-import { QuerySnapshot } from 'firebase/firestore'
-
 function App() {
 
 const dispatch = useDispatch();
 const myShows = useSelector((state) => state.shows.myShows)
 const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-
 //auth.currentUser;  - can be null after a refresh
 
 const [hydrated, setHydrated] = useState(false);
@@ -85,8 +84,37 @@ useEffect(() => {
             const friendsListAutoStatuses = querySnapshot.docs.map(doc => doc.data())
             dispatch(socialFeedActions.updateAutoStatuses(friendsListAutoStatuses || []))
           }
-      }
 
+          // Hydrate chatsSlice data
+          const findThreads = query(
+            collection(db, "chatThreads"),
+            where("commentingUsers", "array-contains", currentUser.uid)
+          )
+            const snapshot = await getDocs(findThreads)
+    
+            const threads = snapshot.docs.map(doc => ({
+              ...doc.data(),
+              threadId: doc.id 
+            }))
+
+          const threadsWithComments = await Promise.all(
+            threads.map(async (thread) => {
+              const commentsRef = collection(db, "chatThreads", thread.threadId, "comments")
+              const commentsSnapshot = await getDocs(commentsRef)
+              const comments = commentsSnapshot.docs.map(doc => ({
+                ...doc.data(),
+                commentId: doc.id
+              }))
+              return { ...thread, comments }
+          })
+        )
+
+        console.log("threads raw:", threads);
+        console.log("threadsWithComments:", threadsWithComments);
+      dispatch(chatsActions.updateChatThreads(threadsWithComments))
+  }
+
+      
     } catch (err) {
       console.error("Auth restore failed:", err);
 
@@ -95,7 +123,7 @@ useEffect(() => {
     }
   });
 
-    return () => unsubscribe;
+    return () => unsubscribe();
 }, [dispatch]);
 
   if (!hydrated) {

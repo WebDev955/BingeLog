@@ -1,0 +1,49 @@
+.commentMessagesWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.commentMessagesWrapper h3{
+    border-bottom: solid black 0.5px;
+}
+
+
+.commentWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+   
+    width: 100%;
+}
+
+.commentHeader{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+.commentHeader :last-child  {
+    font-weight: 600;
+    color: black;
+    font-size: 15px;
+    font-style: italic;
+
+}
+.commentHeader img {
+    width: 50px;
+    border-radius: 50px;
+}
+
+.commentContent {
+    padding-left: 8px;
+    font-size: larger;
+    padding-left: 65px;
+    
+}
+
+

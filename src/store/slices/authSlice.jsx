@@ -9,6 +9,8 @@ const initialState = {
     isLoggingIn: false,
 }
 
+
+
 console.log(initialState.user)
 //create a const variable to contain entire slice
     // createSlice is an object 

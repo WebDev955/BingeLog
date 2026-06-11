@@ -4,7 +4,7 @@ const AutoStatus = {
   
   statusPost: {
     currentlyBinging: "string",
-    recentlyWatched: "string",   // fixed typo
+    recentlyWatched: "string",   
     recentlyFinished: "string"
   },
 

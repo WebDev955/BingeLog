@@ -30,7 +30,7 @@ function BingeLog() {
       </div>
       {feedType === "auto" 
         ? <BingeLogPageAuto />
-        : <BingeLogPageManual />
+        : "Manual Statuses"
       }
       </main>
   ) 
