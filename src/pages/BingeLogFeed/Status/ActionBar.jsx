@@ -3,8 +3,6 @@ import { useState } from "react"
 //IMPORTS - Styles
 import styles from "./ActionBar.module.css"
 //IMPORTS - COMPONENTS
-import LeaveComment from "./Comments/LeaveComment"
-import CommentChats from "./Comments/CommentChats"
 import CommentChats2 from "./Comments/CommentChats2"
 
 function ActionBar({status}) {

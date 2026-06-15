@@ -3,40 +3,53 @@ import {useState} from "react"
 //Imports - Hooks
 import styles from "./CommentChats.module.css"
 //IMPORTS - SLICES
-import { useSelector } from "react-redux"
-
+import { useSelector, useDispatch } from "react-redux"
+import { doc, db, updateDoc, setDoc, arrayUnion} from "../../../../firebase/firebase"
+import { chatsActions } from "../../../../store/slices/chatsSlice";
 //Status.statusId is prop 
 	//passed from ActionBar (which was passed from FeedCard)
 
-export const ReplyComment = ({statusId, commentId}) => {
+export const ReplyComment = ({statusId, commentId, threadId, replyAuthor}) => {
+
+	
+	const dispatch = useDispatch()
 	const userName = useSelector((state) => state.auth.user.userName)
 	const userId = useSelector((state) => state.auth.user.uid)
 	const userImg = useSelector((state) => state.profile.profileImgUrl)
 
-	const [replyDraft, setReplyDraft] = useState("Reply to User B's comment")
+	const [replyDraft, setReplyDraft] = useState("")
 	
 	const updateReply = (value) => {
-		setReplyDraft ((prev) => 
-			value
-		)
+		setReplyDraft (value)
 	}
 	async function postReply (replyDraft) {
+
 		const newReply = {
-			replyId: crypto.random.UUID(),
+			replyId: crypto.randomUUID(),
 			authorId: userId,
-            authorUserName: userName,
-            authorImg: userImg,
+      		authorUserName: userName,
+      		authorImg: userImg,
 			timeStamp: new Date().getTime(),
-			text: replyDraft,
+			text: replyDraft
 		}
 		
-		//try {
-			//const docRefChatThread = collection(db, "chatComments”)
-				//await addDoc()
-		//}catch{
-			//{error.catch}
-		//}
+		try {
+			console.log("threadId:", threadId, "commentId:", commentId)
+			const docRefComments = doc(db, "chatThreads", threadId, "comments", commentId)
+					await updateDoc(docRefComments, {
+					replies: arrayUnion(newReply)
+				})
+
+			dispatch(chatsActions.updateReplies({
+			  statusId: statusId,
+			  commentId: commentId,
+			  newReply: newReply
+			 }))
+		}catch (err){
+			console.log(err)
+		}
 	}
+	
 	
 	return (
 		<main className = {styles.commentChatChainWrapper}>
@@ -46,6 +59,7 @@ export const ReplyComment = ({statusId, commentId}) => {
 						<textarea
 							value = {replyDraft}
 							onChange = {(e) => updateReply(e.target.value)}
+							placeholder = {`Reply to ${replyAuthor}`}
 						/>
 						<button onClick = {()=> postReply(replyDraft)}>
 							Post Reply

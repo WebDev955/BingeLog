@@ -16,9 +16,6 @@ import MyReviews from "./MyReviews/MyReviews"
 import CurrentlyWatching from "./CurrentlyWatching/CurrentlyWatching"
 
 function UserPage() {
-//component displays
-//const [content, setContent] = useState(<MyShows/>)
-
 
 const [renderContent, setRenderContent] = useState("displayShows")
 const [animateKey, setAnimateKey] = useState("displayShows")
@@ -26,8 +23,8 @@ const [animateKey, setAnimateKey] = useState("displayShows")
 const params = useParams()
 const id =  params.id
 
-const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 if (!isLoggedIn) {
   return <Navigate to="/" replace />;
 }

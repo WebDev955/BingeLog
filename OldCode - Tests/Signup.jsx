@@ -79,10 +79,12 @@ function handleSubmit(event){
 }
 return (
     <>  
-        <SignUpForm
-            onSubmit = {handleSubmit}
-            type = "submit"
-        />
+            <SignUpForm
+                onSubmit = {handleSubmit}
+                type = "submit"
+            />
+  
+
     </>
   )
 }

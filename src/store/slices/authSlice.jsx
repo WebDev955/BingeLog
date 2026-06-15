@@ -20,7 +20,6 @@ const authSlice = createSlice({
     reducers: {
         startCreatingAccount(state) {
             state.isCreatingAccount = true;
-            
         },
         stopCreatingAccount(state) {
             state.isCreatingAccount = false

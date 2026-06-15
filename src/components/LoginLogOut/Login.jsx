@@ -11,10 +11,6 @@ import { authActions } from "../../store/slices/authSlice"
 import { auth } from "../../firebase/firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
 
-
-
-
-
 //IMPORTS - Styles
     //import styles from FILE LOCATION
 
@@ -80,15 +76,9 @@ async function handleLogin(event){
 
 return (
     <>  
-        <Modal 
-            open = {openModal}  
-            onClose={handleClose}>
-            <LogInForm
-                onSubmit = {handleLogin}
-                type = "submit"
-            />
+        <Modal open = {openModal} onClose={handleClose}>
+            <LogInForm onSubmit = {handleLogin} type = "submit"/>
         </Modal>
-
     </>
   )
 }

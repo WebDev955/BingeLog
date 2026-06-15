@@ -2,7 +2,8 @@
 import FeedCard from "./Status/FeedCard"
 import BingeLogPageAuto from "./BingeLogPageAuto"
 import BingeLogPageManual from "./BingeLogPageManual"
-
+  import { useSelector } from "react-redux";
+  import { Navigate } from "react-router-dom";
 //IMPORTS - Styles
 import styles from "./BingeLogPage.module.css"
 
@@ -21,6 +22,11 @@ function BingeLog() {
     setFeedType("auto")
   }
   
+const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+if (!isLoggedIn) {
+  return <Navigate to="/" replace />;
+}
 
   return (
     <main className = {styles.mainFeedPageWrapper}>

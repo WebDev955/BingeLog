@@ -2,7 +2,6 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 //IMPORTS - COMPONENTS
-import LeaveComment from "./LeaveComment"
 import LeaveComment2 from "./LeaveComment2"
 //IMPORTS - SLICES/STATES
 import { chatsActions } from "../../../../store/slices/chatsSlice"
@@ -12,18 +11,25 @@ import ReplyComment from "./ReplyComment"
 import CommentIcon from "../../../../../public/LeaveComment.png"
 
 function CommentChats2 ({status}) {
-    const [displayReply, setDisplayReply] = useState(false)
 
-	const userId = useSelector((state) => state.auth.user.uid)
-    const allThreads = useSelector((state) => state.chats.chatThreads)
+    const [displayReply, setDisplayReply] = useState("")
 
     const chatThread = useSelector((state) => 
         state.chats.chatThreads.find(thread => thread.relatedStatusId === status.statusId)
     )
+	const userId = useSelector((state) => state.auth.user.uid)
+    const threadId = chatThread?.threadId
     const comments = chatThread?.comments ?? []
-    const replies = comments?.replies
     const isUserCommenting = chatThread?.commentingUsers.includes(userId)
 
+    const replyHandler = (index) => {
+        setDisplayReply(index)
+        if (setDisplayReply){
+            ("")
+        }
+    }
+
+    console.log(comments)
     return (
         <main className= {styles.commentMessagesWrapper}>
             <h3>Comment Messages</h3> 
@@ -31,7 +37,7 @@ function CommentChats2 ({status}) {
                 {!chatThread && <LeaveComment2 status={status}/>}
             </div>
             <div>
-                {isUserCommenting && comments && comments.map((comment) =>
+                {isUserCommenting && comments && comments.map((comment, index) =>
                     <div key={comment.commentId} className={styles.commentWrapper}>
                         <header className = {styles.commentHeader}>
                             <img src={comment.authorImg}/>
@@ -39,22 +45,26 @@ function CommentChats2 ({status}) {
                             <p>{new Date(comment.timeStamp).toLocaleString()}</p>
                         </header>
                         <article className = {styles.commentContent}>
-                            <p>{comment.text}</p>
-                           
-                            <img onClick = {() => setDisplayReply(!displayReply)}src={CommentIcon} width= "30"/>
-                           {displayReply && <ReplyComment status={status} />}
-                        </article> 
-                        {isUserCommenting && replies && comment.replies.map((reply) =>
+                            <p>{comment.text}</p> 
+                                {comments.length === 1 && comment.replies?.length === 0 &&
+                                    <img onClick = {() => replyHandler(index)}src={CommentIcon}/>
+                                }
+                                {displayReply && <ReplyComment status={status} threadId={threadId} commentId={comment.commentId}/>}
+                        </article>
+                        {comment.replies?.length > 0 && comment.replies.map((reply, replyIndex ) =>
                             <div key={reply.replyId}>
-                                <header>
+                                <header className = {styles.replyHeader}>
                                     <img src={reply.authorImg}/>
                                     <p>{reply.authorUserName}</p>
-                                </header>
-                                <article>
-                                    <p>{reply.text}</p>
                                     <p>{new Date(reply.timeStamp).toLocaleString()}</p>
+                                </header>
+                                <article className = {styles.commentContent}>
+                                    <p>{reply.text}</p>
+                                      {replyIndex === comment.replies.length - 1 &&
+                                        <img onClick = {() => replyHandler(replyIndex)} src={CommentIcon} width="40px"/>
+                                        }
+                                    {displayReply && <ReplyComment status={status} threadId={threadId} replyAuthor = {reply.authorUserName} commentId={comment.commentId}/>}
                                 </article> 
-                                <ReplyComment status={status} />
                             </div>
                         )}
                     </div>
@@ -63,5 +73,4 @@ function CommentChats2 ({status}) {
         </main>
     )
 }
-
 export default CommentChats2

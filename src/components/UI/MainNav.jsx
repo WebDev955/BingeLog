@@ -25,11 +25,9 @@ const id = useSelector((state) => state.auth.user?.uid)
 function toggleLogIn() {
     dispatch(authActions.startLoggingIn())
 }   
-
 function toggleLogOut(){
     dispatch(authActions.logOut())
 }
-
 function toggleCreateAccount(){
     dispatch(authActions.startCreatingAccount())
 }
@@ -37,19 +35,6 @@ function toggleCreateAccount(){
     <header className={styles.mainWrapper}>
         <nav className={styles.nav}>
             <ul>
-                <li>
-                    <NavLink to="/"><img width = "35px" src="/BingeLog/HomeIcon.png"/></NavLink>
-                </li>
-            {!isLoggedIn &&
-                <li>
-                    <Bttn onClick ={toggleLogIn}><img width = "35px" src="/BingeLog/LogIn.png"/></Bttn>
-                </li>
-            }
-            {!isLoggedIn &&
-                <li>
-                    <Bttn onClick = {toggleCreateAccount}>Create Account</Bttn>
-                </li>
-            }
                 <li>
                     {isLoggedIn && <NavLink to="/bingelog"><img width = "35px" src="/BingeLog/BingeLog.png"/></NavLink>}
                 </li>
@@ -63,11 +48,13 @@ function toggleCreateAccount(){
                  <li>
                     {isLoggedIn &&<NavLink to="/userSearch"><img width= "35px" src= "/BingeLog/UserSearchIcon.png"/></NavLink>}
                 </li>
-                 <li>
-                    {isLoggedIn && <Bttn onClick = {toggleLogOut}><img width = "35px" src="/BingeLog/LogOut.png"/></Bttn>}
+                <li>
+                     <NavLink to="/About"><img width = "35px" src="/BingeLog/HomeIcon.png"/></NavLink>
+                </li>
+                <li>
+                    <Bttn onClick = {toggleLogOut}><img width = "35px" src="/BingeLog/LogOut.png"/></Bttn>
                 </li>
             </ul>  
-            <SignUp/>
             <Login/>
         </nav>
     </header>

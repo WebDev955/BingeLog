@@ -27,6 +27,7 @@ export const LeaveComment2 = ({status}) => {
 		setCommentDraft(value)
 	}
 
+	console.log(status)
 	async function postComment (commentDraft){
 
 		const threadId = crypto.randomUUID();
@@ -76,8 +77,8 @@ export const LeaveComment2 = ({status}) => {
 				<div className = {styles.commentChatChains}>
 					<div className = {styles.comment}>
 						<textarea
-							value = {commentDraft}
 							onChange = {(e) => updateComment(e.target.value)}
+							placeholder = {`Reply to ${status.userName}`}
 						/>
 						<button onClick = {()=> postComment(commentDraft)}>
 							Post Comment

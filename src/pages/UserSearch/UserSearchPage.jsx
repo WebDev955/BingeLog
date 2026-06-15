@@ -4,8 +4,19 @@ import UserSearchBar from "./userSearchBar"
 
 //IMPORTS - Styles
 import styles from "./ShowsPage.Module.css"
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+
+
+
+
 
 function UserSearchPage() {  
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  if (!isLoggedIn) {
+  return <Navigate to="/" replace />;
+}
   return (
     <>
       <main className={styles.mainWrapper}> 

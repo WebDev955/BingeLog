@@ -1,5 +1,6 @@
 //IMPORTS - HOOKS
 import { createHashRouter, RouterProvider} from 'react-router-dom'
+import { NavLink, Navigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
 //IMPORTS - COMPONENTS
 import HomePage from './pages/Home/HomePage'
@@ -38,9 +39,11 @@ function App() {
 const dispatch = useDispatch();
 const myShows = useSelector((state) => state.shows.myShows)
 const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+const uid = useSelector((state) => state.auth.user?.uid)
 //auth.currentUser;  - can be null after a refresh
 
 const [hydrated, setHydrated] = useState(false);
+const doesUserExist = useSelector((state) => state.auth?.user)
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -52,7 +55,7 @@ useEffect(() => {
     try {
       const docRef = doc(db, "Users", currentUser?.uid);
       const docSnap = await getDoc(docRef);
-
+ 
       if (docSnap.exists()) {
         const user = docSnap.data();
       // Hydrate authSlice
@@ -108,13 +111,10 @@ useEffect(() => {
               return { ...thread, comments }
           })
         )
-
         console.log("threads raw:", threads);
         console.log("threadsWithComments:", threadsWithComments);
       dispatch(chatsActions.updateChatThreads(threadsWithComments))
-  }
-
-      
+  }   
     } catch (err) {
       console.error("Auth restore failed:", err);
 
@@ -128,8 +128,9 @@ useEffect(() => {
 
   if (!hydrated) {
     return <div>Loading...</div>;
-  }
+  } 
   
+
 const router = createHashRouter([
   {
     path:'/',
@@ -142,13 +143,12 @@ const router = createHashRouter([
         {path: "userSearch", element: <UserSearchPage/>},
         {path: "shows", element: <ShowsPage/>},
         {path: "about", element: <About/>}
-
       ]
   },
 ])
   return (
     <>
-      <RouterProvider router={router}/>
+       <RouterProvider router={router}/>
     </>
   )
 }

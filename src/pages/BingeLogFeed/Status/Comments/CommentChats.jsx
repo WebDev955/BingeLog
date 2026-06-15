@@ -21,12 +21,12 @@ function CommentChats() {
                     <textarea
                         defaultValue={"User B Comment"}
                     />
-                    <button onClick = {replyHandler}>Reply (user a to b)</button>
+                    <button onClick = {replyHandler}>Reply</button>
                     {displayReplyComment && <LeaveComment/>}
                     <textarea
                         defaultValue={"User A Reply"}
                     />
-                    <button onClick = {replyHandler}>Reply (user b to a)</button>
+                    <button onClick = {replyHandler}>Reply</button>
                     {displayReplyComment && <LeaveComment/>}
                 </div>
         </main>

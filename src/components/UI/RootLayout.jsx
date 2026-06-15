@@ -4,16 +4,20 @@ import { Outlet } from "react-router-dom"
 import MainNav from "./MainNav"
 import Footer from "./Footer"
 //IMPORTS - Styles
+import { useSelector } from "react-redux"
 
 function RootLayout() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
   return (
     <>
-       
         <main>
             <Outlet/>
         </main>
-        <MainNav/>
-        
+        {isLoggedIn
+          ? <MainNav/>
+          : null
+        }
     </>
   )
 }

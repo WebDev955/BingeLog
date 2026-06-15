@@ -16,23 +16,25 @@ function SignUpForm({ type, onSubmit}) {
                 htmlFor = "username"
                 id= "username"
                 name = "username"
-            />
-             <Input
-                label= "Password"
-                htmlFor = "password"
-                id= "password"
-                name = "password"
+                placeholder = "Typer user name here."
             />
             <Input
                 label= "Email"
                 htmlFor = "email"
                 id= "email"
                 name = "email"
+                placeholder = "Typer email here."
             />
-            <Bttn type= {type}>Sign Up</Bttn>
+            <Input
+                label= "Password"
+                htmlFor = "password"
+                id= "password"
+                name = "password"
+                placeholder = "Typer passowrd here."
+            />
+            <Bttn className={styles.signUpBttn} type= {type}>Sign Up</Bttn>
         </div>
     </form>
-
   )
 }
 export default SignUpForm
