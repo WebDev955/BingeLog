@@ -1,7 +1,8 @@
 //Imports - Hooks
 import {useState} from "react"
 //Imports - Hooks
-import styles from "./CommentChats.module.css"
+//mport styles from "./CommentChats.module.css"
+import styles from "./ReplyComment.module.css"
 //IMPORTS - SLICES
 import { useSelector, useDispatch } from "react-redux"
 import { doc, db, updateDoc, setDoc, arrayUnion} from "../../../../firebase/firebase"
@@ -52,19 +53,17 @@ export const ReplyComment = ({statusId, commentId, threadId, replyAuthor}) => {
 	
 	
 	return (
-		<main className = {styles.commentChatChainWrapper}>
+		<main className = {styles.leaveReplyWrapper}>
 			<h3>Post a Reply</h3>
-				<div className = {styles.commentChatChains}>
-					<div className = {styles.comment}>
-						<textarea
-							value = {replyDraft}
-							onChange = {(e) => updateReply(e.target.value)}
-							placeholder = {`Reply to ${replyAuthor}`}
-						/>
-						<button onClick = {()=> postReply(replyDraft)}>
-							Post Reply
-						</button>
-					</div>
+				<div className = {styles.postAReply}>
+					<textarea
+						value = {replyDraft}
+						onChange = {(e) => updateReply(e.target.value)}
+						placeholder = {`Reply to ${replyAuthor}`}
+					/>
+					<button onClick = {()=> postReply(replyDraft)}>
+						Post Reply
+					</button>
 				</div>
 		</main>	
 	)

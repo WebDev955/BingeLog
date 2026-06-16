@@ -1,0 +1,32 @@
+.leaveCommentWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.postAComment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.leaveCommentWrapper textarea {
+    background-color: white;
+    margin-top: 10px;
+    padding: 5px;
+    width: 95%;
+    height: 100px;
+    max-width: 400px;
+    resize: none;
+    align-self: center;
+}
+
+.leaveCommentWrapper button {
+    padding: 10px;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}

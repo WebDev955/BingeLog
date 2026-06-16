@@ -2,7 +2,7 @@
 
 //IMPORTS - STYLES
 //IMPORTS - Styles
-import styles from "./LeaveComment.module.css"
+//import styles from "./LeaveComment.module.css"
 
 function LeaveComment (){
 

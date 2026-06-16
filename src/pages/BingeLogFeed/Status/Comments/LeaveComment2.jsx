@@ -1,11 +1,12 @@
 //Imports - Hooks
 import {useState} from "react"
 //IMPORTS - FIRESTONE
-import { doc, db, updateDoc, setDoc } from "../../../../firebase/firebase"
+import { doc, db, setDoc } from "../../../../firebase/firebase"
 //Imports - Hooks
-import styles from "./CommentChats.module.css"
+//import styles from "./CommentChats.module.css"
+import styles from "./LeaveComment2.module.css"
 //IMPORTS - COMPONENTS
-import LeaveComment from "./LeaveComment"
+//import LeaveComment from "./LeaveComment"
 
 //IMPORTS - SLICES
 import { useSelector, useDispatch } from "react-redux";
@@ -72,18 +73,16 @@ export const LeaveComment2 = ({status}) => {
 	}
 	
 	return (
-		<main className = {styles.commentChatChainWrapper}>
+		<main className = {styles.leaveCommentWrapper}>
 			<h3>Post a Comment</h3>
-				<div className = {styles.commentChatChains}>
-					<div className = {styles.comment}>
-						<textarea
-							onChange = {(e) => updateComment(e.target.value)}
-							placeholder = {`Reply to ${status.userName}`}
-						/>
-						<button onClick = {()=> postComment(commentDraft)}>
-							Post Comment
-						</button>
-					</div>
+				<div className = {styles.postAComment}>
+					<textarea
+						onChange = {(e) => updateComment(e.target.value)}
+						placeholder = {`Reply to ${status.userName}`}
+					/>
+					<button onClick = {()=> postComment(commentDraft)}>
+						Post Comment
+					</button>
 				</div>
 		</main>	
 	)
