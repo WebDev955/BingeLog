@@ -4,7 +4,6 @@
     align-Content:center;
     flex-direction: column;
     text-align: left;
-
 }
 
 .feedHeader{
@@ -26,4 +25,10 @@
 .feedContent {
     padding-left: 8px;
     font-size: larger;
+}
+
+.binging {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

@@ -24,17 +24,15 @@ function ShowSearchBar() {
                             'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
                         }
                     };
-
                     const res = await fetch(url, options);
                     const data = await res.json();
                     setSearchResults(data);
-                    console.log(data);
                 } catch (error) {
                     console.error(error);
                 }
             }
             fetchShow(query);
-        }, 500); // wait 500ms after typing stops
+        }, 500); 
         return () => clearTimeout(timeoutId); // cleanup if user types again before 500ms
     }, [query]);
 
@@ -42,7 +40,7 @@ function ShowSearchBar() {
         <div className={styles.mainWrapper}>
             <input 
                 type ="search" 
-                placeholder="Seach a show"
+                placeholder="Seach a show."
                 value = {query}
                 onChange = {(event) => setQuery(event.target.value)}
                 />

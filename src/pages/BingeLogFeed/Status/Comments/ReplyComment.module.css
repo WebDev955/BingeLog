@@ -5,13 +5,11 @@
     align-content: left;
     width: 100%;
 }
-
 .postAReply {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-
 .leaveReplyWrapper textarea {
     background-color: white;
     margin-top: 10px;

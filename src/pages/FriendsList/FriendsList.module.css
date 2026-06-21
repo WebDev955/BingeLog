@@ -1,0 +1,25 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    outline: 2px solid red;
+}
+
+.mainWrapper  h1 {
+    border-bottom: solid black 2px;
+}
+
+.friendCard {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid black 0.5px;
+    padding: 10px;
+    font-size: larger;
+}
+
+.friendCard img {
+    border-radius: 50px;
+    margin-right: 20px;
+}
+
+
+

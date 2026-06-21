@@ -13,21 +13,19 @@ import { Navigate } from "react-router-dom";
 
 function ShowsPage() {
   
-const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-if (!isLoggedIn) {
-  return <Navigate to="/" replace />;
-}
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
-    <>
       <main className={styles.mainWrapper}> 
         <header>
             <h1>Shows List Page</h1>
             <ShowSearchBar/>
         </header>
-     
       </main>
-    </>
   )
 }
 export default ShowsPage

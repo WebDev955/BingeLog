@@ -37,13 +37,13 @@ import { snapshotEqual } from 'firebase/firestore'
 function App() {
 
 const dispatch = useDispatch();
-const myShows = useSelector((state) => state.shows.myShows)
-const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-const uid = useSelector((state) => state.auth.user?.uid)
+//const myShows = useSelector((state) => state.shows.myShows)
+//const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+//const uid = useSelector((state) => state.auth.user?.uid)
 //auth.currentUser;  - can be null after a refresh
 
 const [hydrated, setHydrated] = useState(false);
-const doesUserExist = useSelector((state) => state.auth?.user)
+//const doesUserExist = useSelector((state) => state.auth?.user)
 
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -111,8 +111,6 @@ useEffect(() => {
               return { ...thread, comments }
           })
         )
-        console.log("threads raw:", threads);
-        console.log("threadsWithComments:", threadsWithComments);
       dispatch(chatsActions.updateChatThreads(threadsWithComments))
   }   
     } catch (err) {
@@ -130,7 +128,6 @@ useEffect(() => {
     return <div>Loading...</div>;
   } 
   
-
 const router = createHashRouter([
   {
     path:'/',

@@ -1,21 +1,19 @@
 //IMPORTS - Hooks
 import { useEffect, useState } from "react"
 //IMPORTS - Components 
-
 import { useSelector, useDispatch } from "react-redux"
 //import { friendsActions } from "../../store/slices/friendsSlice"
 import {db, collection, getDocs } from "../../firebase/firebase"
 
 //IMPORTS - Styles
-//import styles from "./UserPage.module.css"
+import styles from "../FriendsList/FriendsList.module.css"
 
 
 function FriendsList() {
-  const dispatch = useDispatch()
-  const friendsList = useSelector((state) => state.friends.friendsList)
-
-
   const [globalUsers, setGlobalUsers] = useState([])
+  const friendsList = useSelector((state) => state.friends.friendsList)
+  const friend = friendsList.map((friendId) => 
+    globalUsers.find(user => user.id === friendId)).filter(Boolean)
 
   useEffect(() => {
     async function fetchGlobalUsers(){
@@ -33,24 +31,20 @@ function FriendsList() {
     }
     fetchGlobalUsers()
   },[])
-  
-  
-  console.log("Global Users", globalUsers)
-  console.log("Friend List", friendsList)
+
+
+console.log(friend)
 
  return (
-    <>
+    <main className={styles.mainWrapper}>
       <h1>Friends List</h1>
-      {friendsList.map((friendId) => {
-        const friend = globalUsers.find(user => user.id === friendId);
-        
-        return (
-          <div key={friendId}>
-            <p>{friend?.userName || "Unknown User"}</p>
-          </div>
-        );
-      })}
-    </>
+      {friend.map((friend) =>
+        <div key={friend.id} className={styles.friendCard}>
+          <img src={friend?.profileImgUrl} width= "55px"/>
+          <p>{friend?.userName || "Unknown User"}</p>
+      </div>
+    )}
+    </main>
   );
 }
 export default FriendsList

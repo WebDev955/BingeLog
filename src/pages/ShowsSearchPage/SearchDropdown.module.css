@@ -8,8 +8,18 @@
     border-radius: 5px;
     margin-top: 5px;
     box-shadow: 5px 5px 30px -1px #000000;
+    animation: slideIn 0.3s ease-out forwards;
 }
-
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .showResult {
     display: flex;
     flex-direction: column;
@@ -24,10 +34,30 @@
     justify-content: space-between;
     font-size: larger;
 }
+.showTitles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.savedShow {
+    color: red;
+    background-color: white;
+    border: solid black 2px;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: smaller;
+    margin-bottom: 10px;
+}
 
 .showTitle p {
     font-weight: 600;
     padding-bottom: 7px;
+}
+.savedShow {
+    font-weight: 600;
+    padding-bottom: 7px;
+    color: red;
 }
 
 .showTitle p:hover {

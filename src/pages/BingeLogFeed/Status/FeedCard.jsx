@@ -8,7 +8,10 @@ import styles from "./FeedCard.module.css"
 
 function FeedCard({status}) {
 
-
+  const currBinging = status.statusPost.currBinging
+  const recentlyWatched = status.statusPost.recentlyWatched
+  const recentlyFinished = status.statusPost.recentlyFinished?.show
+  
    return (
     <main className={styles.mainStatusWrapper} key={status.statusId}>
       <article>
@@ -16,16 +19,18 @@ function FeedCard({status}) {
           <img src={status?.userImage || "/BingeLog/DefaultAvatar.png"}/>
           <p>{status?.userName}</p>
         </header>
-        <div className={styles.feedContent}> 
-          <p>Currently Binging:</p> 
-            {Array.isArray(status.statusPost.currBinging)
-              ? status.statusPost.currBinging.map(show => 
-                  <p key={show.id}>{show.show}</p>
-                )
-              : <p>{status.statusPost.currBinging}</p>
-            }
-          <p>Recently Watched: {status.statusPost.recentlyWatched}</p>
-          <p>Recently Finished: <span>{status.statusPost.recentlyFinished?.show}</span></p>
+        <div className={styles.feedContent}>
+            <p>Currently Binging:</p> 
+            <div className={styles.binging}> 
+              {Array.isArray(currBinging) && currBinging.length >= 1
+                ? currBinging.map(show => 
+                    <p key={show.id}>{show.show}</p>
+                  )
+                : <p>{status.userName} is currently not binging anything.</p>
+              }
+          </div> 
+          <p>Recently Watched: {recentlyWatched}</p>
+          <p>Recently Finished: <span>{recentlyFinished}</span></p>
           <br/>
           <p>{new Date(status.timeStamp).toLocaleString()}</p>
         </div>
