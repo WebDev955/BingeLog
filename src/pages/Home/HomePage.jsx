@@ -1,23 +1,21 @@
 //IMPORTS - Hooks
-import { NavLink, Navigate } from "react-router-dom"
-//IMPORTS - Components 
-import TextContent from "../../components/UI/TextContent"
-import  Auth  from "../../components/auth"
-import LandingPage from "./LandingPage"
+import { NavLink, Navigate } from "react-router-dom";
+//IMPORTS - Components
+import TextContent from "../../components/UI/TextContent";
+import Auth from "../../components/auth";
+import LandingPage from "./LandingPage";
 
-
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 //IMPORTS - Styles
-import styles from "./HomePage.module.css"
+import styles from "./HomePage.module.css";
 
-const HomePage = () =>  {
-  const userLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  const uid = useSelector((state) => state.auth.user?.uid)
-  console.log(uid)
+const HomePage = () => {
+  const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const uid = useSelector((state) => state.auth.user?.uid);
+  console.log(uid);
 
-if (userLoggedIn) return <Navigate to={`userPage/${uid}`}/>
-return <LandingPage/>
-
-} 
-export default HomePage
+  if (userLoggedIn) return <Navigate to={`userPage/${uid}`} />;
+  return <LandingPage />;
+};
+export default HomePage;

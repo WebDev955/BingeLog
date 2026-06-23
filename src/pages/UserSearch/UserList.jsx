@@ -1,64 +1,69 @@
 //IMPORTS - Hooks
 import { useContext } from "react";
 import { NavLink, useParams, useSearchParams } from "react-router-dom";
-//IMPORTS - Components 
+//IMPORTS - Components
 import Bttn from "../../components/UI/Bttn";
-import {UserProfileContext} from "../../components/Contexts/UserProfileContext";
+import { UserProfileContext } from "../../components/Contexts/UserProfileContext";
 import { UserAccountContext } from "../../components/Contexts/UserAccountContext";
 //IMPORT - REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";
-import { authActions }  from "../../store/slices/authSlice";
+import { authActions } from "../../store/slices/authSlice";
 
-import {doc, getDoc, db, collection, getDocs, updateDoc } from "../../firebase/firebase"
+import {
+  doc,
+  getDoc,
+  db,
+  collection,
+  getDocs,
+  updateDoc,
+} from "../../firebase/firebase";
 //IMPORTS - Styles
 import styles from "./UserList.module.css";
 
-function UsersList({userDetails}) {
-  console.log("User Details", userDetails)
-  
-  //Redux Selectors 
+function UsersList({ userDetails }) {
+  console.log("User Details", userDetails);
+
+  //Redux Selectors
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.uid);
-  const friendsList = useSelector((state)=> state.friends.friendsList);
+  const friendsList = useSelector((state) => state.friends.friendsList);
 
-  
   //Params
   const params = useParams();
   const id = params.id;
 
-  async function addFriend(friendId){
-    
+  async function addFriend(friendId) {
     const updatedFriendsList = [...friendsList, friendId];
 
-    try{
-    const docRef = doc(db, "Users", userId);
+    try {
+      const docRef = doc(db, "Users", userId);
       await updateDoc(docRef, {
-        friendsList: updatedFriendsList
-      })
+        friendsList: updatedFriendsList,
+      });
 
-      dispatch(friendsActions.addFriend(friendsList))    
-      alert("Friend Added!")
-
+      dispatch(friendsActions.addFriend(friendsList));
+      alert("Friend Added!");
     } catch (err) {
-    console.log (err)
-    alert(err.message);
+      console.log(err);
+      alert(err.message);
+    }
   }
-}
-//console.log(userDetails)
-
+  //console.log(userDetails)
 
   return (
     <main className={styles.userDetailsWrapper}>
       {userDetails && (
-          <div key={userDetails.id}>
-              <NavLink to={`/userPage/:${userDetails.id}`}><h2>{userDetails.userName}</h2></NavLink>
-              <img src={userDetails.profileImgUrl} width="100px"/>
-              <br/>
-              <Bttn onClick = {() => addFriend(userDetails.id)} >Save User</Bttn> 
-          </div>
-    )}
-   </main>
-  )
+        <div key={userDetails.id}>
+          <NavLink to={`/userPage/:${userDetails.id}`}>
+            <h2>{userDetails.userName}</h2>
+          </NavLink>
+          <img src={userDetails.profileImgUrl} width="100px" />
+          <br />
+          <Bttn onClick={() => addFriend(userDetails.id)}>Save User</Bttn>
+        </div>
+      )}
+    </main>
+  );
 }
-export default UsersList
+export default UsersList;

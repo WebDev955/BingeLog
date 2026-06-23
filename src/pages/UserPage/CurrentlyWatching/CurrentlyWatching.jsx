@@ -1,17 +1,14 @@
 //IMPORTS - Hooks
-//IMPORTS - Components 
+//IMPORTS - Components
 //IMPORTS - Styles
-import styles from "./CurrentlyWatching.module.css"
+import styles from "./CurrentlyWatching.module.css";
 //IMPORTS - REDUX
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 function CurrentlyWatching() {
-  
-  const currentlyBinging = useSelector((state) => state.shows.currentlyBinging)
+  const currentlyBinging = useSelector((state) => state.shows.currentlyBinging);
 
-  console.log(currentlyBinging)
-
-
+  console.log(currentlyBinging);
 
   return (
     <>
@@ -19,11 +16,11 @@ function CurrentlyWatching() {
         <h2>Currently Binging:</h2>
         <div className={styles.watchingList}>
           {currentlyBinging.map((show) => (
-            <p key= {show.id}>{show.show}</p>
+            <p key={show.id}>{show.show}</p>
           ))}
         </div>
       </main>
     </>
-  )
+  );
 }
-export default CurrentlyWatching
+export default CurrentlyWatching;

@@ -1,64 +1,81 @@
 //IMPORTS - Hooks
-import { NavLink } from "react-router-dom"
-//IMPORTS - Redux Tool Kit / Slices 
-import { useDispatch, useSelector } from "react-redux"
-import {authActions} from "../../store/slices/authSlice"
+import { NavLink } from "react-router-dom";
+//IMPORTS - Redux Tool Kit / Slices
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/slices/authSlice";
 
-//IMPORTS - Components 
-import Bttn from "./Bttn"
+//IMPORTS - Components
+import Bttn from "./Bttn";
 
 //IMPORTS - Styles
-import styles from "./MainNav.module.css"
-import SignUp from "./Signup"
-import Login from "../LoginLogOut/Login"
+import styles from "./MainNav.module.css";
+import SignUp from "./Signup";
+import Login from "../LoginLogOut/Login";
 
 //This tells React to evaluate the JavaScript expression inside the ${} and place the value of id into the path.
 //to={`/userPage/${id}`
 function MainNav() {
+  //DispatchActions and Functions
+  const dispatch = useDispatch();
 
-//DispatchActions and Functions
-const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const id = useSelector((state) => state.auth.user?.uid);
 
-const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-const id = useSelector((state) => state.auth.user?.uid)
-
-function toggleLogIn() {
-    dispatch(authActions.startLoggingIn())
-}   
-function toggleLogOut(){
-    dispatch(authActions.logOut())
-}
-function toggleCreateAccount(){
-    dispatch(authActions.startCreatingAccount())
-}
+  function toggleLogIn() {
+    dispatch(authActions.startLoggingIn());
+  }
+  function toggleLogOut() {
+    dispatch(authActions.logOut());
+  }
+  function toggleCreateAccount() {
+    dispatch(authActions.startCreatingAccount());
+  }
   return (
     <header className={styles.mainWrapper}>
-        <nav className={styles.nav}>
-            <ul>
-                <li>
-                    {isLoggedIn && <NavLink to="/bingelog"><img width = "35px" src="/BingeLog/BingeLog.png"/></NavLink>}
-                </li>
-                 <li>
-                    {isLoggedIn && id && (<NavLink to={`/userPage/${id}`}><img width="35px" src="/BingeLog/UserPage.png" /></NavLink>)}
-                  
-                </li>
-                 <li>
-                    {isLoggedIn &&<NavLink to="/shows"><img width= "35px" src= "/BingeLog/TvIcon.png"/></NavLink>}
-                </li>
-                 <li>
-                    {isLoggedIn &&<NavLink to="/userSearch"><img width= "35px" src= "/BingeLog/UserSearchIcon.png"/></NavLink>}
-                </li>
-                <li>
-                     <NavLink to="/About"><img width = "35px" src="/BingeLog/HomeIcon.png"/></NavLink>
-                </li>
-                <li>
-                    <Bttn onClick = {toggleLogOut}><img width = "35px" src="/BingeLog/LogOut.png"/></Bttn>
-                </li>
-            </ul>  
-            <Login/>
-        </nav>
+      <nav className={styles.nav}>
+        <ul>
+          <li>
+            {isLoggedIn && (
+              <NavLink to="/bingelog">
+                <img width="35px" src="/BingeLog/BingeLog.png" />
+              </NavLink>
+            )}
+          </li>
+          <li>
+            {isLoggedIn && id && (
+              <NavLink to={`/userPage/${id}`}>
+                <img width="35px" src="/BingeLog/UserPage.png" />
+              </NavLink>
+            )}
+          </li>
+          <li>
+            {isLoggedIn && (
+              <NavLink to="/shows">
+                <img width="35px" src="/BingeLog/TvIcon.png" />
+              </NavLink>
+            )}
+          </li>
+          <li>
+            {isLoggedIn && (
+              <NavLink to="/userSearch">
+                <img width="35px" src="/BingeLog/UserSearchIcon.png" />
+              </NavLink>
+            )}
+          </li>
+          <li>
+            <NavLink to="/About">
+              <img width="35px" src="/BingeLog/HomeIcon.png" />
+            </NavLink>
+          </li>
+          <li>
+            <Bttn onClick={toggleLogOut}>
+              <img width="35px" src="/BingeLog/LogOut.png" />
+            </Bttn>
+          </li>
+        </ul>
+        <Login />
+      </nav>
     </header>
-    
-  )
+  );
 }
-export default MainNav
+export default MainNav;

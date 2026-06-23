@@ -1,29 +1,31 @@
 //IMPORTS - Hooks
-import { useRef, useEffect } from "react"
+import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-//IMPORTS - Components 
+//IMPORTS - Components
 //IMPORTS - Styles
- import styles from "./Modal.module.css"
+import styles from "./Modal.module.css";
 
-function Modal({children, open, handleClose}) {
-  const dialog = useRef()
+function Modal({ children, open, handleClose }) {
+  const dialog = useRef();
 
-  useEffect(()=> {
-    const modal = dialog.current
+  useEffect(() => {
+    const modal = dialog.current;
 
     if (open) {
-        modal.showModal()
+      modal.showModal();
     }
 
     return () => {
-    if (modal.open) modal.close();
-  };
+      if (modal.open) modal.close();
+    };
+  }, [open]);
 
-},[open])
-
-    return createPortal (
-        <dialog onClose={handleClose} ref={dialog} className={styles.dialog}> {children} </dialog>,
-        document.getElementById('modal')
-  )
+  return createPortal(
+    <dialog onClose={handleClose} ref={dialog} className={styles.dialog}>
+      {" "}
+      {children}{" "}
+    </dialog>,
+    document.getElementById("modal"),
+  );
 }
-export default Modal
+export default Modal;

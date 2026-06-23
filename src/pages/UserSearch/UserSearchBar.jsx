@@ -1,54 +1,49 @@
-
 //IMPORTS - Hooks
 import { useEffect, useState } from "react";
-//IMPORTS - Components 
+//IMPORTS - Components
 import UserSearchDropdown from "./userSearchDropdown";
 //IMPORTS - Styles
-import styles from './ShowSearchBar.module.css'
-import {doc, getDoc, db, collection, getDocs } from "../../firebase/firebase"
+import styles from "./ShowSearchBar.module.css";
+import { doc, getDoc, db, collection, getDocs } from "../../firebase/firebase";
 
 function UserSearchBar() {
-    const [query, setQuery] = useState("")
-    const [searchResults, setSearchResults] = useState(null)
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState(null);
 
-    useEffect(() => {
-        async function fetchUser(query){ 
-            if (!query) return;
-        
-            try {
-                const querySnapShot = await getDocs(collection (db, "Users"))
-                const globalUsersList = querySnapShot.docs.map(doc =>({
-                    id: doc.id,      //expose user
-                    ...doc.data(),  //spread field data
-                }))
+  useEffect(() => {
+    async function fetchUser(query) {
+      if (!query) return;
 
-                const globalUsersFiltered = globalUsersList.filter(user =>
-                   user.userName?.toLowerCase().includes(query.toLowerCase())
-                )
+      try {
+        const querySnapShot = await getDocs(collection(db, "Users"));
+        const globalUsersList = querySnapShot.docs.map((doc) => ({
+          id: doc.id, //expose user
+          ...doc.data(), //spread field data
+        }));
 
-            setSearchResults(globalUsersFiltered)
-            console.log("Query Data", globalUsersFiltered)
+        const globalUsersFiltered = globalUsersList.filter((user) =>
+          user.userName?.toLowerCase().includes(query.toLowerCase()),
+        );
 
-            } catch (err) {
-            console.error ("Can't find global users", err)
-        }    
+        setSearchResults(globalUsersFiltered);
+        console.log("Query Data", globalUsersFiltered);
+      } catch (err) {
+        console.error("Can't find global users", err);
+      }
     }
-    fetchUser(query)
-}, [query])
-    
-    return (
-        <div className={styles.mainWrapper}>
-            <input 
-                type ="search" 
-                placeholder="Seach a user"
-                value = {query}
-                onChange = {(event) => setQuery(event.target.value)}
-                />
-            {searchResults && 
-                <UserSearchDropdown searchResults={searchResults} /> 
-            }
-        </div>
-  )
-}
-export default UserSearchBar
+    fetchUser(query);
+  }, [query]);
 
+  return (
+    <div className={styles.mainWrapper}>
+      <input
+        type="search"
+        placeholder="Seach a user"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+      {searchResults && <UserSearchDropdown searchResults={searchResults} />}
+    </div>
+  );
+}
+export default UserSearchBar;

@@ -1,19 +1,16 @@
 //IMPORTS - Hooks
-//IMPORTS - Components 
+//IMPORTS - Components
 //IMPORTS - Styles
-import styles from "./Input.module.css"
+import styles from "./Input.module.css";
 
-function Input({label, id, attribute, ...props }) {
+function Input({ label, id, attribute, ...props }) {
   return (
-    <>  
-    <div className={styles.inputWrapper}>
+    <>
+      <div className={styles.inputWrapper}>
         <label htmlFor={attribute}>{label}</label>
-        <input
-            id = {id}
-            {...props}
-        />
+        <input id={id} {...props} />
       </div>
     </>
-  )
+  );
 }
-export default Input
+export default Input;

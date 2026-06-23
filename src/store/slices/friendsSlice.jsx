@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//inital satte of friends 
+//inital satte of friends
 const initialState = {
-    friendsList: []
-}
+  friendsList: [],
+};
 
 const friendsSlice = createSlice({
-    name: "friends",
-    initialState,
-    reducers: {
-        addFriend(state, action){
-            state.friendsList = action.payload //newly added friend ID
-        },
+  name: "friends",
+  initialState,
+  reducers: {
+    addFriend(state, action) {
+      state.friendsList = action.payload; //newly added friend ID
     },
+  },
 });
 
-export const friendsActions = friendsSlice.actions
-export default friendsSlice.reducer
+export const friendsActions = friendsSlice.actions;
+export default friendsSlice.reducer;

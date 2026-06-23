@@ -3,20 +3,19 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/authSlice";
 import profileReducer from "./slices/profileSlice";
 import showsReducer from "./slices/showsSlice";
-import notesReducer from "./slices/notesSlice"
-import friendsReducer from "./slices/friendsSlice"
-import socialFeedReducer from "./slices/socialFeedSlice"
-import chatsReducer from "./slices/chatsSlice"
-
+import notesReducer from "./slices/notesSlice";
+import friendsReducer from "./slices/friendsSlice";
+import socialFeedReducer from "./slices/socialFeedSlice";
+import chatsReducer from "./slices/chatsSlice";
 
 export const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        profile: profileReducer,
-        shows: showsReducer,
-        notes: notesReducer,
-        friends: friendsReducer,
-        socialfeed: socialFeedReducer,
-        chats: chatsReducer
-    }
+  reducer: {
+    auth: authReducer,
+    profile: profileReducer,
+    shows: showsReducer,
+    notes: notesReducer,
+    friends: friendsReducer,
+    socialfeed: socialFeedReducer,
+    chats: chatsReducer,
+  },
 });

@@ -1,37 +1,33 @@
-//IMPORTS - Components 
-import FeedCard from "./Status/FeedCard"
+//IMPORTS - Components
+import FeedCard from "./Status/FeedCard";
 
 //IMPORTS - Styles
-import styles from "./BingeLogPageManual.module.css"
+import styles from "./BingeLogPageManual.module.css";
 
 //IMPORTS - Hooks
 
+//IMPORTS - Components
 
-//IMPORTS - Components 
+import { useSelector } from "react-redux";
 
-import { useSelector} from "react-redux"
-
-
-function BingeLogPageManual({globalUsers}) {
-
-  const friendsList = useSelector((state) => state.friends.friendsList)
+function BingeLogPageManual({ globalUsers }) {
+  const friendsList = useSelector((state) => state.friends.friendsList);
   //const [globalUsers, setGlobalUsers] = useState([])
 
-
   return (
-    <main className = {styles.mainManualFeedWrapper}>
+    <main className={styles.mainManualFeedWrapper}>
       <h1>BingeLog Feed - Manual Updates</h1>
-        <div className = {styles.sortingDiv}>
-          <p>Sort by username</p> 
-          <p>Sort by most recently updated</p>            
-        </div>
+      <div className={styles.sortingDiv}>
+        <p>Sort by username</p>
+        <p>Sort by most recently updated</p>
+      </div>
 
-      {friendsList?.map((friendId) => {  
-        const friend = globalUsers.find(friend => friend.id === friendId);  
-        if (!friend) return null
-        return <FeedCard key={friend.id} friend = {friend}/>
+      {friendsList?.map((friendId) => {
+        const friend = globalUsers.find((friend) => friend.id === friendId);
+        if (!friend) return null;
+        return <FeedCard key={friend.id} friend={friend} />;
       })}
-      </main>
-  ) 
+    </main>
+  );
 }
-export default BingeLogPageManual
+export default BingeLogPageManual;

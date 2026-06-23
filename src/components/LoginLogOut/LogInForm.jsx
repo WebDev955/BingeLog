@@ -1,32 +1,24 @@
 //IMPORTS - Hooks
-//IMPORTS - Components 
-import Input from "../UI/Input"
-import Bttn from "../UI/Bttn"
+//IMPORTS - Components
+import Input from "../UI/Input";
+import Bttn from "../UI/Bttn";
 //IMPORTS - Styles
-import styles from "../UI/SignUpForm.module.css"
+import styles from "../UI/SignUpForm.module.css";
 
-
-function LogInForm({ type, onSubmit}) {
-
-return (
-    <form onSubmit={onSubmit} className = {styles.formWrapper}> 
-        <div className={styles.inputWrapper}>
-            <Input
-                label= "Email"
-                htmlFor = "email"
-                id= "email"
-                name = "email"
-            />
-             <Input
-                label= "Password"
-                htmlFor = "password"
-                id= "password"
-                name = "password"
-            />
-            <Bttn type={type}>Sign In</Bttn>
-        </div>
+function LogInForm({ type, onSubmit }) {
+  return (
+    <form onSubmit={onSubmit} className={styles.formWrapper}>
+      <div className={styles.inputWrapper}>
+        <Input label="Email" htmlFor="email" id="email" name="email" />
+        <Input
+          label="Password"
+          htmlFor="password"
+          id="password"
+          name="password"
+        />
+        <Bttn type={type}>Sign In</Bttn>
+      </div>
     </form>
-
-  )
+  );
 }
-export default LogInForm
+export default LogInForm;
