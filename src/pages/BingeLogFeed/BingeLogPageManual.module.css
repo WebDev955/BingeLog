@@ -2,8 +2,8 @@
     width: 100%;
     display: flex;
     Flex-direction: column;
-    margin-bottom: 60px;
     background-color: rosybrown;
+    padding-bottom: 70px;
 }
 
 .sortingDiv {

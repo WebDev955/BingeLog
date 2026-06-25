@@ -18,18 +18,17 @@ import { authActions } from "../../../store/slices/authSlice";
 import { db, doc, updateDoc } from "../../../firebase/firebase";
 
 function ShowNotes({ epTitle, showTitle }) {
+  const triggerDebounce = useAutoStatusDebounce();
+  
   //Selecting Redux State
-
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.uid);
   const epNotes = useSelector((state) => state.notes.epNotes);
   const charNotes = useSelector((state) => state.notes.charNotes);
   const watchedEps = useSelector((state) => state.shows.watchedEps);
-  const triggerDebounce = useAutoStatusDebounce();
+  
 
   /**Editing Episode Notes**/
-
-  //const [isEditingEpNotes, setIsEditingEpNotes]  = useState()
   const [draftNotes, setDraftNotes] = useState({});
   const [draftCharNotes, setDraftCharNotes] = useState({});
 

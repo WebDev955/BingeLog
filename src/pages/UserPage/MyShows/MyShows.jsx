@@ -140,9 +140,6 @@ function MyShows({ id }) {
     } catch (err) {
       console.error(err);
     }
-    console.log(updatedShows);
-    console.log(updatedBingingList);
-    console.log(updatedFinshedList);
   }
 
   function toggleReview(showId) {
@@ -178,16 +175,14 @@ function MyShows({ id }) {
       </div>
       <AnimatePresence>
         {myShows.map((show) => (
-          <div
-            className={
-              showId === show.id ? styles.showTitleActive : styles.showTitle
+          <div className = {
+            showId === show.id 
+              ? styles.showTitleActive 
+              : styles.showTitle
             }
-            key={show.id}
+              key={show.id}
           >
-            <div
-              onClick={() => handleSelectShow(show.id)}
-              className={styles.showHeading}
-            >
+            <div onClick={() => handleSelectShow(show.id)} className={styles.showHeading}>
               <p>{show.title}</p>
               <div className={styles.showStatus}>
                 {finishedShows.find((id) => id.id === show.id) && (

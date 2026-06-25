@@ -32,7 +32,7 @@ function BingeLogPageAuto() {
   };
 
   return (
-    <main className={styles.mainAutoFeedWrappe}>
+    <main className={styles.mainAutoFeedWrapper}>
       <h1>BingeLog Auto Feed</h1>
       <div className={styles.sortingDiv}>
         <h3>Sort:</h3>
