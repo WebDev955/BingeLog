@@ -63,8 +63,6 @@ export function UserAccountContextProvider({ children }) {
     friendList: [],
   });
 
-  console.log(userAccount);
-
   /**********************
  ACCOUNT CREATION
 ***********************/
@@ -140,7 +138,6 @@ export function UserAccountContextProvider({ children }) {
       stopLoggingIn();
       return user; //
     } else {
-      console.log("Login failed: Invalid username or password.");
       return null;
     }
   }

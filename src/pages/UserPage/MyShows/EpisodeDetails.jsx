@@ -5,7 +5,8 @@ import ShowNotes from "./ShowNotes";
 import Input from "../../../components/UI/Input";
 
 // IMPORTS - Styles
-import styles from "./EpisodeDetails.module.css";
+// import styles from "./EpisodeDetails.module.css";
+import styles from "./EpisodeDetailsUPDATE.module.css";
 
 function EpisodeDetailsCopy({ seasonTitle, show }) {
   const selectedSeason = show.seasons.find(

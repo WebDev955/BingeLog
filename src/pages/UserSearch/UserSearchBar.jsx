@@ -26,7 +26,6 @@ function UserSearchBar() {
         );
 
         setSearchResults(globalUsersFiltered);
-        console.log("Query Data", globalUsersFiltered);
       } catch (err) {
         console.error("Can't find global users", err);
       }

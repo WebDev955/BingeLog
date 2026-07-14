@@ -6,9 +6,7 @@ const initialState = {
   currentlyBinging: [],
   watchedEps: [],
   finishedShows: [],
-  isReviewing: false,
   reviews: [],
-  reviewingShowId: null,
 };
 
 const showsSlice = createSlice({
@@ -27,12 +25,6 @@ const showsSlice = createSlice({
     },
     updateFinishedShows(state, action) {
       state.finishedShows = action.payload; //adding title, id of finished show
-    },
-    reviewingShow(state, action) {
-      state.reviewingShowId = action.payload; //grabs id show
-    },
-    toggleReviewing(state) {
-      state.isReviewing = !state.isReviewing;
     },
     updateReviews(state, action) {
       state.reviews = action.payload; //newly added reivew object

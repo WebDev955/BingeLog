@@ -1,4 +1,4 @@
-# src/ folder organization review
+# BingeLog - Src Folder Organization Review -7.03.26
 
 Quick pass over `src/` file and folder names to spot things worth
 reorganizing later. Based on naming/structure only — not yet verified

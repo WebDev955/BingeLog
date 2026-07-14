@@ -3,7 +3,8 @@ import { useState } from "react";
 import { db, doc, updateDoc } from "../../../firebase/firebase";
 
 //IMPORTS - Styles
-import styles from "./ShowReview.module.css";
+// import styles from "./ShowReview.module.css";
+import styles from "./ShowReviewUPDATE.module.css";
 
 //Import - REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +17,8 @@ function ShowReview({ showId, showTitle }) {
 
   const dispatch = useDispatch();
   const myReviews = useSelector((state) => state.shows.reviews);
-  const savedReview = myReviews.find((id) => id.showId === showId);
+  const showReviews = myReviews.filter((review) => review.showId === showId);
+  const savedReview = showReviews[0];
 
   const userId = useSelector((state) => state.auth.user.uid);
   const docRef = doc(db, "Users", userId);
@@ -56,10 +58,12 @@ function ShowReview({ showId, showTitle }) {
   }
   return (
     <div className={styles.reviewDivWrapper}>
-      <div key={savedReview.id}>
-        <p>{savedReview?.text}</p>
-        <p>{reviewScore}</p>
-      </div>
+      {showReviews.map((review) => (
+        <div key={review.showId}>
+          <p>{review.text}</p>
+          <p>{review.score}</p>
+        </div>
+      ))}
       <textarea
         value={draftReview || savedReview?.text}
         onChange={(e) => updateReview(e.target.value)}

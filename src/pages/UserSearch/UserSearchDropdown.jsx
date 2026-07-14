@@ -31,8 +31,6 @@ function UserSearchDropdown({ searchResults }) {
   const userId = useSelector((state) => state.auth.user.uid);
   const friendsList = useSelector((state) => state.friends.friendsList);
 
-  console.log("User", searchResults);
-
   //Params
   const params = useParams();
   const id = params.id;
@@ -46,15 +44,13 @@ function UserSearchDropdown({ searchResults }) {
         friendsList: updatedFriendsList,
       });
 
-      dispatch(friendsActions.addFriend(friendsList));
+      dispatch(friendsActions.addFriend(updatedFriendsList));
       alert("Friend Added!");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert(err.message);
     }
   }
-
-  console.log("Search Results in Dropdown", searchResults);
 
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -69,7 +65,7 @@ function UserSearchDropdown({ searchResults }) {
           {searchResults.map((user) => (
             <div className={styles.userNameWrapper}>
               <img src={user.profileImgUrl} />
-              <NavLink to={`/userPage/:${user.id}`}>
+              <NavLink to={`/userPage/${user.id}`}>
                 <p>Profile Link</p>
               </NavLink>
               <p key={user.uid} onClick={() => displayUserDetails(user)}>

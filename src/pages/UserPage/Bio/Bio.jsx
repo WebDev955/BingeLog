@@ -11,7 +11,8 @@ import { profileActions } from "../../../store/slices/profileSlice";
 import { authActions } from "../../../store/slices/authSlice";
 import { showActions } from "../../../store/slices/showsSlice";
 //IMPORTS - Styles
-import styles from "./bio.module.css";
+// import styles from "./bio.module.css";
+import styles from "./BioUPDATE.module.css";
 //IMPORTS - Sources
 import DefaultAvatar from "../../../../public/DefaultAvatar.png";
 import AddFriend from "../../../../public/AddFriend.png";

@@ -13,7 +13,6 @@ import styles from "./HomePage.module.css";
 const HomePage = () => {
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const uid = useSelector((state) => state.auth.user?.uid);
-  console.log(uid);
 
   if (userLoggedIn) return <Navigate to={`userPage/${uid}`} />;
   return <LandingPage />;

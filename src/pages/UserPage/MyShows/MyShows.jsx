@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 //IMPORTS - FIREBASE/DATA
 import { doc, db, updateDoc } from "../../../firebase/firebase";
 //IMPORTS - STYLES/IMAGES
-import styles from "./MyShows.module.css";
+// import styles from "./MyShows.module.css";
+import styles from "./MyShowsUPDATE.module.css";
 import DownArrow from "../../../../public/DownArrow.png";
 import CheckMark from "../../../../public/CheckMark.png";
 
@@ -20,30 +21,19 @@ function MyShows({ id }) {
   const dispatch = useDispatch();
   const triggerDebounce = useAutoStatusDebounce();
   const [showId, setShowId] = useState("");
-  const [displaySeasons, setDisplaySeasons] = useState(showId);
+  const [activeTab, setActiveTab] = useState("seasons");
 
   //Slect State from showActionSlice
   const myShows = useSelector((state) => state.shows.myShows);
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging);
   const finishedShows = useSelector((state) => state.shows.finishedShows);
   const userId = useSelector((state) => state.auth.user.uid);
-  const isReviewing = useSelector((state) => state.shows.isReviewing);
-  const reviewingShowId = useSelector((state) => state.shows.reviewingShowId);
 
   function handleSelectShow(id) {
     setShowId(id);
-    setDisplaySeasons(id);
+    setActiveTab("seasons");
     if (showId === id) {
       setShowId("");
-    }
-  }
-
-  function toggleSeasons(showId) {
-    setDisplaySeasons(showId);
-    dispatch(showActions.reviewingShow());
-    dispatch(showActions.toggleReviewing());
-    if (displaySeasons === showId) {
-      setDisplaySeasons("");
     }
   }
 
@@ -67,7 +57,6 @@ function MyShows({ id }) {
       updatedFinshedShowList = [...finishedShows, { show: showTitle, id: id }];
       alert(`Finished ${showTitle}!`);
       triggerDebounce();
-      console.log("AutoStatusDebounce running - Finish Show.");
     }
 
     try {
@@ -79,7 +68,7 @@ function MyShows({ id }) {
       dispatch(showActions.updateFinishedShows(updatedFinshedShowList));
       dispatch(showActions.updateMyShows(updateShowStatus));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -104,7 +93,6 @@ function MyShows({ id }) {
     } else {
       updatedBingeList = [...currentlyBinging, { show: showTitle, id: id }];
       triggerDebounce();
-      console.log("AutoStatusDebounce running - Binging Show.");
     }
 
     try {
@@ -142,10 +130,12 @@ function MyShows({ id }) {
     }
   }
 
-  function toggleReview(showId) {
-    dispatch(showActions.reviewingShow(showId));
-    dispatch(showActions.toggleReviewing());
-    setDisplaySeasons("");
+  function toggleReview() {
+    setActiveTab("review");
+  }
+
+  function toggleSeasons() {
+    setActiveTab("seasons");
   }
 
   function handleTitleSort(showsArr) {
@@ -242,16 +232,13 @@ function MyShows({ id }) {
                     </button>
                   </div>
                   <div className={styles.showOptionsWrapper}>
-                    <p onClick={() => toggleSeasons(show.id)}>
-                      Seasons & Episodes
-                    </p>
-                    <p onClick={() => toggleReview(show.id)}>Review</p>
+                    <p onClick={toggleSeasons}>Seasons & Episodes</p>
+                    <p onClick={toggleReview}>Review</p>
                   </div>
 
-                  {isReviewing && reviewingShowId === show.id && (
+                  {activeTab === "review" ? (
                     <ShowReview showId={show.id} showTitle={show.title} />
-                  )}
-                  {displaySeasons && (
+                  ) : (
                     <ShowDetails show={show} animate={{ y: 3 }} />
                   )}
                 </motion.div>

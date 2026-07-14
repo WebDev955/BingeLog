@@ -6,7 +6,8 @@ import Bttn from "../../../components/UI/Bttn";
 import FileUploader from "../../../components/UI/FileUploader";
 import { UserProfileContext } from "../../../components/Contexts/UserProfileContext";
 
-import styles from "../Bio/BioEdit.module.css";
+// import styles from "../Bio/BioEdit.module.css";
+import styles from "../Bio/BioEditUPDATE.module.css";
 
 //IMPORTS - SLICES
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +27,6 @@ function BioEdit() {
 
   function editBioHandler() {
     setIsEditingBio(true);
-    console.log(isEditingBio);
   }
 
   function updateBio(value) {

@@ -1,14 +1,13 @@
 //IMPORTS - Hooks
 //IMPORTS - Components
 //IMPORTS - Styles
-import styles from "./CurrentlyWatching.module.css";
+// import styles from "./CurrentlyWatching.module.css";
+import styles from "./CurrentlyWatchingUPDATE.module.css";
 //IMPORTS - REDUX
 import { useSelector } from "react-redux";
 
 function CurrentlyWatching() {
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging);
-
-  console.log(currentlyBinging);
 
   return (
     <>

@@ -22,8 +22,6 @@ import {
 import styles from "./UserList.module.css";
 
 function UsersList({ userDetails }) {
-  console.log("User Details", userDetails);
-
   //Redux Selectors
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.uid);
@@ -42,14 +40,13 @@ function UsersList({ userDetails }) {
         friendsList: updatedFriendsList,
       });
 
-      dispatch(friendsActions.addFriend(friendsList));
+      dispatch(friendsActions.addFriend(updatedFriendsList));
       alert("Friend Added!");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert(err.message);
     }
   }
-  //console.log(userDetails)
 
   return (
     <main className={styles.userDetailsWrapper}>

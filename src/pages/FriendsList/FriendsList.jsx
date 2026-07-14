@@ -32,8 +32,6 @@ function FriendsList() {
     fetchGlobalUsers();
   }, []);
 
-  console.log(friend);
-
   return (
     <main className={styles.mainWrapper}>
       <h1>Friends List</h1>

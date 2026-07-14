@@ -2,7 +2,8 @@
 import { useState } from "react";
 //Imports - Hooks
 //mport styles from "./CommentChats.module.css"
-import styles from "./ReplyComment.module.css";
+// import styles from "./ReplyComment.module.css";
+import styles from "./ReplyCommentUPDATE.module.css";
 //IMPORTS - SLICES
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,10 +18,11 @@ import { chatsActions } from "../../../../store/slices/chatsSlice";
 //passed from ActionBar (which was passed from FeedCard)
 
 export const ReplyComment = ({
-  statusId,
+  status,
   commentId,
   threadId,
   replyAuthor,
+  onReplyPosted,
 }) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.auth.user.userName);
@@ -31,6 +33,8 @@ export const ReplyComment = ({
 
   const updateReply = (value) => {
     setReplyDraft(value);
+
+    
   };
   async function postReply(replyDraft) {
     const newReply = {
@@ -43,7 +47,6 @@ export const ReplyComment = ({
     };
 
     try {
-      console.log("threadId:", threadId, "commentId:", commentId);
       const docRefComments = doc(
         db,
         "chatThreads",
@@ -57,13 +60,15 @@ export const ReplyComment = ({
 
       dispatch(
         chatsActions.updateReplies({
-          statusId: statusId,
+          statusId: status.statusId,
           commentId: commentId,
-          newReply: newReply,
+          reply: newReply,
         }),
       );
+      setReplyDraft("");
+      onReplyPosted?.();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 

@@ -40,11 +40,8 @@ function Login() {
         email: user.email,
       };
       handleSubmitLoginInfo(loginInfo);
-      console.log(user);
-      console.log(loginInfo);
       return;
     } else {
-      console.log("Login failed: Invalid username or password.");
       return null;
     }
   }

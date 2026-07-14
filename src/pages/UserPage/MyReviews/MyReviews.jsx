@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { showActions } from "../../../store/slices/showsSlice";
 
 //Import - Styles
-import styles from "./MyReviews.module.css";
+// import styles from "./MyReviews.module.css";
+import styles from "./MyReviewsUPDATE.module.css";
 
 function MyReviews() {
   const dispatch = useDispatch();
 
   const myReviews = useSelector((state) => state.shows.reviews);
-  console.log("My Review Pg. Reviews", myReviews);
   return (
     <main className={styles.reviewsWrapperDiv}>
       <h1>Reviews</h1>

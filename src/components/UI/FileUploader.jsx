@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileActions } from "../../store/slices/profileSlice";
 
 function FileUploader() {
-  //uploadStatus 'idle' 'uploading', 'success', 'error'
+  //STATE - is there a file provided by user?
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [status, setStatus] = useState("idle");
+  //STATE - 
+  const [imageUrl, setImageUrl] = useState(null); 
+  //uploadStatus 'idle' 'uploading', 'success', 'error'
+  const [status, setStatus] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
 
   const dispatch = useDispatch();
@@ -25,32 +27,37 @@ function FileUploader() {
   async function handleFileUpload() {
     if (!file) return;
 
-    setStatus("Uploading");
+    setStatus("uploading");
 
     const formData = new FormData(); //object
     formData.append("file", file); //append files to formData
     formData.append("upload_preset", "ehljsu8d");
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/duvpgswi7/image/upload", formData)
-      .then((response) => {
-        const uploadedImage = response.data.secure_url;
-        const docRef = doc(db, "Users", uid);
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/duvpgswi7/image/upload",
+        formData,
+      );
+      const uploadedImage = response.data.secure_url;
+      const docRef = doc(db, "Users", uid);
 
-        updateDoc(docRef, {
-          profileImgUrl: uploadedImage,
-        });
-
-        dispatch(profileActions.uploadAvatar(uploadedImage));
-        alert("Image uploaded!");
+      await updateDoc(docRef, {
+        profileImgUrl: uploadedImage,
       });
+      dispatch(profileActions.uploadAvatar(uploadedImage));
+      setStatus("success");
+      alert("Image uploaded!");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   }
-
   return (
     <>
-      {/*onChange grabs the file upload, runs function to upload file
-              creates a Object of the file selected with
-            */}
+{/* onChange grabs the file upload, 
+    runs function to upload file,
+    and creates an Object of the file selected with
+*/}
       <input type="file" onChange={handleFileChange} />
       <div>
         {file && (
@@ -74,7 +81,6 @@ function FileUploader() {
         {file && status !== "uploading" && (
           <button onClick={handleFileUpload}>Upload</button>
         )}
-
         {status === "error" && <p>Upload Failed</p>}
         {status === "success" && <p>File uploaded successfully </p>}
         <p>{status}</p>

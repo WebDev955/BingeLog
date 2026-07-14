@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 //IMPORTS - Styles
-import styles from "./CommentChats2.module.css";
+// import styles from "./CommentChats2.module.css";
+import styles from "./CommentChats2UPDATE.module.css";
 import ReplyComment from "./ReplyComment";
 import CommentIcon from "../../../../../public/LeaveComment.png";
 import LeaveComment2 from "./LeaveComment2";
@@ -28,8 +29,7 @@ function CommentChats2({ status }) {
       <div>{!chatThread && <LeaveComment2 status={status} />}</div>
       <div>
         {isUserCommenting &&
-          comments &&
-          comments.map((comment, index) => (
+          comments && comments.map((comment, index) => (
             <div key={comment.commentId} className={styles.commentWrapper}>
               <h3>Comment Messages</h3>
               <header className={styles.commentHeader}>
@@ -51,6 +51,7 @@ function CommentChats2({ status }) {
                     status={status}
                     threadId={threadId}
                     commentId={comment.commentId}
+                    onReplyPosted={() => setDisplayReply(null)}
                   />
                 )}
               </article>
@@ -79,6 +80,7 @@ function CommentChats2({ status }) {
                           threadId={threadId}
                           replyAuthor={reply.authorUserName}
                           commentId={comment.commentId}
+                          onReplyPosted={() => setDisplayReply(null)}
                         />
                       )}
                     </article>

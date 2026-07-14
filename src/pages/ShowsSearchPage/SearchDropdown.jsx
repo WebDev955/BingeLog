@@ -11,18 +11,18 @@ function SearchDropdown({ searchResults, query }) {
   const [selectedShow, setSelectedShow] = useState("");
   const myShows = useSelector((state) => state.shows.myShows);
 
-  function displayShowDetails(show) {
-    setSelectedShow(show);
-    if (selectedShow) {
-      setSelectedShow("");
-    }
-  }
+function displayShowDetails(show) {
+  setSelectedShow((prevSelectedShow) =>
+    prevSelectedShow?.imdbId === show.imdbId 
+      ? "" 
+      : show
+  );
+}
   return (
     <div className={styles.mainDropdownWrapper}>
       <div>
         {searchResults
-          .filter((show) =>
-            show.title.toLowerCase().includes(query.toLowerCase()),
+          .filter((show) => show.title.toLowerCase().includes(query.toLowerCase()),
           )
           .map((show) => {
             const alreadySaved = myShows.some(

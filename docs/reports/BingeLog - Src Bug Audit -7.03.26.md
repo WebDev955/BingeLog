@@ -1,4 +1,4 @@
-# BingeLog `src/` Bug Audit — 2026-07-03
+# BingeLog - Src Bug Audit -7.03.26
 
 Full read-through of every file under `src/`, split across six parallel review
 passes (auth/context/login, UI components + hooks, Redux store + Firebase,

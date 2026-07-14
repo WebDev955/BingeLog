@@ -21,8 +21,6 @@ export const useAutoStatusDebounce = () => {
   const scheduleRef = useRef(null);
 
   function triggerDebounce() {
-    console.log("Debounce Hook triggered");
-    console.log("scheduleRef.current:", scheduleRef.current);
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       scheduleRef.current();
@@ -33,7 +31,6 @@ export const useAutoStatusDebounce = () => {
   }, []);
 
   async function scheduleAutoStatus() {
-    console.log("Schedule Auto Status running");
     const newAutoStatus = {
       userId: userId,
       userName: userName,
@@ -53,13 +50,9 @@ export const useAutoStatusDebounce = () => {
         recentlyFinished: finishedShows[finishedShows.length - 1] ?? null,
       },
     };
-    console.log("Attempting Firestore write", newAutoStatus);
     try {
-      console.log(userId);
-      console.log("userId from Redux:", userId);
       const autoStatusRef = collection(db, "autoStatuses");
       await addDoc(autoStatusRef, newAutoStatus);
-      console.log("Write successful");
       dispatch(socialFeedActions.addAutoStatus(newAutoStatus));
     } catch (err) {
       console.error("Write Faild:", err);

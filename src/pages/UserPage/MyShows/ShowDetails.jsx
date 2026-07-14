@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 //IMPORTS - Components
 import EpisodeDetails from "./EpisodeDetails";
 //IMPORTS - Styles
-import styles from "./ShowDetails.module.css";
+// import styles from "./ShowDetails.module.css";
+import styles from "./ShowDetailsUPDATE.module.css";
 //IMPORTS - FIREBASE
 
 function ShowDetails({ show }) {

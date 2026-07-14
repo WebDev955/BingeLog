@@ -4,7 +4,8 @@ import ActionBar from "./ActionBar";
 //IMPORTS - REDUX
 
 //IMPORTS - Styles
-import styles from "./FeedCard.module.css";
+// import styles from "./FeedCard.module.css";
+import styles from "./FeedCardUPDATE.module.css";
 
 function FeedCard({ status }) {
   const currBinging = status.statusPost.currBinging;

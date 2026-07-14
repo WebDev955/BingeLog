@@ -4,7 +4,8 @@ import { useState } from "react";
 import { doc, db, setDoc } from "../../../../firebase/firebase";
 //Imports - Hooks
 //import styles from "./CommentChats.module.css"
-import styles from "./LeaveComment2.module.css";
+// import styles from "./LeaveComment2.module.css";
+import styles from "./LeaveComment2UPDATE.module.css";
 //IMPORTS - COMPONENTS
 //import LeaveComment from "./LeaveComment"
 
@@ -29,7 +30,6 @@ export const LeaveComment2 = ({ status }) => {
     setCommentDraft(value);
   };
 
-  console.log(status);
   async function postComment(commentDraft) {
     const threadId = crypto.randomUUID();
 
@@ -53,8 +53,6 @@ export const LeaveComment2 = ({ status }) => {
     try {
       const docRefChatThread = doc(db, "chatThreads", threadId);
 
-      console.log(newChatThread);
-      console.log(newComment);
       await setDoc(docRefChatThread, newChatThread);
 
       const commentRef = doc(
@@ -74,7 +72,7 @@ export const LeaveComment2 = ({ status }) => {
         }),
       );
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
     alert("Thread and comment Made!");
   }

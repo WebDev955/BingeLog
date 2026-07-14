@@ -6,7 +6,8 @@ import { useAutoStatusDebounce } from "../../../hooks/hooks";
 import { UserProfileContext } from "../../../components/Contexts/UserProfileContext";
 import Input from "../../../components/UI/Input";
 //IMPORTS - Styles
-import styles from "./ShowNotes.module.css";
+// import styles from "./ShowNotes.module.css";
+import styles from "./ShowNotesUPDATE.module.css";
 
 //IMPORTS - REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -74,7 +75,6 @@ function ShowNotes({ epTitle, showTitle }) {
       ];
       alert(`Watched ${epTitle}!`);
       triggerDebounce();
-      console.log("Triggered Debounce - Watched Ep.");
     }
 
     try {
