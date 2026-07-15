@@ -4,7 +4,6 @@ import { db, doc, updateDoc } from "../../../firebase/firebase";
 //IMPORTS - Components
 import Bttn from "../../../components/UI/Bttn";
 import FileUploader from "../../../components/UI/FileUploader";
-import { UserProfileContext } from "../../../components/Contexts/UserProfileContext";
 
 // import styles from "../Bio/BioEdit.module.css";
 import styles from "../Bio/BioEditUPDATE.module.css";

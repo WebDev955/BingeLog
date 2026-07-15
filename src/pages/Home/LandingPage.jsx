@@ -2,7 +2,7 @@
 import { NavLink } from "react-router-dom";
 //IMPORTS - Components
 import TextContent from "../../components/UI/TextContent";
-import Auth from "../../components/auth";
+import Auth from "../../components/Auth";
 import SignUp from "../../components/UI/Signup";
 import Login from "../../components/LoginLogOut/Login";
 //IMPORTS - Styles

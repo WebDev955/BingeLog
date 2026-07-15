@@ -4,7 +4,7 @@ import ShowsList from "./ShowsList";
 import ShowSearchBar from "./ShowSearchBar";
 
 //IMPORTS - Styles
-import styles from "./ShowsPage.Module.css";
+import styles from "./ShowsPage.module.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 

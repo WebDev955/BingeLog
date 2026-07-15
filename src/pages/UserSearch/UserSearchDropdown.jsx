@@ -5,8 +5,6 @@ import { useParams, useSearchParams } from "react-router-dom";
 //IMPORTS - Components
 import UsersList from "./UserList";
 import Bttn from "../../components/UI/Bttn";
-import { UserProfileContext } from "../../components/Contexts/UserProfileContext";
-import { UserAccountContext } from "../../components/Contexts/UserAccountContext";
 
 //IMPORTS - Styles
 import styles from "./UserSearchDropdown.module.css";

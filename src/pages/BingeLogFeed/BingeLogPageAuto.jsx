@@ -27,10 +27,12 @@ function BingeLogPageAuto() {
 
   const handleStatusUserNameSort = (statusArr) => {
     const sorted = [...statusArr].sort((a, b) =>
-      a.userId.localeCompare(b.userId),
+      a.userName.localeCompare(b.userName),
     );
     dispatch(socialFeedActions.updateAutoStatuses(sorted));
   };
+
+  
 
   return (
     <main className={styles.mainAutoFeedWrapper}>

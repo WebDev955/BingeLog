@@ -13,7 +13,7 @@ export const useAutoStatusDebounce = () => {
   const currBinging = useSelector((state) => state.shows.currentlyBinging);
   const finishedShows = useSelector((state) => state.shows.finishedShows);
   const watchedEps = useSelector((state) => state.shows.watchedEps);
-  const userId = useSelector((state) => state.auth.user.uid);
+  const userId = useSelector((state) => state.auth.user?.uid);
   const userImage = useSelector((state) => state.profile.profileImgUrl);
   const userName = useSelector((state) => state.auth.user.userName);
 

@@ -15,7 +15,7 @@ function FileUploader() {
 
   const dispatch = useDispatch();
   //const profileImgUrl = useSelector((state) => state.profile.profileImgUrl)
-  const uid = useSelector((state) => state.auth.user.uid);
+  const uid = useSelector((state) => state.auth.user?.uid);
 
   //checks first to see if file selcted is there, if so, add it to setFile
   function handleFileChange(e) {

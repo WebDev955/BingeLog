@@ -75,9 +75,11 @@ function ShowsList({ showDetails }) {
             </div>
             <div className={styles.genreSeasons}>
               <div className={styles.genres}>
-                <p>{showDetails.genres[0]?.name}</p>|
-                <p>{showDetails?.genres[1]?.name}</p>|
-                <p>{showDetails?.genres[2]?.name}</p>
+                {showDetails.genres?.map((genre, index) => (
+                  <span key={genre.name}>
+                    <p>{genre.name} {index < showDetails.genres.length - 1 && "|"}</p>
+                  </span>
+                ))}
               </div>
               <div className={styles.seasonInfo}>
                 <p>{showDetails?.seasonCount} Seasons</p>- &nbsp;

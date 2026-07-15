@@ -1,9 +1,6 @@
-//IMPORTS - Hooks
-import { useContext } from "react";
 //IMPORTS - Components
 import LogInForm from "./LogInForm";
 import Modal from "../UI/Modal";
-import { UserAccountContext } from "../Contexts/UserAccountContext";
 //IMPORTS - Redux Features
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../store/slices/authSlice";

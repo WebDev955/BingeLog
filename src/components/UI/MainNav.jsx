@@ -9,7 +9,6 @@ import Bttn from "./Bttn";
 
 //IMPORTS - Styles
 import styles from "./MainNav.module.css";
-import SignUp from "./Signup";
 import Login from "../LoginLogOut/Login";
 
 //This tells React to evaluate the JavaScript expression inside the ${} and place the value of id into the path.
@@ -26,9 +25,6 @@ function MainNav() {
   }
   function toggleLogOut() {
     dispatch(authActions.logOut());
-  }
-  function toggleCreateAccount() {
-    dispatch(authActions.startCreatingAccount());
   }
   return (
     <header className={styles.mainWrapper}>

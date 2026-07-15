@@ -1,10 +1,7 @@
 //IMPORTS - Hooks
-import { useContext } from "react";
 import { NavLink, useParams, useSearchParams } from "react-router-dom";
 //IMPORTS - Components
 import Bttn from "../../components/UI/Bttn";
-import { UserProfileContext } from "../../components/Contexts/UserProfileContext";
-import { UserAccountContext } from "../../components/Contexts/UserAccountContext";
 //IMPORT - REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";

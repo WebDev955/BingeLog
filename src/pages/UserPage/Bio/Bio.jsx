@@ -42,7 +42,7 @@ function Bio({ id }) {
   const userBio = useSelector((state) => state.profile.bio);
   const avatar = useSelector((state) => state.profile.profileImgUrl);
   const userName = useSelector((state) => state.auth.user.userName);
-  const userId = useSelector((state) => state.auth.user.id);
+  const userId = useSelector((state) => state.auth.user.uid);
   //const isEditingBio = useSelector((state) => state.profile.isEditingBio)
 
   //const bioAvatar = useSelector((state) => state.profile.bioAvatar)

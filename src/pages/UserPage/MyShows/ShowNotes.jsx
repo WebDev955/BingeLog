@@ -3,7 +3,6 @@ import Bttn from "../../../components/UI/Bttn";
 import { useEffect, useState } from "react";
 import { useAutoStatusDebounce } from "../../../hooks/hooks";
 //IMPORTS - Components
-import { UserProfileContext } from "../../../components/Contexts/UserProfileContext";
 import Input from "../../../components/UI/Input";
 //IMPORTS - Styles
 // import styles from "./ShowNotes.module.css";
@@ -18,7 +17,7 @@ import { authActions } from "../../../store/slices/authSlice";
 
 import { db, doc, updateDoc } from "../../../firebase/firebase";
 
-function ShowNotes({ epTitle, showTitle }) {
+function ShowNotes({ epTitle, showTitle, show}) {
   const triggerDebounce = useAutoStatusDebounce();
   
   //Selecting Redux State
@@ -27,7 +26,7 @@ function ShowNotes({ epTitle, showTitle }) {
   const epNotes = useSelector((state) => state.notes.epNotes);
   const charNotes = useSelector((state) => state.notes.charNotes);
   const watchedEps = useSelector((state) => state.shows.watchedEps);
-  
+  const showId = show.id
 
   /**Editing Episode Notes**/
   const [draftNotes, setDraftNotes] = useState({});
@@ -92,12 +91,18 @@ function ShowNotes({ epTitle, showTitle }) {
   async function saveNotes(epTitle) {
     const updatedNotes = {
       ...epNotes,
-      [epTitle]: draftNotes[epTitle] ?? epNotes[epTitle],
+      [showId]: {
+        ...epNotes[showId],
+        [epTitle]: draftNotes[epTitle] ?? epNotes[showId]?.[epTitle] ?? "",
+      },
     };
 
     const updatedCharNotes = {
       ...charNotes,
-      [epTitle]: draftCharNotes[epTitle] ?? charNotes[epTitle],
+      [showId]: {
+        ...charNotes[showId],
+        [epTitle]: draftCharNotes[epTitle] ?? charNotes[showId]?.[epTitle] ?? "",
+      },
     };
 
     try {
@@ -124,11 +129,11 @@ function ShowNotes({ epTitle, showTitle }) {
   }
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("EpNotes: " + epTitle));
+    const saved = JSON.parse(localStorage.getItem("EpNotes: " + showId + ":" + epTitle));
     if (saved) {
       updateEpNotes(saved, epTitle);
     }
-  }, [epTitle]);
+  }, [epTitle, showId]);
 
   return (
     <main className={styles.showNotesWrapper}>
@@ -173,12 +178,12 @@ function ShowNotes({ epTitle, showTitle }) {
         <div>
           <p>Episode Notes</p>
           <textarea
-            value={draftNotes[epTitle] ?? epNotes[epTitle]}
+            value={draftNotes[epTitle] ?? epNotes[showId]?.[epTitle]}
             onChange={(e) => updateEpNotes(e.target.value, epTitle)}
           />
           <p>Character Notes</p>
           <textarea
-            value={draftCharNotes[epTitle] ?? charNotes[epTitle]}
+            value={draftCharNotes[epTitle] ?? charNotes[showId]?.[epTitle]}
             onChange={(e) => updateCharNotes(e.target.value, epTitle)}
           />
         </div>
@@ -187,10 +192,10 @@ function ShowNotes({ epTitle, showTitle }) {
       {isViewingNotes === epTitle && (
         <div className={styles.showNotes}>
           <p>Episode Notes </p>
-          {epNotes[epTitle]}
+          {epNotes[showId]?.[epTitle]}
           <hr />
           <p>CharacterNotes</p>
-          {charNotes[epTitle]}
+          {charNotes[showId]?.[epTitle]}
         </div>
       )}
     </main>

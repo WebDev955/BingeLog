@@ -13,7 +13,6 @@ import UserSearchPage from "./pages/UserSearch/UserSearchPage";
 // IMPORTS - FIREBASE
 import {
   db,
-  getDoc,
   doc,
   query,
   where,
@@ -21,6 +20,7 @@ import {
   collection,
   auth,
   QuerySnapshot,
+  onSnapshot,
 } from "./firebase/firebase";
 
 import { onAuthStateChanged } from "./firebase/firebase";
@@ -41,6 +41,39 @@ import "./App.css";
 import { current } from "@reduxjs/toolkit";
 import { snapshotEqual } from "firebase/firestore";
 
+// Resolves once the given doc exists, instead of a single one-shot check —
+// covers the gap between a user signing in and their Users/{uid} doc being written.
+// Falls back to null after timeoutMs so a permanently-missing doc doesn't hang hydration forever.
+function waitForUserDoc(docRef, timeoutMs = 5000) {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      unsubscribe();
+      resolve(null);
+    }, timeoutMs);
+
+    const unsubscribe = onSnapshot(
+      docRef,
+      (snap) => {
+        if (settled || !snap.exists()) return;
+        settled = true;
+        clearTimeout(timer);
+        unsubscribe();
+        resolve(snap);
+      },
+      (err) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        unsubscribe();
+        reject(err);
+      },
+    );
+  });
+}
+
 //{path: `friendsList/:userName/:id`, element: <FriendsList/>},
 //THIS IS AN ISSUE
 function App() {
@@ -59,12 +92,11 @@ function App() {
         setHydrated(true);
         return;
       }
-
       try {
         const docRef = doc(db, "Users", currentUser?.uid);
-        const docSnap = await getDoc(docRef);
+        const docSnap = await waitForUserDoc(docRef);
 
-        if (docSnap.exists()) {
+        if (docSnap && docSnap.exists()) {
           const user = docSnap.data();
           // Hydrate authSlice
           dispatch(
@@ -96,13 +128,18 @@ function App() {
           const friendsList = user.friendsList || [];
           if (friendsList.length > 0) {
             const autoStatusesRef = collection(db, "autoStatuses");
-            const q = query(
-              autoStatusesRef,
-              where("userId", "in", friendsList),
+            // Firestore "in" queries only accept up to 10 values, so chunk larger friend lists
+            const friendsChunks = [];
+            for (let i = 0; i < friendsList.length; i += 10) {
+              friendsChunks.push(friendsList.slice(i, i + 10));
+            }
+            const chunkedSnapshots = await Promise.all(
+              friendsChunks.map((chunk) =>
+                getDocs(query(autoStatusesRef, where("userId", "in", chunk))),
+              ),
             );
-            const querySnapshot = await getDocs(q);
-            const friendsListAutoStatuses = querySnapshot.docs.map((doc) =>
-              doc.data(),
+            const friendsListAutoStatuses = chunkedSnapshots.flatMap(
+              (querySnapshot) => querySnapshot.docs.map((doc) => doc.data()),
             );
             dispatch(
               socialFeedActions.updateAutoStatuses(

@@ -22,9 +22,7 @@ export const LeaveComment2 = ({ status }) => {
   const userId = useSelector((state) => state.auth.user.uid);
   const userImg = useSelector((state) => state.profile.profileImgUrl);
 
-  const [commentDraft, setCommentDraft] = useState(
-    "Write a comment on this status",
-  );
+  const [commentDraft, setCommentDraft] = useState("");
 
   const updateComment = (value) => {
     setCommentDraft(value);
@@ -82,6 +80,7 @@ export const LeaveComment2 = ({ status }) => {
       <h3>Post a Comment</h3>
       <div className={styles.postAComment}>
         <textarea
+          value={commentDraft}
           onChange={(e) => updateComment(e.target.value)}
           placeholder={`Reply to ${status.userName}`}
         />

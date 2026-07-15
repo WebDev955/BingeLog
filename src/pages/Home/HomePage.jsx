@@ -2,7 +2,7 @@
 import { NavLink, Navigate } from "react-router-dom";
 //IMPORTS - Components
 import TextContent from "../../components/UI/TextContent";
-import Auth from "../../components/auth";
+import Auth from "../../components/Auth";
 import LandingPage from "./LandingPage";
 
 import { useSelector } from "react-redux";

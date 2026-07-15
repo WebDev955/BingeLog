@@ -1,7 +1,7 @@
 //IMPORTS - Hooks
 import { useEffect, useState } from "react";
 //IMPORTS - Components
-import UserSearchDropdown from "./userSearchDropdown";
+import UserSearchDropdown from "./UserSearchDropdown";
 //IMPORTS - Styles
 import styles from "./ShowSearchBar.module.css";
 import { doc, getDoc, db, collection, getDocs } from "../../firebase/firebase";
