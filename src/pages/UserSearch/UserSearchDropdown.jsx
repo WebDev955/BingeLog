@@ -66,7 +66,7 @@ function UserSearchDropdown({ searchResults }) {
               <NavLink to={`/userPage/${user.id}`}>
                 <p>Profile Link</p>
               </NavLink>
-              <p key={user.uid} onClick={() => displayUserDetails(user)}>
+              <p key={user.id} onClick={() => displayUserDetails(user)}>
                 {user.userName}
               </p>
               <button onClick={() => addFriend(user.id)}>Save User</button>

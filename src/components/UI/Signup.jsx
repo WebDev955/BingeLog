@@ -1,5 +1,5 @@
 //IMPORTS - Hooks
-
+import { useState } from "react";
 //IMPORTS - Components
 import SignUpForm from "./SignUpForm";
 //IMPORTS - Redux
@@ -13,8 +13,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function SignUp() {
   const dispatch = useDispatch();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmitAccountInfoFireBase(newUserData) {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
@@ -50,6 +54,8 @@ function SignUp() {
       dispatch(authActions.stopCreatingAccount());
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -71,7 +77,7 @@ function SignUp() {
   }
   return (
     <>
-      <SignUpForm onSubmit={handleSubmit} type="submit" />
+      <SignUpForm onSubmit={handleSubmit} type="submit" disabled={isSubmitting} />
     </>
   );
 }

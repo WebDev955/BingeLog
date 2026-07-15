@@ -3,11 +3,11 @@
 //IMPORTS - Styles
 import styles from "./Input.module.css";
 
-function Input({ label, id, attribute, ...props }) {
+function Input({ label, id, htmlFor, ...props }) {
   return (
     <>
       <div className={styles.inputWrapper}>
-        <label htmlFor={attribute}>{label}</label>
+        <label htmlFor={htmlFor}>{label}</label>
         <input id={id} {...props} />
       </div>
     </>

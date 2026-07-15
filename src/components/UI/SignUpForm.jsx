@@ -5,7 +5,7 @@ import Bttn from "./Bttn";
 //IMPORTS - Styles
 import styles from "./SignUpForm.module.css";
 
-function SignUpForm({ type, onSubmit }) {
+function SignUpForm({ type, onSubmit, disabled }) {
   return (
     <form onSubmit={onSubmit} className={styles.formWrapper}>
       <div className={styles.inputWrapper}>
@@ -30,7 +30,7 @@ function SignUpForm({ type, onSubmit }) {
           name="password"
           placeholder="Typer passowrd here."
         />
-        <Bttn className={styles.signUpBttn} type={type}>
+        <Bttn className={styles.signUpBttn} type={type} disabled={disabled}>
           Sign Up
         </Bttn>
       </div>

@@ -13,7 +13,7 @@ function FeedCard({ status }) {
   const recentlyFinished = status.statusPost.recentlyFinished?.show;
 
   return (
-    <main className={styles.mainStatusWrapper} key={status.statusId}>
+    <main className={styles.mainStatusWrapper}>
       <article>
         <header className={styles.feedHeader}>
           <img src={status?.userImage || "/BingeLog/DefaultAvatar.png"} />
