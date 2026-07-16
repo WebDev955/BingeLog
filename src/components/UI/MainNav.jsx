@@ -30,41 +30,41 @@ function MainNav() {
     <header className={styles.mainWrapper}>
       <nav className={styles.nav}>
         <ul>
-          <li>
+          <li className={styles.navItem}>
             {isLoggedIn && (
-              <NavLink to="/bingelog">
+              <NavLink className={styles.navLink} to="/bingelog">
                 <img width="35px" src="/BingeLog/BingeLog.png" />
               </NavLink>
             )}
           </li>
-          <li>
+          <li className={styles.navItem}>
             {isLoggedIn && id && (
-              <NavLink to={`/userPage/${id}`}>
+              <NavLink className={styles.navLink} to={`/userPage/${id}`}>
                 <img width="35px" src="/BingeLog/UserPage.png" />
               </NavLink>
             )}
           </li>
-          <li>
+          <li className={styles.navItem}>
             {isLoggedIn && (
-              <NavLink to="/shows">
+              <NavLink className={styles.navLink} to="/shows">
                 <img width="35px" src="/BingeLog/TvIcon.png" />
               </NavLink>
             )}
           </li>
-          <li>
+          <li className={styles.navItem}>
             {isLoggedIn && (
-              <NavLink to="/userSearch">
+              <NavLink className={styles.navLink} to="/userSearch">
                 <img width="35px" src="/BingeLog/UserSearchIcon.png" />
               </NavLink>
             )}
           </li>
-          <li>
-            <NavLink to="/About">
+          <li className={styles.navItem}>
+            <NavLink className={styles.navLink} to="/About">
               <img width="35px" src="/BingeLog/HomeIcon.png" />
             </NavLink>
           </li>
-          <li>
-            <Bttn onClick={toggleLogOut}>
+          <li className={styles.navItem}>
+            <Bttn className={styles.logoutBttn} onClick={toggleLogOut}>
               <img width="35px" src="/BingeLog/LogOut.png" />
             </Bttn>
           </li>
