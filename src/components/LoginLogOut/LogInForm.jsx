@@ -16,7 +16,7 @@ function LogInForm({ type, onSubmit }) {
           id="password"
           name="password"
         />
-        <Bttn type={type}>Sign In</Bttn>
+        <Bttn className={styles.authBttn} type={type}>Sign In</Bttn>
       </div>
     </form>
   );

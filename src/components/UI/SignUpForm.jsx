@@ -30,7 +30,7 @@ function SignUpForm({ type, onSubmit, disabled }) {
           name="password"
           placeholder="Typer passowrd here."
         />
-        <Bttn className={styles.signUpBttn} type={type} disabled={disabled}>
+        <Bttn className={styles.authBttn} type={type} disabled={disabled}>
           Sign Up
         </Bttn>
       </div>

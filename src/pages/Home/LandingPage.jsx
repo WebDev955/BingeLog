@@ -6,7 +6,8 @@ import Auth from "../../components/Auth";
 import SignUp from "../../components/UI/Signup";
 import Login from "../../components/LoginLogOut/Login";
 //IMPORTS - Styles
-import styles from "./HomePage.module.css";
+// import styles from "./HomePage.module.css";
+import styles from "./HomePageUPDATE.module.css";
 import Bttn from "../../components/UI/Bttn";
 
 import { useDispatch } from "react-redux";
@@ -63,7 +64,9 @@ const LandingPage = () => {
       <section className={styles.loginSignUp}>
         <p>Create an account</p>
         <SignUp />
-        <Bttn onClick={toggleLogIn}>Or Login Here</Bttn>
+        <Bttn className={styles.loginToggleBttn} onClick={toggleLogIn}>
+          Or Login Here
+        </Bttn>
         <Login />
       </section>
     </main>
