@@ -12,6 +12,9 @@ const friendsSlice = createSlice({
     addFriend(state, action) {
       state.friendsList = action.payload; //newly added friend ID
     },
+    removeFriend(state, action) {
+      state.friendsList = action.payload; //friendsList with friend removed
+    },
   },
 });
 

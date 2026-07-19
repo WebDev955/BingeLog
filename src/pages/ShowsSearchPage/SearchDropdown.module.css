@@ -1,13 +1,14 @@
-.mainDropdownWrapper{
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    background-color: rgba(245, 245, 245, 0.539);
+.mainDropdownWrapper {
+    background-color: #ffffff;
+    border: 1.5px solid rgba(39, 39, 39, 0.12);
+    border-radius: 20px;
     padding: 10px;
     text-align: left;
-    border-radius: 5px;
     margin-top: 5px;
-    box-shadow: 5px 5px 30px -1px #000000;
+    font-family: var(--body-font);
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.16),
+        0 3px 8px rgba(0, 0, 0, 0.08);
     animation: slideIn 0.3s ease-out forwards;
 }
 @keyframes slideIn {
@@ -25,57 +26,69 @@
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 10px;
-    border-bottom: black solid 1px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(39, 39, 39, 0.15);
+}
+
+.showResult:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .showTitle {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     font-size: larger;
+    cursor: pointer;
+    border-radius: 14px;
+    padding: 6px;
+    transition: background-color 0.18s ease;
 }
+
+.showTitle:hover {
+    background-color: rgba(64, 120, 153, 0.1);
+}
+
 .showTitles {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.savedShow {
-    color: red;
-    background-color: white;
-    border: solid black 2px;
-    border-radius: 25px;
-    padding: 5px;
-    font-size: smaller;
-    margin-bottom: 10px;
+    gap: 6px;
 }
 
 .showTitle p {
     font-weight: 600;
-    padding-bottom: 7px;
-}
-.savedShow {
-    font-weight: 600;
-    padding-bottom: 7px;
-    color: red;
+    color: var(--raisin-black);
+    transition: color 0.18s ease;
 }
 
-.showTitle p:hover {
-    cursor: pointer;
-    color: aliceblue;
+.showTitle:hover p {
+    color: var(--cerulean);
+}
+
+.savedShow {
+    align-self: flex-start;
+    background-color: rgba(199, 62, 29, 0.14);
+    color: var(--sinopia);
+    border: 1.5px solid rgba(199, 62, 29, 0.4);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .showTitle img {
     width: 150px;
     padding: 5px;
-}
-
-.showTitle img:hover {
-    cursor: pointer;
+    border-radius: 14px;
+    object-fit: cover;
 }
 
 @media (max-width: 412px) {
-    .showDetails img {
+    .showTitle img {
         width: 100px;
         padding: 5px;
     }

@@ -1,25 +1,81 @@
 .mainWrapper {
     display: flex;
     flex-direction: column;
-    outline: 2px solid red;
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    font-family: var(--body-font);
+    background-color: #ffffff;
+    border: 1.5px solid rgba(39, 39, 39, 0.12);
+    border-radius: 20px;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.16),
+        0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-.mainWrapper  h1 {
-    border-bottom: solid black 2px;
+.mainWrapper h1 {
+    text-align: center;
+    color: var(--russian-violet);
+    font-family: var(--heading-font);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(39, 39, 39, 0.15);
 }
 
 .friendCard {
     display: flex;
     flex-direction: row;
-    border-bottom: solid black 0.5px;
+    align-items: center;
+    gap: 15px;
     padding: 10px;
     font-size: larger;
+    font-weight: 600;
+    color: var(--raisin-black);
+    border-radius: 14px;
+    transition: background-color 0.18s ease;
+}
+
+.friendCard:not(:last-child) {
+    border-bottom: 1px solid rgba(39, 39, 39, 0.1);
+}
+
+.friendCard:hover {
+    background-color: rgba(64, 120, 153, 0.1);
 }
 
 .friendCard img {
-    border-radius: 50px;
-    margin-right: 20px;
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1.5px solid rgba(64, 120, 153, 0.35);
 }
 
+.friendCard p {
+    flex: 1;
+}
 
+.removeBttn {
+    font-family: var(--body-font);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: 1.5px solid rgba(199, 62, 29, 0.4);
+    border-radius: 999px;
+    color: var(--sinopia);
+    background-color: rgba(199, 62, 29, 0.1);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
 
+.removeBttn:hover {
+    background-color: var(--sinopia);
+    color: whitesmoke;
+    transform: translateY(-1px);
+}
+
+.removeBttn:active {
+    transform: translateY(0);
+}

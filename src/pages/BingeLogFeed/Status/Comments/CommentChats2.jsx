@@ -9,29 +9,66 @@ import CommentIcon from "../../../../../public/LeaveComment.png";
 import LeaveComment2 from "./LeaveComment2";
 
 function CommentChats2({ status }) {
+  //ESTABLISH STATE
   const [displayReply, setDisplayReply] = useState("");
+  const [selectedThreadId, setSelectedThreadId] = useState(null);
 
-  const chatThread = useSelector((state) =>
-    state.chats.chatThreads.find(
+  //DERIVE USER DATA FROM SLICES
+  const userId = useSelector((state) => state.auth.user.uid);
+  const isOwner = status.userId === userId;
+
+  //FUNCTION - FIND ALL RELATED STATUS THREADS
+  //correctly gives data for every related status thread
+  const statusThreads = useSelector((state) =>
+    state.chats.chatThreads.filter(
       (thread) => thread.relatedStatusId === status.statusId,
     ),
   );
-  const userId = useSelector((state) => state.auth.user.uid);
-  const threadId = chatThread?.threadId;
-  const comments = chatThread?.comments ?? [];
-  const isUserCommenting = chatThread?.commentingUsers.includes(userId);
+
+  console.log(status)
+
+  //FUNCTION - RESOLVE THE ONE THREAD TO DISPLAY
+  //Owner: whichever thread they've clicked in the selector below.
+  //Friend: the single thread they're a participant in (should only ever be one).
+  const chatThread = isOwner
+    ? statusThreads.find((thread) => thread.threadId === selectedThreadId)
+    : statusThreads.find((thread) => thread.commentingUsers.includes(userId));
 
   const replyHandler = (key) => {
     setDisplayReply((prev) => (prev === key ? null : key));
   };
+
+  //DERIVED DATA FROM FUNCTIONS
+  const threadId = chatThread?.threadId;
+  const comments = chatThread?.comments ?? [];
+  const isUserCommenting = chatThread?.commentingUsers.includes(userId);
+
   return (
     <main className={styles.commentMessagesWrapper}>
-      <div>{!chatThread && <LeaveComment2 status={status} />}</div>
-      <div>
-        {isUserCommenting &&
-          comments && comments.map((comment, index) => (
+      {isOwner && statusThreads.length > 0 && (
+        <div className={styles.threadSelector}>
+          <h3>Conversations</h3>
+          {statusThreads.map((thread) => {
+            const friendId = thread.commentingUsers.find(
+              (id) => id !== status.userId,
+            );
+            return (
+              <button
+                key={thread.threadId}
+                onClick={() => setSelectedThreadId(thread.threadId)}
+              >
+                {friendId}
+              </button>
+            );
+          })}
+        </div>
+      )}
+      {!chatThread && <LeaveComment2 status={status} />}
+      {isUserCommenting && comments.length > 0 && (
+        <>
+          <h3>Comment Messages</h3>
+          {comments.map((comment, index) => (
             <div key={comment.commentId} className={styles.commentWrapper}>
-              <h3>Comment Messages</h3>
               <header className={styles.commentHeader}>
                 <img src={comment.authorImg} />
                 <p>{comment.authorUserName}</p>
@@ -39,7 +76,7 @@ function CommentChats2({ status }) {
               </header>
               <article className={styles.commentContent}>
                 <p>{comment.text}</p>
-                {comment.replies?.length === 0 && (
+                {!comment.replies?.length && (
                   <img
                     onClick={() => replyHandler(`comment-${index}`)}
                     src={CommentIcon}
@@ -88,7 +125,8 @@ function CommentChats2({ status }) {
                 ))}
             </div>
           ))}
-      </div>
+        </>
+      )}
     </main>
   );
 }

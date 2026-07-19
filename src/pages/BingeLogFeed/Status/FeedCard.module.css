@@ -1,7 +1,7 @@
 .mainStatusWrapper{
     width: 100%;
     display: flex;
-    align-Content:center;
+    align-Content: center;
     flex-direction: column;
     text-align: left;
 }

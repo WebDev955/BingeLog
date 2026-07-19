@@ -34,12 +34,14 @@ export const LeaveComment2 = ({ status }) => {
     const newChatThread = {
       threadId: threadId,
       relatedStatusId: status.statusId,
-      commentingUsers: [status.userId, userId],
-      visibility: "private",
+      commentingUsers: [status.userId, userId],      
       initiatedBy: userId,
+      authorUserName: userName,
+      visibility: "private",
       timestamp: new Date().getTime(),
     };
     const newComment = {
+      threadId: threadId,
       commentId: crypto.randomUUID(),
       authorId: userId,
       authorUserName: userName,
@@ -66,6 +68,7 @@ export const LeaveComment2 = ({ status }) => {
       dispatch(
         chatsActions.updateComments({
           statusId: status.statusId,
+          threadId: threadId,
           comments: [newComment],
         }),
       );

@@ -4,6 +4,7 @@
 }
 .commentMessagesWrapper h3{
     border-bottom: solid black 0.5px;
+    padding-left: 10px;
 }
 
 .commentWrapper{

@@ -1,8 +1,9 @@
 .commentMessagesWrapper {
   display: flex;
   flex-direction: column;
+  align-content: center;
   gap: 10px;
-  padding: 10px 14px 4px;
+  padding: 10px 0 4px;
   background-color: rgba(255, 255, 255, 0.04);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -12,9 +13,10 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(245, 245, 245, 0.55);
+  color: var(--xanthous);
   border-bottom: none;
   margin-bottom: 2px;
+  padding-left: 10px;
 }
 
 .commentWrapper {
@@ -22,10 +24,18 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  gap: 8px;
+  margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.11);
   border-radius: 12px;
   overflow: hidden;
   padding-bottom: 6px;
+  
+
+}
+
+.commentWrapper:last-child {
+  margin-bottom: 0;
 }
 
 .commentHeader {

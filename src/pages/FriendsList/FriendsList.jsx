@@ -2,14 +2,16 @@
 import { useEffect, useState } from "react";
 //IMPORTS - Components
 import { useSelector, useDispatch } from "react-redux";
-//import { friendsActions } from "../../store/slices/friendsSlice"
-import { db, collection, getDocs } from "../../firebase/firebase";
+import { friendsActions } from "../../store/slices/friendsSlice";
+import { db, doc, updateDoc, collection, getDocs } from "../../firebase/firebase";
 
 //IMPORTS - Styles
 import styles from "../FriendsList/FriendsList.module.css";
 
 function FriendsList() {
+  const dispatch = useDispatch();
   const [globalUsers, setGlobalUsers] = useState([]);
+  const userId = useSelector((state) => state.auth.user.uid);
   const friendsList = useSelector((state) => state.friends.friendsList);
   const friend = friendsList
     .map((friendId) => globalUsers.find((user) => user.id === friendId))
@@ -32,6 +34,22 @@ function FriendsList() {
     fetchGlobalUsers();
   }, []);
 
+  async function removeFriend(friendId) {
+    const updatedFriendsList = friendsList.filter((id) => id !== friendId);
+
+    try {
+      const docRef = doc(db, "Users", userId);
+      await updateDoc(docRef, {
+        friendsList: updatedFriendsList,
+      });
+
+      dispatch(friendsActions.removeFriend(updatedFriendsList));
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
   return (
     <main className={styles.mainWrapper}>
       <h1>Friends List</h1>
@@ -39,6 +57,12 @@ function FriendsList() {
         <div key={friend.id} className={styles.friendCard}>
           <img src={friend?.profileImgUrl} width="55px" />
           <p>{friend?.userName || "Unknown User"}</p>
+          <button
+            className={styles.removeBttn}
+            onClick={() => removeFriend(friend.id)}
+          >
+            Remove
+          </button>
         </div>
       ))}
     </main>

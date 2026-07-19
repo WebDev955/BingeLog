@@ -9,7 +9,7 @@
    width: 100%;
    z-index: 10;
 
-   padding: 10px 16px;
+   padding: 10px clamp(6px, 3vw, 16px);
    border-top: 1px solid rgba(64, 120, 153, 0.35);
    border-top-left-radius: 18px;
    border-top-right-radius: 18px;
@@ -34,11 +34,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 20px;
+    gap: clamp(4px, 2vw, 20px);
 }
 
 .navItem {
@@ -51,10 +52,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: clamp(4px, 1.5vw, 8px);
   line-height: 0;
   border-radius: 999px;
   transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.navLink img,
+.logoutBttn img {
+  width: clamp(24px, 7vw, 35px);
+  height: auto;
+  display: block;
 }
 
 .navLink:hover {
@@ -77,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: clamp(4px, 1.5vw, 8px);
   line-height: 0;
   border: none;
   border-radius: 999px;

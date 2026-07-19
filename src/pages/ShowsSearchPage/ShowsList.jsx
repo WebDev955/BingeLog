@@ -66,7 +66,7 @@ function ShowsList({ showDetails }) {
           <div className={styles.showDetails}>
             <div className={styles.addShowBar}>
               {showAlreadySaved ? (
-                <p>Already Added</p>
+                null
               ) : (
                 <Bttn onClick={() => saveShowHandler(showDetails)}>
                   Save Show
@@ -77,7 +77,7 @@ function ShowsList({ showDetails }) {
               <div className={styles.genres}>
                 {showDetails.genres?.map((genre, index) => (
                   <span key={genre.name}>
-                    <p>{genre.name} {index < showDetails.genres.length - 1 && "|"}</p>
+                    <p>{genre.name} {index < showDetails.genres.length - 1}</p>
                   </span>
                 ))}
               </div>

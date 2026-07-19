@@ -16,10 +16,12 @@ const chatsSlice = createSlice({
     addChatThread(state, action) {
       state.chatThreads.push({ ...action.payload, comments: [] });
     },
+
     updateComments(state, action) {
       const thread = state.chatThreads.find(
-        (thread) => thread.relatedStatusId === action.payload.statusId,
+        (thread) => thread.threadId === action.payload.threadId,
       );
+      
       if (thread) {
         // action.payload.comments is an array, spread it in
         thread.comments.push(
@@ -32,7 +34,7 @@ const chatsSlice = createSlice({
     },
     updateReplies(state, action) {
       const thread = state.chatThreads.find(
-        (thread) => thread.relatedStatusId === action.payload.statusId,
+        (thread) => thread.threadId === action.payload.threadId,
       );
       if (thread) {
         const comment = thread.comments.find(

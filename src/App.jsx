@@ -172,6 +172,7 @@ function App() {
               const comments = commentsSnapshot.docs.map((doc) => ({
                 ...doc.data(),
                 commentId: doc.id,
+                replies: doc.data().replies ?? [],
               }));
               return { ...thread, comments };
             }),

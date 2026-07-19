@@ -1,10 +1,10 @@
 .actionBarWrapper {
   background-color: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 8px 14px;
   color: whitesmoke;
   font-weight: 600;
   font-size: 0.85rem;
+  width: 100%;
 }
 
 .actionBarIconRow {

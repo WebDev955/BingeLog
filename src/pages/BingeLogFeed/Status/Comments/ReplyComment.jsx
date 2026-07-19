@@ -38,6 +38,7 @@ export const ReplyComment = ({
   };
   async function postReply(replyDraft) {
     const newReply = {
+      threadId: threadId,
       replyId: crypto.randomUUID(),
       authorId: userId,
       authorUserName: userName,
@@ -61,6 +62,7 @@ export const ReplyComment = ({
       dispatch(
         chatsActions.updateReplies({
           statusId: status.statusId,
+          threadId: threadId,
           commentId: commentId,
           reply: newReply,
         }),

@@ -4,6 +4,7 @@
     justify-content: space-between;
     text-align: left;
     margin-top: 10px;
+    font-family: var(--body-font);
     animation: slideIn 0.3s ease-out forwards;
 }
 
@@ -18,130 +19,175 @@
   }
 }
 
+.showWrapper header {
+    text-align: center;
+    padding-bottom: 5px;
+    font-family: var(--heading-font);
+}
+
 .addShowBar {
     margin: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .addShowBar p {
-    background-color: White;
-    color: red;
-    padding: 5px;
-    width: 30%;
-    border: solid black 2px;
-    border-radius: 25px;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.showWrapper header {
-    text-align: center;
-    text-decoration: underline;
-    padding-bottom: 5px;
+    background-color: rgba(199, 62, 29, 0.14);
+    color: var(--sinopia);
+    padding: 8px 16px;
+    border: 1.5px solid rgba(199, 62, 29, 0.4);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .showWrapper button {
-    width: 150px;
+    font-family: var(--body-font);
     font-size: 15px;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 15px;
-    white-space: nowrap;
-}
-.showWrapper button:hover {
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    color: var(--raisin-black);
+    background-color: var(--xanthous);
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.22),
+        0 2px 4px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
+
+.showWrapper button:hover {
+    background-color: #f7c94a;
+    transform: translateY(-1px);
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.26),
+        0 3px 6px rgba(0, 0, 0, 0.18);
+}
+
+.showWrapper button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
 .showDetails {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(128, 128, 128, 0.72);
-    padding-left: 5px;
+    background-color: var(--russian-violet);
+    color: whitesmoke;
+    padding: 5px;
     margin-bottom: 25px;
     text-align: center;
-    border: solid black 2px;
-    border-radius: 25px;
-    box-shadow: -1px 1px 13px 14px #00000033;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.35),
+        0 3px 8px rgba(0, 0, 0, 0.22);
 }
+
 .genreSeasons {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border: solid 1px black;
-    margin-right: 5px;
-    background-color: orange;
+    margin: 10px 5px 10px 0;
     padding: 10px;
-    border-radius: 25px;
-  
+    border-radius: 16px;
+    background-color: rgba(64, 120, 153, 0.22);
+    border: 1px solid rgba(64, 120, 153, 0.4);
 }
 
 .genres {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    gap: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-right: 5px;
-    background-color: orange;
-    padding: 10px;
-    font-weight: 700;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 5px;
+}
+
+.genres p {
+    background-color: var(--cerulean);
+    color: whitesmoke;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 999px;
 }
 
 .seasonInfo {
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    color: black;
-    border-bottom: solid black 2px;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-weight: 600;
     font-size: larger;
-    
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
+
 .showOverview {
     text-align: justify;
-    font-size: 18px;
-    margin-right: 5px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    color: whitesmoke;
+    margin: 0 5px 10px;
+    line-height: 1.5;
 }
+
+.showDetails hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0 10px;
+}
+
+.showDetails > p {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--xanthous);
+    margin-top: 10px;
+}
+
 .streamingOptionsWrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns */
+    grid-template-columns: 1fr 1fr;
     gap: 5px;
     padding: 2px;
     overflow: hidden;
     margin-bottom: 10px;
     font-size: larger;
-
 }
+
 .streamingService {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     padding: 5px;
     margin: 5px;
     text-align: center;
     font-weight: 700;
 }
+
 .streamingService p {
     text-transform: capitalize;
+    color: whitesmoke;
 }
+
 .streamingService img {
-    background-color: black;
+    background-color: var(--raisin-black);
     padding: 15px;
-    border-radius: 10%;
-    width: 100%;        /* fill the card width */
-    max-width: 120px;   /* but don't get too big */
+    border-radius: 14px;
+    width: 100%;
+    max-width: 120px;
     height: auto;
     object-fit: contain;
     margin-top: 5px;
-    border: solid white 3px;
+    border: 1.5px solid rgba(64, 120, 153, 0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .streamingService img:hover {
-    transform: scale(1.1);
-    box-shadow: -3px 16px 29px 10px rgba(0,0,0,0.75); ;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
-
-/* CSS Comment*/
