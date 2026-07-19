@@ -1,0 +1,22 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.mainWrapper h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--xanthous);
+    padding: 0 14px;
+    margin-bottom: 10px;
+}
+
+.mainWrapper > p {
+    color: rgba(245, 245, 245, 0.7);
+    font-family: var(--body-font);
+    padding: 0 14px;
+}

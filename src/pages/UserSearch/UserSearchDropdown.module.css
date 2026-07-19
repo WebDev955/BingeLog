@@ -1,29 +1,80 @@
-.mainDropdownWrapper{
+.mainDropdownWrapper {
     display: flex;
     flex-direction: column;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    background-color: rgba(245, 245, 245, 0.539);
+    background-color: #ffffff;
+    border: 1.5px solid rgba(39, 39, 39, 0.12);
+    border-radius: 20px;
     padding: 10px;
-    text-align: left;
-    border-radius: 5px;
     margin-top: 5px;
-    box-shadow: 5px 5px 30px -1px #000000;
-
-   
+    text-align: left;
+    font-family: var(--body-font);
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.16),
+        0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-.userNameWrapper{
-    font-weight: 600;
+.userNameWrapper {
     display: flex;
     flex-direction: row;
-    gap: 50px;
-    margin-bottom: 10px;
-    border-bottom: solid black 1px
-}
-.userNameWrapper img {
-    width: 50px;
-    border-radius: 25%;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    font-weight: 600;
+    color: var(--raisin-black);
+    border-radius: 14px;
+    transition: background-color 0.18s ease;
 }
 
+.userNameWrapper:not(:last-child) {
+    border-bottom: 1px solid rgba(39, 39, 39, 0.1);
+}
+
+.userNameWrapper:hover {
+    background-color: rgba(64, 120, 153, 0.1);
+}
+
+.userNameWrapper img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1.5px solid rgba(64, 120, 153, 0.35);
+}
+
+.userNameWrapper p {
+    flex: 1;
+    cursor: pointer;
+}
+
+.profileLink {
+    color: var(--cerulean);
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.userNameWrapper button {
+    font-family: var(--body-font);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 999px;
+    color: var(--raisin-black);
+    background-color: var(--xanthous);
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.18),
+        0 2px 4px rgba(0, 0, 0, 0.12);
+    transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.userNameWrapper button:hover {
+    background-color: #f7c94a;
+    transform: translateY(-1px);
+}
+
+.userNameWrapper button:active {
+    transform: translateY(0);
+}

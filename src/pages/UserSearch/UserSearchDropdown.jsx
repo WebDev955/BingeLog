@@ -61,14 +61,12 @@ function UserSearchDropdown({ searchResults }) {
       <div className={styles.mainDropdownWrapper}>
         <div>
           {searchResults.map((user) => (
-            <div className={styles.userNameWrapper}>
+            <div key={user.id} className={styles.userNameWrapper}>
               <img src={user.profileImgUrl} />
-              <NavLink to={`/userPage/${user.id}`}>
-                <p>Profile Link</p>
+              <p onClick={() => displayUserDetails(user)}>{user.userName}</p>
+              <NavLink className={styles.profileLink} to={`/userPage/${user.id}`}>
+                Profile
               </NavLink>
-              <p key={user.id} onClick={() => displayUserDetails(user)}>
-                {user.userName}
-              </p>
               <button onClick={() => addFriend(user.id)}>Save User</button>
             </div>
           ))}

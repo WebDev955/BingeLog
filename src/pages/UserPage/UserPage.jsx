@@ -15,6 +15,7 @@ import styles from "./UserPageUPDATE.module.css";
 import MyShows from "./MyShows/MyShows";
 import MyReviews from "./MyReviews/MyReviews";
 import CurrentlyWatching from "./CurrentlyWatching/CurrentlyWatching";
+import MyPosts from "./MyPosts/MyPosts";
 
 function UserPage() {
   const [renderContent, setRenderContent] = useState("displayShows");
@@ -79,7 +80,14 @@ function UserPage() {
           >
             Binging
           </Bttn>
-          <Bttn className={styles.menuBttns} onClick={() => displayContent("")}>
+          <Bttn
+            className={
+              renderContent === "displayPosts"
+                ? styles.activeBttn
+                : styles.menuBttns
+            }
+            onClick={() => displayContent("displayPosts")}
+          >
             Posts
           </Bttn>
           <Bttn className={styles.menuBttns} onClick={() => displayContent("")}>
@@ -98,6 +106,7 @@ function UserPage() {
             {renderContent === "displayShows" && <MyShows />}
             {renderContent === "displayReviews" && <MyReviews />}
             {renderContent === "displayWatching" && <CurrentlyWatching />}
+            {renderContent === "displayPosts" && <MyPosts />}
           </motion.div>
         </AnimatePresence>
       </main>
