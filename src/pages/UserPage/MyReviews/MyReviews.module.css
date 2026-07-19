@@ -1,15 +1,48 @@
 .reviewsWrapperDiv {
-    display:flex ;
-    flex-direction: column;
-    border: 2px solid black;
-    padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 12px 80px;
+  background-color: var(--raisin-black);
+}
+
+.reviewsWrapperDiv > h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgba(245, 245, 245, 0.7);
+  padding: 10px 4px 2px;
+}
+
+.reviewsWrapperDiv > div {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.reviewsWrapperDiv > div > p {
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--xanthous);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .showTitle {
-    background-color: goldenrod;
+  padding: 12px 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--raisin-black);
+  background-color: var(--xanthous);
 }
 
-.showReview{
-    background-color: lightgrey;
-    padding: 5px;
+.showReview {
+  padding: 12px 14px;
+  color: whitesmoke;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }

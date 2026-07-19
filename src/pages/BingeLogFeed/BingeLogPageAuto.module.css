@@ -1,15 +1,59 @@
 .mainAutoFeedWrapper {
-    width: 100%;
-    display: flex;
-    Flex-direction: column;
-    background-color: rgba(188, 143, 143, 0);
-    padding-bottom: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--raisin-black);
+  color: whitesmoke;
+  padding-bottom: 100px;
+}
+
+.mainAutoFeedWrapper > h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 14px 14px 4px;
+  color: rgba(245, 245, 245, 0.75);
+}
+
+.mainAutoFeedWrapper > p {
+  padding: 12px 14px;
+  color: rgba(245, 245, 245, 0.6);
+  font-size: 0.9rem;
 }
 
 .sortingDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    font-weight: 600;
-    background-color: gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin: 4px 14px 10px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.sortingDiv h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(245, 245, 245, 0.5);
+  font-weight: 700;
+}
+
+.sortingDiv p {
+  padding: 6px 12px;
+  background-color: transparent;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: whitesmoke;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.sortingDiv p:hover {
+  background-color: var(--xanthous);
+  color: var(--raisin-black);
+  cursor: pointer;
 }

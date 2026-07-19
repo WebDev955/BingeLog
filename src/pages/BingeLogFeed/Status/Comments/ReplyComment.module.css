@@ -1,30 +1,67 @@
-.leaveReplyWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: left;
-    width: 100%;
-}
-.postAReply {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.leaveReplyWrapper textarea {
-    background-color: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 95%;
-    height: 100px;
-    max-width: 400px;
-    resize: none;
-    align-self: left;
+.leaveReplyWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
 }
 
-.leaveCommentWrapper button {
-    padding: 10px;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-bottom: 8px;
+.leaveReplyWrapper h3 {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(245, 245, 245, 0.55);
+  margin-bottom: 6px;
+}
+
+.postAReply {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.leaveReplyWrapper textarea {
+  background-color: whitesmoke;
+  color: black;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 8px;
+  width: 100%;
+  height: 80px;
+  max-width: 100%;
+  border: none;
+  border-radius: 10px;
+  resize: vertical;
+  font-size: 0.82rem;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.18s ease;
+}
+
+.leaveReplyWrapper textarea:focus {
+  box-shadow: 0 0 0 2px var(--xanthous);
+}
+
+.leaveReplyWrapper button {
+  align-self: flex-start;
+  padding: 6px 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.18s ease;
+}
+
+.leaveReplyWrapper button:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  cursor: pointer;
 }

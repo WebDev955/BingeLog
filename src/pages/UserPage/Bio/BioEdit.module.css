@@ -1,48 +1,71 @@
 .profileEditWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
 }
 
 .avatarUpload {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    background-color: rgba(255, 127, 80, 0.342);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    border-bottom: solid 3px black;
-    width: 50%;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background-color: rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.avatarUpload label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: whitesmoke;
 }
 
 .bioEditWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: left;
-    background-color: rgba(94, 92, 92, 0.329);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 4px;
 }
 
 .bioEdit {
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 8px;
+  color: whitesmoke;
 }
 
 .bioEditBttns {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    gap: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 4px 8px 8px;
 }
 
-.bioTextBox{
-    width: 100%;
-    height: 95px;
-    background-color: whitesmoke;
+.bioTextBox {
+  width: 100%;
+  min-height: 95px;
+  background-color: whitesmoke;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  resize: vertical;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.18s ease;
+}
+
+.bioTextBox:focus {
+  box-shadow: 0 0 0 2px var(--xanthous);
 }

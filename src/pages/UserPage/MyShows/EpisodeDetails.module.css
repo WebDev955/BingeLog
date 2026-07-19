@@ -1,48 +1,55 @@
-.epWrapper{   
-    border-top-style: solid;
-    border-color: white;
-    border-width: 2px;
-    margin-top: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-weight: 300;
-    text-align: left;
-    text-align: center;
-
+.epWrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 12px;
+  font-weight: 400;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .epWrapper header {
-    display: flex;
-    Flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: var(--sinopia);
+  padding: 10px 12px 12px;
+}
 
-    background-color: var(--sinopia);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding-bottom: 5px;
+.epWrapper header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: whitesmoke;
 }
 
 .watched {
-   color: black;
-   font-weight: 600;
+  color: black;
+  font-weight: 600;
 }
 
 .epList {
-    background-color: var(--cerulean);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-weight: 600;
-    text-align: left;
+  background-color: var(--cerulean);
+  color: whitesmoke;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-align: left;
+  padding: 10px 12px;
 }
 
-.epWrapper label, input {
-    padding: 5px;
+.epWrapper label,
+.epWrapper input {
+  padding: 4px;
 }
 
-.singleEp{
-    border-style: solid;
-    border-color: white;
-    border-radius: 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+.singleEp {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
+.singleEp br {
+  display: none;
+}
