@@ -3,9 +3,7 @@ import { useState } from "react";
 //IMPORTS - FIRESTONE
 import { doc, db, setDoc } from "../../../../firebase/firebase";
 //Imports - Hooks
-//import styles from "./CommentChats.module.css"
-// import styles from "./LeaveComment2.module.css";
-import styles from "./LeaveComment2UPDATE.module.css";
+import styles from "./LeaveComment2.module.css";
 //IMPORTS - COMPONENTS
 //import LeaveComment from "./LeaveComment"
 

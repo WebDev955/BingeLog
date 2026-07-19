@@ -9,8 +9,7 @@ import Bttn from "../../components/UI/Bttn";
 import Bio from "../UserPage/Bio/Bio";
 
 //IMPORTS - Styles
-// import styles from "./UserPage.module.css";
-import styles from "./UserPageUPDATE.module.css";
+import styles from "./UserPage.module.css";
 //import MyShows from "./MyShows/MyShows"
 import MyShows from "./MyShows/MyShows";
 import MyReviews from "./MyReviews/MyReviews";

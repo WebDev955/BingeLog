@@ -1,8 +1,7 @@
 //IMPORTS - Hooks
 //IMPORTS - Components
 //IMPORTS - Styles
-// import styles from "./CurrentlyWatching.module.css";
-import styles from "./CurrentlyWatchingUPDATE.module.css";
+import styles from "./CurrentlyWatching.module.css";
 //IMPORTS - REDUX
 import { useSelector } from "react-redux";
 

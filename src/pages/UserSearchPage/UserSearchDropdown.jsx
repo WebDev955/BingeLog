@@ -3,7 +3,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
 //IMPORTS - Components
-import UsersList from "./UserList";
+import UserList from "./UserList";
 import Bttn from "../../components/UI/Bttn";
 
 //IMPORTS - Styles
@@ -72,7 +72,7 @@ function UserSearchDropdown({ searchResults }) {
           ))}
         </div>
       </div>
-      <div>{selectedUser && <UsersList userDetails={selectedUser} />}</div>
+      <div>{selectedUser && <UserList userDetails={selectedUser} />}</div>
     </>
   );
 }

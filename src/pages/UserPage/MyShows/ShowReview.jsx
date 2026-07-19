@@ -3,8 +3,7 @@ import { useState } from "react";
 import { db, doc, updateDoc } from "../../../firebase/firebase";
 
 //IMPORTS - Styles
-// import styles from "./ShowReview.module.css";
-import styles from "./ShowReviewUPDATE.module.css";
+import styles from "./ShowReview.module.css";
 
 //Import - REDUX
 import { useSelector, useDispatch } from "react-redux";

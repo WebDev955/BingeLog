@@ -2,7 +2,6 @@
 import { Outlet } from "react-router-dom";
 //IMPORTS - Components
 import MainNav from "./MainNav";
-import Footer from "./Footer";
 //IMPORTS - Styles
 import { useSelector } from "react-redux";
 

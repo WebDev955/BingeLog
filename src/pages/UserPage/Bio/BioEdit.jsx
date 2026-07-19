@@ -5,8 +5,7 @@ import { db, doc, updateDoc } from "../../../firebase/firebase";
 import Bttn from "../../../components/UI/Bttn";
 import FileUploader from "../../../components/UI/FileUploader";
 
-// import styles from "../Bio/BioEdit.module.css";
-import styles from "../Bio/BioEditUPDATE.module.css";
+import styles from "../Bio/BioEdit.module.css";
 
 //IMPORTS - SLICES
 import { useDispatch, useSelector } from "react-redux";

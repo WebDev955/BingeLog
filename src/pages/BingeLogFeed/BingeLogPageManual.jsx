@@ -2,8 +2,7 @@
 import FeedCard from "./Status/FeedCard";
 
 //IMPORTS - Styles
-// import styles from "./BingeLogPageManual.module.css";
-import styles from "./BingeLogPageManualUPDATE.module.css";
+import styles from "./BingeLogPageManual.module.css";
 
 //IMPORTS - Hooks
 

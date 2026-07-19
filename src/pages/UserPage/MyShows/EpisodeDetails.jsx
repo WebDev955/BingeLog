@@ -2,13 +2,11 @@
 
 // IMPORTS - Components
 import ShowNotes from "./ShowNotes";
-import Input from "../../../components/UI/Input";
 
 // IMPORTS - Styles
-// import styles from "./EpisodeDetails.module.css";
-import styles from "./EpisodeDetailsUPDATE.module.css";
+import styles from "./EpisodeDetails.module.css";
 
-function EpisodeDetailsCopy({ seasonTitle, show }) {
+function EpisodeDetails({ seasonTitle, show }) {
   const selectedSeason = show.seasons.find(
     (season) => season.title === seasonTitle,
   );
@@ -41,4 +39,4 @@ function EpisodeDetailsCopy({ seasonTitle, show }) {
   );
 }
 
-export default EpisodeDetailsCopy;
+export default EpisodeDetails;

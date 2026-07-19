@@ -5,8 +5,7 @@ import BingeLogPageManual from "./BingeLogPageManual";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 //IMPORTS - Styles
-// import styles from "./BingeLogPage.module.css";
-import styles from "./BingeLogPageUPDATE.module.css";
+import styles from "./BingeLogPage.module.css";
 
 //IMPORTS - Hooks
 import { useEffect, useState } from "react";

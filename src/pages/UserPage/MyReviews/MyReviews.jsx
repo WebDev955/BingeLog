@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { showActions } from "../../../store/slices/showsSlice";
 
 //Import - Styles
-// import styles from "./MyReviews.module.css";
-import styles from "./MyReviewsUPDATE.module.css";
+import styles from "./MyReviews.module.css";
 
 function MyReviews() {
   const dispatch = useDispatch();

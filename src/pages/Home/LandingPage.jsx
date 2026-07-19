@@ -1,13 +1,10 @@
 //IMPORTS - Hooks
 import { NavLink } from "react-router-dom";
 //IMPORTS - Components
-import TextContent from "../../components/UI/TextContent";
-import Auth from "../../components/Auth";
 import SignUp from "../../components/UI/Signup";
 import Login from "../../components/LoginLogOut/Login";
 //IMPORTS - Styles
-// import styles from "./HomePage.module.css";
-import styles from "./HomePageUPDATE.module.css";
+import styles from "./LandingPage.module.css";
 import Bttn from "../../components/UI/Bttn";
 
 import { useDispatch } from "react-redux";

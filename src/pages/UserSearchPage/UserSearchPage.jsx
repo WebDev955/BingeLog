@@ -3,7 +3,7 @@
 import UserSearchBar from "./UserSearchBar";
 
 //IMPORTS - Styles
-import styles from "./ShowsPage.module.css";
+import styles from "./UserSearchPage.module.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 

@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 //IMPORTS - Styles
-// import styles from "./CommentChats2.module.css";
-import styles from "./CommentChats2UPDATE.module.css";
+import styles from "./CommentChats2.module.css";
 import ReplyComment from "./ReplyComment";
 import CommentIcon from "../../../../../public/LeaveComment.png";
 import LeaveComment2 from "./LeaveComment2";

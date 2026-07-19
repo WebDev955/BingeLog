@@ -9,7 +9,7 @@ import ShowsPage from "./pages/ShowsSearchPage/ShowsPage";
 import BingeLogPage from "./pages/BingeLogFeed/BingeLogPage";
 import About from "./pages/About/About";
 import FriendsList from "./pages/FriendsList/FriendsList";
-import UserSearchPage from "./pages/UserSearch/UserSearchPage";
+import UserSearchPage from "./pages/UserSearchPage/UserSearchPage";
 // IMPORTS - FIREBASE
 import {
   db,

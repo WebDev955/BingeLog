@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 //IMPORTS - Components
 import UserSearchDropdown from "./UserSearchDropdown";
 //IMPORTS - Styles
-import styles from "./ShowSearchBar.module.css";
+import styles from "./UserSearchBar.module.css";
 import { doc, getDoc, db, collection, getDocs } from "../../firebase/firebase";
 
 function UserSearchBar() {

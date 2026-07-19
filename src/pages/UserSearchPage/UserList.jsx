@@ -18,7 +18,7 @@ import {
 //IMPORTS - Styles
 import styles from "./UserList.module.css";
 
-function UsersList({ userDetails }) {
+function UserList({ userDetails }) {
   //Redux Selectors
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.uid);
@@ -60,4 +60,4 @@ function UsersList({ userDetails }) {
     </main>
   );
 }
-export default UsersList;
+export default UserList;

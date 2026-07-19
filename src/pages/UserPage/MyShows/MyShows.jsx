@@ -1,19 +1,17 @@
 //IMPORTS - library hooks
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAutoStatusDebounce } from "../../../hooks/hooks";
+import { useAutoStatusDebounce } from "../../../hooks/useAutoStatusDebounce";
 //IMPORTS - Components
 import ShowDetails from "./ShowDetails";
 import ShowReview from "./ShowReview";
-import ShowStatus from "./ShowStatus";
 //IMPORTS - REDUX
 import { showActions } from "../../../store/slices/showsSlice";
 import { useDispatch, useSelector } from "react-redux";
 //IMPORTS - FIREBASE/DATA
 import { doc, db, updateDoc } from "../../../firebase/firebase";
 //IMPORTS - STYLES/IMAGES
-// import styles from "./MyShows.module.css";
-import styles from "./MyShowsUPDATE.module.css";
+import styles from "./MyShows.module.css";
 import DownArrow from "../../../../public/DownArrow.png";
 import CheckMark from "../../../../public/CheckMark.png";
 
