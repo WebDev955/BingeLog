@@ -11,19 +11,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
+  padding: 10px 14px;
 }
 
 .actionBarIconRow img {
-  width: 26px;
-  height: 26px;
-  padding: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  transition: background-color 0.18s ease, transform 0.15s ease;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
 }
 
 .actionBarIconRow img:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: scale(1.08);
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+.actionBarIconRow img:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.likeCount {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--xanthous);
+  min-width: 14px;
+  text-align: center;
+}
+
+.commentIcon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  background-color: var(--xanthous);
+  border: 1px solid rgba(243, 182, 31, 0.4);
+  border-radius: 999px;
   cursor: pointer;
+  -webkit-mask-image: url("/BingeLog/CommentChats.png");
+  mask-image: url("/BingeLog/CommentChats.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-origin: content-box;
+  mask-origin: content-box;
+  transition: background-color 0.18s ease, transform 0.15s ease;
+}
+
+.commentIcon:hover {
+  background-color: #f7c94a;
+  transform: translateY(-2px);
+}
+
+.commentIcon:active {
+  transform: translateY(0) scale(0.94);
 }

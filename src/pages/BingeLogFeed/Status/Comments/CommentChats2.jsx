@@ -25,7 +25,7 @@ function CommentChats2({ status }) {
     ),
   );
 
-  console.log(status)
+  console.log(statusThreads)
 
   //FUNCTION - RESOLVE THE ONE THREAD TO DISPLAY
   //Owner: whichever thread they've clicked in the selector below.
@@ -48,22 +48,24 @@ function CommentChats2({ status }) {
       {isOwner && statusThreads.length > 0 && (
         <div className={styles.threadSelector}>
           <h3>Conversations</h3>
-          {statusThreads.map((thread) => {
-            const friendId = thread.commentingUsers.find(
-              (id) => id !== status.userId,
-            );
-            return (
-              <button
-                key={thread.threadId}
-                onClick={() => setSelectedThreadId(thread.threadId)}
-              >
-                {friendId}
-              </button>
-            );
-          })}
+          <div>
+            {statusThreads.map((thread) => {
+              const userName = thread.authorUserName;
+              const isSelected = thread.threadId === selectedThreadId;
+              return (
+                <button
+                  key={thread.threadId}
+                  className={`${styles.selectorBttn} ${isSelected ? styles.selectorBttnActive : ""}`}
+                  onClick={() => setSelectedThreadId(thread.threadId)}
+                >
+                  {userName}
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
-      {!chatThread && <LeaveComment2 status={status} />}
+      {!isOwner && !chatThread && <LeaveComment2 status={status} />}
       {isUserCommenting && comments.length > 0 && (
         <>
           <h3>Comment Messages</h3>

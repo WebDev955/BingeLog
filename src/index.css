@@ -9,7 +9,6 @@
   --body-font: 'Alan Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* App Title Font*/
   --app-title: 'Poetsen One', Georgia, 'Times New Roman', serif;
-
   /* Heading Font*/
   --heading-font: 'Alan Sans', Georgia, 'Times New Roman', serif;
 
@@ -43,8 +42,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html, body {
-  display: grid;
-  place-items: center;
+  width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 

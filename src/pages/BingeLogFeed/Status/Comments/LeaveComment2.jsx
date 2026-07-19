@@ -40,6 +40,8 @@ export const LeaveComment2 = ({ status }) => {
       visibility: "private",
       timestamp: new Date().getTime(),
     };
+
+    console.log(newChatThread)
     const newComment = {
       threadId: threadId,
       commentId: crypto.randomUUID(),

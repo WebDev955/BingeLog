@@ -19,6 +19,51 @@
   padding-left: 10px;
 }
 
+.threadSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+.threadSelector > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selectorBttn {
+  font-family: var(--body-font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  color: whitesmoke;
+  background-color: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.selectorBttn:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.selectorBttn:active {
+  transform: translateY(0);
+}
+
+.selectorBttnActive {
+  color: var(--raisin-black);
+  background-color: var(--xanthous);
+  border-color: var(--xanthous);
+}
+
+.selectorBttnActive:hover {
+  background-color: #f7c94a;
+}
+
 .commentWrapper {
   display: flex;
   flex-direction: column;

@@ -26,15 +26,16 @@ function ActionBar({ status }) {
     <main className={styles.actionBarWrapper}>
       <div className={styles.actionBarIconRow}>
         <img
-          width="30x"
           onClick={updateLikeCount}
           src="/BingeLog/HeartReact.png"
+          alt="Like"
         />
-        {likeCount}
-        <img
-          width="30x"
+        {likeCount != null && <span className={styles.likeCount}>{likeCount}</span>}
+        <span
+          className={styles.commentIcon}
           onClick={displayCommentChats}
-          src="/BingeLog/CommentChats.png"
+          role="img"
+          aria-label="Comments"
         />
       </div>
       <div>{commentChats && <CommentChats2 status={status} />}</div>
