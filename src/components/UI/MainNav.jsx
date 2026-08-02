@@ -60,7 +60,8 @@ function MainNav() {
           </li>
           <li className={styles.navItem}>
             <NavLink className={styles.navLink} to="/About">
-              <img width="35px" src="/BingeLog/HomeIcon.png" />
+              <img width="35px" src="/BingeLog/info.svg
+              " />
             </NavLink>
           </li>
           <li className={styles.navItem}>

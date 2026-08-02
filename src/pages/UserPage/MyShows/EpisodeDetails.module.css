@@ -5,6 +5,7 @@
   font-weight: 400;
   text-align: center;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border: solid white 3px;
 }
 
 .epWrapper header {
@@ -48,6 +49,7 @@
   overflow: hidden;
   margin: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: solid white 1px
 }
 
 .singleEp br {

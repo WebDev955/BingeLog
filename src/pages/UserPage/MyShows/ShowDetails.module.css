@@ -6,6 +6,7 @@
   overflow: hidden;
   margin-top: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+
 }
 
 .seasonsTitle {
@@ -18,6 +19,7 @@
   letter-spacing: 0.02em;
   padding: 10px 14px;
   text-align: left;
+
 }
 
 .seasonsNumber {
@@ -26,10 +28,11 @@
   justify-content: center;
   padding: 12px;
   background-color: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-weight: 600;
   transition: background-color 0.18s ease;
 }
+
+
 
 .seasonsNumber:hover {
   background-color: rgba(255, 255, 255, 0.1);

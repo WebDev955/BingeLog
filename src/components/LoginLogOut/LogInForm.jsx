@@ -10,12 +10,7 @@ function LogInForm({ type, onSubmit }) {
     <form onSubmit={onSubmit} className={styles.formWrapper}>
       <div className={styles.inputWrapper}>
         <Input label="Email" htmlFor="email" id="email" name="email" />
-        <Input
-          label="Password"
-          htmlFor="password"
-          id="password"
-          name="password"
-        />
+        <Input label="Password" htmlFor="password" id="password" name="password"/>
         <Bttn className={styles.authBttn} type={type}>Sign In</Bttn>
       </div>
     </form>
