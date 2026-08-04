@@ -13,6 +13,7 @@ import styles from "./UserSearchDropdown.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";
 import { authActions } from "../../store/slices/authSlice";
+import { toastActions } from "../../store/slices/toastSlice";
 
 import {
   doc,
@@ -43,10 +44,10 @@ function UserSearchDropdown({ searchResults }) {
       });
 
       dispatch(friendsActions.addFriend(updatedFriendsList));
-      alert("Friend Added!");
+      dispatch(toastActions.showToast("Friend Added!"));
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      dispatch(toastActions.showToast(err.message, "error"));
     }
   }
 
@@ -62,7 +63,7 @@ function UserSearchDropdown({ searchResults }) {
         <div>
           {searchResults.map((user) => (
             <div key={user.id} className={styles.userNameWrapper}>
-              <img src={user.profileImgUrl} />
+              <img src={user.profileImgUrl} alt={`${user.userName}'s avatar`} />
               <p onClick={() => displayUserDetails(user)}>{user.userName}</p>
               <NavLink className={styles.profileLink} to={`/userPage/${user.id}`}>
                 Profile

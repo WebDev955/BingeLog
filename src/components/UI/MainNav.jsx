@@ -33,40 +33,39 @@ function MainNav() {
           <li className={styles.navItem}>
             {isLoggedIn && (
               <NavLink className={styles.navLink} to="/bingelog">
-                <img width="35px" src="/BingeLog/BingeLog.png" />
+                <img width="35px" src="/BingeLog/BingeLog.png" alt="Feed" />
               </NavLink>
             )}
           </li>
           <li className={styles.navItem}>
             {isLoggedIn && id && (
               <NavLink className={styles.navLink} to={`/userPage/${id}`}>
-                <img width="35px" src="/BingeLog/UserPage.png" />
+                <img width="35px" src="/BingeLog/UserPage.png" alt="My Profile" />
               </NavLink>
             )}
           </li>
           <li className={styles.navItem}>
             {isLoggedIn && (
               <NavLink className={styles.navLink} to="/shows">
-                <img width="35px" src="/BingeLog/TvIcon.png" />
+                <img width="35px" src="/BingeLog/TvIcon.png" alt="Shows" />
               </NavLink>
             )}
           </li>
           <li className={styles.navItem}>
             {isLoggedIn && (
               <NavLink className={styles.navLink} to="/userSearch">
-                <img width="35px" src="/BingeLog/UserSearchIcon.png" />
+                <img width="35px" src="/BingeLog/UserSearchIcon.png" alt="Find Users" />
               </NavLink>
             )}
           </li>
           <li className={styles.navItem}>
             <NavLink className={styles.navLink} to="/About">
-              <img width="35px" src="/BingeLog/info.svg
-              " />
+              <img width="35px" src="/BingeLog/info.svg" alt="About" />
             </NavLink>
           </li>
           <li className={styles.navItem}>
             <Bttn className={styles.logoutBttn} onClick={toggleLogOut}>
-              <img width="35px" src="/BingeLog/LogOut.png" />
+              <img width="35px" src="/BingeLog/LogOut.png" alt="Log Out" />
             </Bttn>
           </li>
         </ul>

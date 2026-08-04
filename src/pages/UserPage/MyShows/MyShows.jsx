@@ -7,6 +7,7 @@ import ShowDetails from "./ShowDetails";
 import ShowReview from "./ShowReview";
 //IMPORTS - REDUX
 import { showActions } from "../../../store/slices/showsSlice";
+import { toastActions } from "../../../store/slices/toastSlice";
 import { useDispatch, useSelector } from "react-redux";
 //IMPORTS - FIREBASE/DATA
 import { doc, db, updateDoc } from "../../../firebase/firebase";
@@ -53,7 +54,7 @@ function MyShows({ id }) {
       updatedFinshedShowList = finishedShows.filter((show) => show.id !== id);
     } else {
       updatedFinshedShowList = [...finishedShows, { show: showTitle, id: id }];
-      alert(`Finished ${showTitle}!`);
+      dispatch(toastActions.showToast(`Finished ${showTitle}!`));
       triggerDebounce();
     }
 
@@ -176,7 +177,7 @@ function MyShows({ id }) {
                 {finishedShows.find((id) => id.id === show.id) && (
                   <p style={{ color: "lightgreen" }}>
                     {" "}
-                    Complete <img src={CheckMark} width="20px" />
+                    Complete <img src={CheckMark} width="20px" alt="Complete" />
                   </p>
                 )}
                 {currentlyBinging.find((id) => id.id === show.id) && (

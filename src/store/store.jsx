@@ -7,6 +7,7 @@ import notesReducer from "./slices/notesSlice";
 import friendsReducer from "./slices/friendsSlice";
 import socialFeedReducer from "./slices/socialFeedSlice";
 import chatsReducer from "./slices/chatsSlice";
+import toastReducer from "./slices/toastSlice"
 
 export const store = configureStore({
   reducer: {
@@ -17,5 +18,6 @@ export const store = configureStore({
     friends: friendsReducer,
     socialfeed: socialFeedReducer,
     chats: chatsReducer,
+    toast: toastReducer,
   },
 });

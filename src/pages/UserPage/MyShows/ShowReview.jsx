@@ -8,6 +8,7 @@ import styles from "./ShowReview.module.css";
 //Import - REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { showActions } from "../../../store/slices/showsSlice";
+import { toastActions } from "../../../store/slices/toastSlice";
 
 function ShowReview({ showId, showTitle }) {
   //Local draft input of a review
@@ -53,7 +54,7 @@ function ShowReview({ showId, showTitle }) {
       reviews: updatedReviews,
     });
     dispatch(showActions.updateReviews(updatedReviews));
-    alert("Review Saved!");
+    dispatch(toastActions.showToast("Review Saved!"));
   }
   return (
     <div className={styles.reviewDivWrapper}>

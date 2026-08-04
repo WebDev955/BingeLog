@@ -10,6 +10,7 @@ import styles from "./LeaveComment2.module.css";
 //IMPORTS - SLICES
 import { useSelector, useDispatch } from "react-redux";
 import { chatsActions } from "../../../../store/slices/chatsSlice";
+import { toastActions } from "../../../../store/slices/toastSlice";
 
 //Status.statusId is prop
 //passed from ActionBar (which was passed from FeedCard)
@@ -75,7 +76,7 @@ export const LeaveComment2 = ({ status }) => {
     } catch (err) {
       console.error(err);
     }
-    alert("Thread and comment Made!");
+    dispatch(toastActions.showToast("Thread and comment Made!"));
   }
 
   return (

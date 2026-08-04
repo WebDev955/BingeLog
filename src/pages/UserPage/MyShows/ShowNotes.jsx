@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { notesActions } from "../../../store/slices/notesSlice";
 import { showActions } from "../../../store/slices/showsSlice";
 import { authActions } from "../../../store/slices/authSlice";
+import { toastActions } from "../../../store/slices/toastSlice";
 //import { authActions } from "../../../store/slices/authSlice"
 
 import { db, doc, updateDoc } from "../../../firebase/firebase";
@@ -71,7 +72,7 @@ function ShowNotes({ epTitle, showTitle, show}) {
         ...watchedEps,
         { epName: epTitle, showName: showTitle },
       ];
-      alert(`Watched ${epTitle}!`);
+      dispatch(toastActions.showToast(`Watched ${epTitle}!`));
       triggerDebounce();
     }
 

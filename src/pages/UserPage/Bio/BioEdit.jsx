@@ -10,6 +10,7 @@ import styles from "../Bio/BioEdit.module.css";
 //IMPORTS - SLICES
 import { useDispatch, useSelector } from "react-redux";
 import { profileActions } from "../../../store/slices/profileSlice";
+import { toastActions } from "../../../store/slices/toastSlice";
 
 //IMPORTS - Styles
 //import styles from FILE LOCATION
@@ -22,6 +23,7 @@ function BioEdit() {
   const dispatch = useDispatch();
   const bio = useSelector((state) => state.profile.bio);
   const userId = useSelector((state) => state.auth.user.uid);
+
 
   function editBioHandler() {
     setIsEditingBio(true);
@@ -42,7 +44,7 @@ function BioEdit() {
       },
       dispatch(profileActions.updateBio(newBio)),
     );
-    alert("Bio Saved!");
+    dispatch(toastActions.showToast("Bio Updated!"))
     setIsEditingBio(false);
   }
 

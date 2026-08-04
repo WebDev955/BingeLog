@@ -40,7 +40,10 @@ function displayShowDetails(show) {
                       <p className={styles.savedShow}>Already Added</p>
                     )}
                   </div>
-                  <img src={show.imageSet.horizontalPoster.w360} />
+                  <img
+                    src={show.imageSet.horizontalPoster.w360}
+                    alt={`${show.title} poster`}
+                  />
                 </div>
                 {selectedShow.imdbId === show.imdbId && (
                   <ShowsList showDetails={selectedShow} />

@@ -3,6 +3,7 @@ import Bttn from "../../components/UI/Bttn";
 //IMPORT - Redux/Firebase
 import { useDispatch, useSelector } from "react-redux";
 import { showActions } from "../../store/slices/showsSlice";
+import { toastActions } from "../../store/slices/toastSlice";
 import { doc, db, updateDoc } from "../../firebase/firebase";
 //IMPORTS - Styles
 import styles from "./ShowsList.module.css";
@@ -20,7 +21,7 @@ function ShowsList({ showDetails }) {
   async function saveShow(showDetails) {
     const showExist = myShows.some((show) => show.id === showDetails.imdbId);
     if (showExist) {
-      alert("Show is already added in your list!");
+      dispatch(toastActions.showToast("Show is already added in your list!", "error"));
       return;
     }
 
@@ -52,7 +53,7 @@ function ShowsList({ showDetails }) {
     });
 
     dispatch(showActions.updateMyShows(updatedShows));
-    alert(`${showDetails.title} has been added to your list!`);
+    dispatch(toastActions.showToast(`${showDetails.title} has been added to your list!`));
   }
 
   function saveShowHandler(showDetails) {
@@ -94,7 +95,10 @@ function ShowsList({ showDetails }) {
                 <div className={styles.streamingService}>
                   <p>{option.type}</p>
                   <a href={option.link} target="_blank">
-                    <img src={option.service.imageSet.darkThemeImage} />
+                    <img
+                      src={option.service.imageSet.darkThemeImage}
+                      alt={option.service?.name || "Streaming service"}
+                    />
                   </a>
                 </div>
               ))}

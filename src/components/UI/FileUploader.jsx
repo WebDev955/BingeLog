@@ -3,6 +3,7 @@ import { doc, db, updateDoc } from "../../firebase/firebase";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { profileActions } from "../../store/slices/profileSlice";
+import { toastActions } from "../../store/slices/toastSlice";
 
 function FileUploader() {
   //STATE - is there a file provided by user?
@@ -46,7 +47,7 @@ function FileUploader() {
       });
       dispatch(profileActions.uploadAvatar(uploadedImage));
       setStatus("success");
-      alert("Image uploaded!");
+      dispatch(toastActions.showToast("Image uploaded!"));
     } catch (err) {
       console.error(err);
       setStatus("error");

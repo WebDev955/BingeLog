@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 //IMPORTS - Components
 import { useSelector, useDispatch } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";
+import { toastActions } from "../../store/slices/toastSlice";
 import { db, doc, updateDoc, collection, getDocs } from "../../firebase/firebase";
 
 //IMPORTS - Styles
@@ -46,7 +47,7 @@ function FriendsList() {
       dispatch(friendsActions.removeFriend(updatedFriendsList));
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      dispatch(toastActions.showToast(err.message, "error"));
     }
   }
 
@@ -55,7 +56,11 @@ function FriendsList() {
       <h1>Friends List</h1>
       {friend.map((friend) => (
         <div key={friend.id} className={styles.friendCard}>
-          <img src={friend?.profileImgUrl} width="55px" />
+          <img
+            src={friend?.profileImgUrl}
+            width="55px"
+            alt={`${friend?.userName || "Unknown User"}'s avatar`}
+          />
           <p>{friend?.userName || "Unknown User"}</p>
           <button
             className={styles.removeBttn}

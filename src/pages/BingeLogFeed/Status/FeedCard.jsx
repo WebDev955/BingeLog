@@ -15,7 +15,10 @@ function FeedCard({ status }) {
     <main className={styles.mainStatusWrapper}>
       <article>
         <header className={styles.feedHeader}>
-          <img src={status?.userImage || "/BingeLog/DefaultAvatar.png"} />
+          <img
+            src={status?.userImage || "/BingeLog/DefaultAvatar.png"}
+            alt={`${status?.userName}'s avatar`}
+          />
           <p>{status?.userName}</p>
         </header>
         <div className={styles.feedContent}>

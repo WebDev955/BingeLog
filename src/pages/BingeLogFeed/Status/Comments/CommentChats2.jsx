@@ -71,7 +71,7 @@ function CommentChats2({ status }) {
           {comments.map((comment, index) => (
             <div key={comment.commentId} className={styles.commentWrapper}>
               <header className={styles.commentHeader}>
-                <img src={comment.authorImg} />
+                <img src={comment.authorImg} alt={`${comment.authorUserName}'s avatar`} />
                 <p>{comment.authorUserName}</p>
                 <p>{new Date(comment.timeStamp).toLocaleString()}</p>
               </header>
@@ -82,6 +82,7 @@ function CommentChats2({ status }) {
                     onClick={() => replyHandler(`comment-${index}`)}
                     src={CommentIcon}
                     width="40px"
+                    alt="Reply"
                   />
                 )}
                 {displayReply === `comment-${index}` && (
@@ -97,7 +98,7 @@ function CommentChats2({ status }) {
                 comment.replies.map((reply, replyIndex) => (
                   <div key={reply.replyId} className={styles.replyWrapper}>
                     <header className={styles.replyHeader}>
-                      <img src={reply.authorImg} />
+                      <img src={reply.authorImg} alt={`${reply.authorUserName}'s avatar`} />
                       <p>{reply.authorUserName}</p>
                       <p>{new Date(reply.timeStamp).toLocaleString()}</p>
                     </header>
@@ -110,6 +111,7 @@ function CommentChats2({ status }) {
                           }
                           src={CommentIcon}
                           width="40px"
+                          alt="Reply"
                         />
                       )}
                       {displayReply === `reply-${index}-${replyIndex}` && (

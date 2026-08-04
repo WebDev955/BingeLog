@@ -52,14 +52,14 @@ function Bio({ id }) {
   return (
     <main className={styles.mainWrapper}>
       <div className={styles.bioBttnMenu}>
-        <img onClick={() => editingBio()} src={EditProfile} width="35px" />
+        <img onClick={() => editingBio()} src={EditProfile} width="35px" alt="Edit Profile" />
         {isEditingBio === true && <label>Close Editing </label>}
-        <img src={AddFriend} width="35px" />
+        <img src={AddFriend} width="35px" alt="Add Friend" />
         <NavLink to="/friendsList">
-          <img src={FriendList} width="35px" />
+          <img src={FriendList} width="35px" alt="Friends List" />
         </NavLink>
         <a href="http://localhost:5173/userPage/${userId}" to="_blank">
-          <img src={Share} width="35px" />
+          <img src={Share} width="35px" alt="Share Profile" />
         </a>
       </div>
       <div className={styles.bioAvatarWrapper}>
@@ -68,6 +68,7 @@ function Bio({ id }) {
           src={avatar || "/BingeLog/DefaultAvatar.png"}
           width="75"
           height="75"
+          alt={`${userName}'s avatar`}
         />
         <h3>{userName}</h3>
         <h3>Binging since: 2025</h3>

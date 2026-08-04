@@ -13,7 +13,7 @@ function Footer() {
         <h4>Credits</h4>
         <p>
           <a href="https://www.movieofthenight.com/about/api">
-            <img width="110px" src={logo} />
+            <img width="110px" src={logo} alt="Movie of the Night logo" />
           </a>{" "}
           | Show and Movie Data
         </p>

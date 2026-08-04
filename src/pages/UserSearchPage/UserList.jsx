@@ -6,6 +6,7 @@ import Bttn from "../../components/UI/Bttn";
 import { useDispatch, useSelector } from "react-redux";
 import { friendsActions } from "../../store/slices/friendsSlice";
 import { authActions } from "../../store/slices/authSlice";
+import { toastActions } from "../../store/slices/toastSlice";
 
 import {
   doc,
@@ -38,10 +39,10 @@ function UserList({ userDetails }) {
       });
 
       dispatch(friendsActions.addFriend(updatedFriendsList));
-      alert("Friend Added!");
+      dispatch(toastActions.showToast("Friend Added!"));
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      dispatch(toastActions.showToast(err.message, "error"));
     }
   }
 
@@ -52,7 +53,7 @@ function UserList({ userDetails }) {
           <NavLink to={`/userPage/:${userDetails.id}`}>
             <h2>{userDetails.userName}</h2>
           </NavLink>
-          <img src={userDetails.profileImgUrl} width="100px" />
+          <img src={userDetails.profileImgUrl} width="100px" alt={`${userDetails.userName}'s avatar`} />
           <br />
           <Bttn onClick={() => addFriend(userDetails.id)}>Save User</Bttn>
         </div>
