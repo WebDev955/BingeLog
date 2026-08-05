@@ -1,7 +1,7 @@
 #root {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   width: 100%;
   margin: 0 auto;
   text-align: center;

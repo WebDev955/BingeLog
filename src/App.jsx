@@ -27,7 +27,7 @@ import { onAuthStateChanged } from "./firebase/firebase";
 //IMPORTS - NAVIGATION
 import RootLayout from "./components/UI/RootLayout";
 //IMPORTS - REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "./store/slices/authSlice";
 import { showActions } from "./store/slices/showsSlice";
 import { notesActions } from "./store/slices/notesSlice";
@@ -38,8 +38,6 @@ import { chatsActions } from "./store/slices/chatsSlice";
 
 //IMPORTS - STYLES
 import "./App.css";
-import { current } from "@reduxjs/toolkit";
-import { snapshotEqual } from "firebase/firestore";
 
 // Resolves once the given doc exists, instead of a single one-shot check —
 // covers the gap between a user signing in and their Users/{uid} doc being written.
@@ -74,17 +72,10 @@ function waitForUserDoc(docRef, timeoutMs = 5000) {
   });
 }
 
-//{path: `friendsList/:userName/:id`, element: <FriendsList/>},
-//THIS IS AN ISSUE
+
 function App() {
   const dispatch = useDispatch();
-  //const myShows = useSelector((state) => state.shows.myShows)
-  //const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  //const uid = useSelector((state) => state.auth.user?.uid)
-  //auth.currentUser;  - can be null after a refresh
-
   const [hydrated, setHydrated] = useState(false);
-  //const doesUserExist = useSelector((state) => state.auth?.user)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {

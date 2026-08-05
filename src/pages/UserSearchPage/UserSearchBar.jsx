@@ -9,29 +9,38 @@ import { doc, getDoc, db, collection, getDocs } from "../../firebase/firebase";
 function UserSearchBar() {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState(null);
+  const [globalUserList, setGlobalUserList] = useState(null);
 
   useEffect(() => {
-    async function fetchUser(query) {
-      if (!query) return;
-
+    async function fetchGlobalUsers(){
       try {
-        const querySnapShot = await getDocs(collection(db, "Users"));
-        const globalUsersList = querySnapShot.docs.map((doc) => ({
+        const querySnapShot =  await getDocs(collection(db, "Users"));
+        const globalUsers = querySnapShot.docs.map((doc) => ({
           id: doc.id, //expose user
           ...doc.data(), //spread field data
         }));
+        setGlobalUserList(globalUsers);
 
-        const globalUsersFiltered = globalUsersList.filter((user) =>
-          user.userName?.toLowerCase().includes(query.toLowerCase()),
-        );
-
-        setSearchResults(globalUsersFiltered);
-      } catch (err) {
-        console.error("Can't find global users", err);
+        } catch (err) {
+          console.error("Can't find global users", err);
+        }
       }
+    fetchGlobalUsers()
+  },[])
+
+  useEffect(() => {
+    if (!globalUserList) return;
+
+    if (!query) {
+      setSearchResults(null);
+      return;
     }
-    fetchUser(query);
-  }, [query]);
+
+    const globalUsersFiltered = globalUserList.filter((user) =>
+      user.userName?.toLowerCase().includes(query.toLowerCase()),
+    );
+    setSearchResults(globalUsersFiltered)
+  }, [query, globalUserList])
 
   return (
     <div className={styles.mainWrapper}>
