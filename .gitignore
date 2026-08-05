@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude-generated reports (local dev notes, not part of the shipped project)
+docs/reports/
