@@ -223,7 +223,7 @@ function MyShows({ id }) {
                     </label>
                     <label>
                       {" "}
-                      Watch Que
+                      Watch Queue
                       <input type="checkbox" />
                     </label>
                     <button onClick={() => removeShow(show.id)}>

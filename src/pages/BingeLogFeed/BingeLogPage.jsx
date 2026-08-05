@@ -32,7 +32,7 @@ function BingeLog() {
     <main className={styles.mainFeedPageWrapper}>
       <div>
         <button onClick={displayAutoFeed}>View Auto Updates</button>
-        <button onClick={displayManualFeed}>View Manuel Updates</button>
+        <button onClick={displayManualFeed}>View Manual Updates</button>
       </div>
       {feedType === "auto" ? <BingeLogPageAuto /> : "Manual Statuses"}
     </main>

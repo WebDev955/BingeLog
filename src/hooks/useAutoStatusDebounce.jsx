@@ -55,7 +55,7 @@ export const useAutoStatusDebounce = () => {
       await addDoc(autoStatusRef, newAutoStatus);
       dispatch(socialFeedActions.addAutoStatus(newAutoStatus));
     } catch (err) {
-      console.error("Write Faild:", err);
+      console.error("Write Failed:", err);
     }
   }
 

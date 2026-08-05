@@ -40,7 +40,7 @@ function ShowSearchBar() {
     <div className={styles.mainWrapper}>
       <input
         type="search"
-        placeholder="Seach a show."
+        placeholder="Search a show."
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />

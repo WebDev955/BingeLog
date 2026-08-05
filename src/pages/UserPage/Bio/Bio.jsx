@@ -48,7 +48,7 @@ function Bio({ id }) {
   const currentlyBinging = useSelector((state) => state.shows.currentlyBinging);
   const finishedShows = useSelector((state) => state.shows.finishedShows);
 
-  // ADD FRIEND - pesudo code - onClick={() => userAccountCtx.addFriend(id)}
+  // ADD FRIEND - pseudo code - onClick={() => userAccountCtx.addFriend(id)}
   return (
     <main className={styles.mainWrapper}>
       <div className={styles.bioBttnMenu}>

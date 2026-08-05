@@ -46,7 +46,7 @@ function UserSearchBar() {
     <div className={styles.mainWrapper}>
       <input
         type="search"
-        placeholder="Seach a user"
+        placeholder="Search a user"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />

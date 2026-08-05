@@ -32,8 +32,9 @@ const LandingPage = () => {
             <span>Track</span> your shows
           </h2>
           <p>
-            Find and track all your favorite shows to tossing to a bingeing
-            list, finished list, or track which episodes you have finished!
+            Find and track all your favorite shows by adding them to a
+            bingeing list, a finished list, or tracking which episodes
+            you've watched!
           </p>
         </div>
         <div className={styles.cta2}>
@@ -50,8 +51,8 @@ const LandingPage = () => {
             <span>Chat</span> about your shows.
           </h2>
           <p>
-            Everytime you update a shows status, status generates for friends to
-            see where you are to avoid accidental spoilers discussion.
+            Every time you update a show's status, your friends can see where
+            you are to avoid accidental spoiler discussions.
           </p>
         </div>
         <NavLink to="/About" className={styles.learnMoreLink}>

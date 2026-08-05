@@ -40,7 +40,7 @@ function BingeLogPageAuto() {
         <h3>Sort:</h3>
         <p onClick={() => handleStatusUserNameSort(friendStatuses)}>Username</p>
         <p onClick={() => handleStatusTimeSort(friendStatuses)}>
-          Recently Updates
+          Most Recent Updates
         </p>
         <p onClick={() => handleStatusTimeSortOld(friendStatuses)}>
           Older Updates

@@ -70,7 +70,7 @@ function ShowReview({ showId, showTitle }) {
       />
       <label>
         {" "}
-        Review Score - -
+        Review Score
         <select onChange={(e) => updateReviewScore(e.target.value)}>
           <option value="1/5"> 1/5 Stars </option>
           <option value="2/5"> 2/5 Stars </option>

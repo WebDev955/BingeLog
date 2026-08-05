@@ -1,6 +1,6 @@
 //Imports - Hooks
 import { useState } from "react";
-//IMPORTS - FIRESTONE
+//IMPORTS - FIRESTORE
 import { doc, db, setDoc } from "../../../../firebase/firebase";
 //Imports - Hooks
 import styles from "./LeaveComment2.module.css";
