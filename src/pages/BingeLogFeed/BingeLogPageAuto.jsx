@@ -31,8 +31,6 @@ function BingeLogPageAuto() {
     dispatch(socialFeedActions.updateAutoStatuses(sorted));
   };
 
-  
-
   return (
     <main className={styles.mainAutoFeedWrapper}>
       <h1>BingeLog Auto Feed</h1>
